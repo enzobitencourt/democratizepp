@@ -4,7 +4,7 @@ import imagem from "../../Assets/notícia_carrossel.jpg"
 export const Imagem = styled.div`
     background: url(${imagem});
     background-size: cover;
-    width: 95vw;
+    width: 93vw;
     height: 22vh;
     border-radius: 28.5px;
     display: flex;
@@ -22,7 +22,7 @@ export const Titulo = styled.div`
 
 export const Texto = styled.p`
     color: #FFF;
-    font-family: Poppins;
+    font-family: 'Poppins';
     font-size: 13px;
     font-style: normal;
     font-weight: 700;

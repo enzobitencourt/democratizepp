@@ -7,6 +7,7 @@ export default createGlobalStyle`
     display: flex;
     justify-content: center;
     background-color: #F5F5F5;;
+    align-items: center;
     }
 `
 
