@@ -14,6 +14,7 @@ export const MenuContainer = styled.div`
     left: -2vw;
     height: 7vh;
     padding-left: 2vh;
+    margin-top: 10vh;
     padding-right: 2vh;
 `
 

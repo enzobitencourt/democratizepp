@@ -1,12 +1,13 @@
 import { styled } from "styled-components";
 
-export const ContainerNotGeral = styled.div`
-    width: 93vw;
-    height: auto;
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    align-content: left;
+    width: 93vw;
+    height: auto;
     margin-top: 2vh;
-    margin-bottom: 13vh;
+    gap: 2vh;
 `
 
 export const Titulo = styled.p`
@@ -17,4 +18,12 @@ export const Titulo = styled.p`
     font-weight: 500;
     line-height: normal;
     margin: 0;
+`
+
+export const ContainerFav = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+    width: auto;
+    height: auto;
 `

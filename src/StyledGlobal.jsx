@@ -6,7 +6,8 @@ export default createGlobalStyle`
     padding: 0;
     display: flex;
     justify-content: center;
-    background-color: #F5F5F5;;
+    font-family: 'Poppins';
+    background-color: #F5F5F5;
     align-items: center;
     }
 `

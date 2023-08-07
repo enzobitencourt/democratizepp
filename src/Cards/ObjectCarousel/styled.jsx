@@ -23,7 +23,7 @@ export const Titulo = styled.div`
 export const Texto = styled.p`
     color: #FFF;
     font-family: 'Poppins';
-    font-size: 13px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
