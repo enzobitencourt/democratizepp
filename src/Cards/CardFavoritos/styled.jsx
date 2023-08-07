@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const ContainerFavoritos = styled.div`
     display: flex;
     flex-direction: column;
-    width: 38vw;
+    width: 48vw;
     height: 26vh;
     gap: 1vh;
     border-radius: 18.24px;

@@ -10,7 +10,9 @@ function Favoritos(){
                 <CardFavoritos/>
                 <CardFavoritos/>
                 <CardFavoritos/>
-            </ContainerFav>
+                <CardFavoritos/>
+                <CardFavoritos/>
+             </ContainerFav>
         </Container>
         </>
     )
