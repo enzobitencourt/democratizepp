@@ -33,13 +33,12 @@ export const Logo = styled.img`
 
 export const Acessar = styled.button`
     background-color: #F0AD4E;
-    border-color: none;
+    border: none;
     border-radius: 200px;
     width: 245px;
     height: 72px;
     color: #FFF;
     text-align: center;
-    font-family: Poppins;
     font-size: 24px;
     font-style: normal;
     font-weight: 700;

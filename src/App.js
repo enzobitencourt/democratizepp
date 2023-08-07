@@ -6,7 +6,7 @@ function App() {
   return (
     <>
     <StyledGlobal/>
-    <Home></Home>
+    <Home/>
     </>
   );
 }

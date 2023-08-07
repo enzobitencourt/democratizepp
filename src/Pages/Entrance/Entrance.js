@@ -1,4 +1,4 @@
-import { Acessar, Fundo, Gradiente, Logo } from "./style"
+import { Acessar, Fundo, Gradiente, Logo } from "./styled"
 import logo from "../../Assets/LogoInt.png"
 
 function Entrada(){
