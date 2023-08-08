@@ -1,4 +1,4 @@
-import Home from "./Pages/Home/Home";
+import Configuracoes from "./Pages/Configuracoes/Configuracoes";
 import StyledGlobal from "./StyledGlobal";
 import { React } from "react";
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <>
     <StyledGlobal/>
-    <Home/>
+    <Configuracoes/>
     </>
   );
 }

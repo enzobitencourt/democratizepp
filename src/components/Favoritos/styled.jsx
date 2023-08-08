@@ -23,8 +23,9 @@ export const Titulo = styled.p`
 export const ContainerFav = styled.div`
     display: flex;
     flex-direction: row;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 3vw;
-    width: 100%;
+    width: 93vw;
     height: auto;
 `
+
