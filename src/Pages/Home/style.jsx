@@ -25,5 +25,4 @@ export const ContainerFav = styled.div`
     width: 93vw;
     height: auto;
     margin-top: 2vh;
-    gap: 2vh;
 `

@@ -5,7 +5,6 @@ export const ContainerNotGeral = styled.div`
     height: auto;
     display: flex;
     flex-direction: column;
-    margin-top: 2vh;
     margin-bottom: 13vh;
 `
 

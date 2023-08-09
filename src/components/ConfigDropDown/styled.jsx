@@ -28,7 +28,6 @@ export const Conteudo = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2vh;
 `
 
 export const BotaoSair = styled.button`
@@ -47,4 +46,7 @@ export const BotaoSair = styled.button`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+`
+export const Unexpected = styled.div`
+    height: auto;
 `

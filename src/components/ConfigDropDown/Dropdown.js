@@ -1,8 +1,10 @@
 import {ChevronDownIcon} from "@chakra-ui/icons"
-import { Botao, BotaoSair, Container, Conteudo } from "./styled"
+import { Botao, BotaoSair, Container, Conteudo, Unexpected } from "./styled"
 import Favoritos from "../Favoritos/Favoritos"
+import {useState} from 'react'
 
 function ConfigDrop(){
+    const [mostrarComponente, setMostrarComponente] = useState(true);
 
     return(
         <>
@@ -25,11 +27,13 @@ function ConfigDrop(){
                 </Botao>
             </Conteudo>
             <Conteudo>
-                <Botao id="showorhide">
+                <Botao onClick={() => setMostrarComponente(!mostrarComponente)}>
                 Favoritos
                     <ChevronDownIcon color="black"/>
                 </Botao>
-                <Favoritos/>
+                <Unexpected className={mostrarComponente ? "show-element" : null}>
+                    {mostrarComponente && <Favoritos/>}
+                </Unexpected>
             </Conteudo>
             <Conteudo>
                 <BotaoSair>
