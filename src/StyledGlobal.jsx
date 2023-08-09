@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
     body{
@@ -10,9 +10,4 @@ export default createGlobalStyle`
     background-color: #F5F5F5;
     align-items: center;
     }
-`
-
-export const Main = styled.main`
-    width: 100%;
-    height: 100%;
 `

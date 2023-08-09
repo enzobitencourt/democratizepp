@@ -1,30 +1,43 @@
-import {Menu,MenuButton,MenuList,MenuItem,  } from '@chakra-ui/react'
-import {ChevronDownIcon} from '@chakra-ui/icons'
+import {ChevronDownIcon} from "@chakra-ui/icons"
+import { Botao, BotaoSair, Container, Conteudo } from "./styled"
+import Favoritos from "../Favoritos/Favoritos"
 
 function ConfigDrop(){
+
     return(
         <>
-        <Menu>
-            <MenuButton
-                px={4}
-                py={2}
-                transition='all 0.2s'
-                borderRadius='md'
-                borderWidth='1px'
-                _hover={{ bg: 'gray.400' }}
-                _expanded={{ bg: 'blue.400' }}
-                _focus={{ boxShadow: 'outline' }}
-            >
-                File <ChevronDownIcon />
-            </MenuButton>
-            <MenuList>
-                <MenuItem>New File</MenuItem>
-                <MenuItem>New Window</MenuItem>
-                <MenuDivider />
-                <MenuItem>Open...</MenuItem>
-                <MenuItem>Save File</MenuItem>
-            </MenuList>
-        </Menu>
+        <Container>
+            <Conteudo>
+                <Botao>
+                    Editar Perfil
+                </Botao>
+            </Conteudo>
+            <Conteudo>
+                <Botao>
+                    Portais de notícia
+                    <ChevronDownIcon color="black"/>
+                </Botao>
+            </Conteudo>
+            <Conteudo>
+                <Botao>
+                    Dar nota ao projeto
+                    <ChevronDownIcon color="black"/>
+                </Botao>
+            </Conteudo>
+            <Conteudo>
+                <Botao id="showorhide">
+                Favoritos
+                    <ChevronDownIcon color="black"/>
+                </Botao>
+                <Favoritos/>
+            </Conteudo>
+            <Conteudo>
+                <BotaoSair>
+                    Sair
+                </BotaoSair>
+            </Conteudo>
+            
+        </Container>
         </>
     )
 }

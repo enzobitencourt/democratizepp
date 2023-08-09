@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const ContainerFavoritos = styled.div`
     display: flex;
     flex-direction: column;
-    width: 36vw;
+    width: 33vw;
     height: 26vh;
     gap: 1vh;
     border-radius: 18.24px;
@@ -11,12 +11,12 @@ export const ContainerFavoritos = styled.div`
 `
 
 export const ImgFavs = styled.img`
-    width: 100%;
+    width: 33vw;
     height: 18vh;
     border-radius: 18.24px;
 `
 export const Informacoes = styled.div`
-    width: 100%;
+    width: 33vw;
     height: auto;
     padding: 1vw 2vw;
 `

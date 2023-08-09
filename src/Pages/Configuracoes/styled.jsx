@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
 
 export const Header = styled.div`
-    width: 90vw;
+    width: auto;
     height: 12vh;
     display: flex;
     flex-direction: row;
+    padding: 0 5vw;
     margin-top: 8vh;
     gap: 3vw;
 `
@@ -44,5 +45,7 @@ export const Cidadao = styled.p`
 export const Container = styled.div`
     display:flex;
     flex-direction: column;
-    gap: 3vh;
+    gap: 6vh;
+    padding: 0;
+    width: 100vw;
 `

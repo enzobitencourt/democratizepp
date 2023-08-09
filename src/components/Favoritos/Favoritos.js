@@ -1,19 +1,16 @@
 import CardFavoritos from "../../Cards/CardFavoritos/CardFavoritos"
-import { Container, ContainerFav, Titulo } from "./styled"
+import { ContainerFav} from "./styled"
 
 function Favoritos(){
     return(
         <>
-        <Container>
-            <Titulo>Favoritos</Titulo>
-            <ContainerFav>
-                <CardFavoritos/>
-                <CardFavoritos/>
-                <CardFavoritos/>
-                <CardFavoritos/>
-                <CardFavoritos/>
-             </ContainerFav>
-        </Container>
+        <ContainerFav>
+            <CardFavoritos/>
+            <CardFavoritos/>
+            <CardFavoritos/>
+            <CardFavoritos/>
+            <CardFavoritos/>
+        </ContainerFav>
         </>
     )
 }

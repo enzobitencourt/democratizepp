@@ -1,15 +1,5 @@
 import { styled } from "styled-components";
 
-export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-content: left;
-    width: 93vw;
-    height: auto;
-    margin-top: 2vh;
-    gap: 2vh;
-`
-
 export const Titulo = styled.p`
     color: #000;
     font-family: "Poppins";
@@ -27,5 +17,6 @@ export const ContainerFav = styled.div`
     gap: 3vw;
     width: 93vw;
     height: auto;
+    margin-bottom: 2vh;
 `
 

@@ -14,6 +14,7 @@ function Configuracoes(){
                     <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
                 </NomeContainer>
             </Header>
+            <ConfigDrop/>
             <Menu/>
         </Container>
         </>
