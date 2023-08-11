@@ -1,12 +1,12 @@
 import { Imagem, Titulo, Texto } from "./styled"
 
-function Object(){
+function Object(props){
     return(
         <>
         <Imagem>
             <Titulo>
                 <Texto>
-                Para Lira, problemas orçamentários impedem mais investimentos na defesa do meio ambiente
+                {props.texto}
                 </Texto>
             </Titulo>   
         </Imagem>

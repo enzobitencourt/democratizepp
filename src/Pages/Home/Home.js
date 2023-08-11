@@ -10,7 +10,7 @@ function Home(){
         <>
         <Container>
         <Header/>
-        <Object/>
+        <Object texto="Para Lira, problemas orçamentários impedem mais investimentos na defesa do meio ambiente"/>
         <ContainerFav>
             <Titulo>Favoritos</Titulo>
             <Favoritos/>
