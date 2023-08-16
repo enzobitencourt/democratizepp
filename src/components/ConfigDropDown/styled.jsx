@@ -20,6 +20,7 @@ export const Botao = styled.button`
 
 export const Container = styled.div`
     display: flex;
+    height: auto;
     flex-direction: column;
     gap: 0;
 `

@@ -48,4 +48,5 @@ export const Container = styled.div`
     gap: 6vh;
     padding: 0;
     width: 100vw;
+    height: auto;
 `

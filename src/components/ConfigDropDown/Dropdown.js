@@ -3,6 +3,7 @@ import { Botao, BotaoSair, Container, Conteudo, Unexpected } from "./styled"
 import Favoritos from "../Favoritos/Favoritos"
 import {useState} from 'react'
 
+
 function ConfigDrop(){
     const [mostrarComponente, setMostrarComponente] = useState(true);
 
@@ -40,7 +41,6 @@ function ConfigDrop(){
                     Sair
                 </BotaoSair>
             </Conteudo>
-            
         </Container>
         </>
     )
