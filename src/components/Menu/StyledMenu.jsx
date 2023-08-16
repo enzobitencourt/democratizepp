@@ -10,7 +10,7 @@ export const MenuContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     bottom: 0;
-    width: 91vw;
+    width: 100vw;
     height: 7vh;
     padding-left: 2vh;
     margin-top: 10vh;

@@ -1,12 +1,16 @@
 import PrincipalDeps from "./Pages/Deps&Sens/principal";
 import StyledGlobal from "./StyledGlobal";
-import {React} from "react";
+import { React } from "react";
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
     <>
-    <StyledGlobal/>
-    <PrincipalDeps/>
+      <ChakraProvider 
+      bgColor='#F5F5F5'>
+      {/* <StyledGlobal /> */}
+        <PrincipalDeps />
+      </ChakraProvider>
     </>
   );
 }
