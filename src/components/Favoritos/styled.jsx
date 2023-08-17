@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 export const ContainerFav = styled.div`
     display: flex;
     flex-direction: row;
-    overflow-x: auto;
+    overflow-x: scroll;
     gap: 3vw;
     width: 93vw;
     height: auto;

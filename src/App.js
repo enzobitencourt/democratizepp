@@ -1,6 +1,7 @@
 import PrincipalDeps from "./Pages/Deps&Sens/principal";
 import { React } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import Configuracoes from "./Pages/Configuracoes/Configuracoes";
 
 function App() {
   const styles = {
@@ -12,14 +13,14 @@ function App() {
         padding: 0,
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center', 
+        alignItems: 'center'
       }})}
 
   const theme = extendTheme({styles})
   return (
     <>
     <ChakraProvider theme={theme}>
-      <PrincipalDeps />
+      <PrincipalDeps/>
     </ChakraProvider>
     </>
   );
