@@ -1,5 +1,5 @@
-import { Acessar, Container, DivSenhas, Fundo, Gradiente, Header, Input,  Input2,  Main, SimboloVolt, Volt } from "./styled"
-import VoltSimbol from "../../Assets/SimboloVoltEntrada.png"
+import { Acessar, Container, DivSenhas, Fundo, Gradiente, Header, Input,  Input2,  Main} from "./styled"
+import Voltar from "../../components/SimboloVoltar/Voltar"
 
 function Cadastro(){
     return(
@@ -7,9 +7,7 @@ function Cadastro(){
         <Fundo>
             <Gradiente>
                 <Header>
-                    <Volt>
-                        <SimboloVolt src={VoltSimbol}/>
-                    </Volt>
+                    <Voltar/>
                 </Header>
                 <Main>
                     <Container>

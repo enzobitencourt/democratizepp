@@ -4,25 +4,48 @@ import vote from "../../Assets/VoteMenu.svg"
 import deps from "../../Assets/DepMenu.svg"
 import project from "../../Assets/ProjectMenu.svg"
 import settings from "../../Assets/SettingMenu.svg"
+import { useNavigate } from "react-router-dom";
 
 function Menu(){
+    const navigate = useNavigate()
+
+    const goToHome = () =>{
+        navigate('/home')
+    }
+
+    const goToConfig = ()=>{
+        navigate('/config')
+    }
+
+    const goToProjeto = ()=>{
+        navigate('/projeto')
+    }
+
+    const goToDepsSens = ()=>{
+        navigate('/agoraembrasilia')
+    }
+
+    const goToEleicoes =()=>{
+        navigate('/eleicoes')
+    }
+
     return(
         <>
         <MenuContainer>
-            <BotaoNavegacao>
+            <BotaoNavegacao onClick={goToEleicoes}>
                 <NormalIcon src={vote}/>
             </BotaoNavegacao>
-            <BotaoNavegacao>
+            <BotaoNavegacao onClick={goToDepsSens}>
                 <NormalIcon src={deps}/>
             </BotaoNavegacao>
             
-            <HomeImage src={home}/>
+            <HomeImage onClick={goToHome} src={home}/>
             
             <BotaoNavegacao>
-                <NormalIcon src={project}/>
+                <NormalIcon onClick={goToProjeto} src={project}/>
             </BotaoNavegacao>
             <BotaoNavegacao>
-                <NormalIcon src={settings}/>
+                <NormalIcon onClick={goToConfig} src={settings}/>
             </BotaoNavegacao>
         </MenuContainer>
         </>

@@ -2,7 +2,7 @@ import {styled} from "styled-components"
 
 export const Botao = styled.button`
     width: 93vw;
-    height: 13vh;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
@@ -15,20 +15,20 @@ export const Conteudo = styled.div`
     display: flex;
     flex-direction: row;
     width: auto;
-    height: 13vh;
+    height: 15vh;
     gap: 4vw;
 `
 
 export const ImgPolitico = styled.img`
     border-radius: 18.4px 0px 0px 18.4px;
-    height: 13vh;
+    height: 15vh;
     width: 28vw;
     border: 1px solid #000;
 `
 
 export const Infos = styled.div`
     display: flex;
-    width: 46vw;
+    width: 50vw;
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
@@ -38,7 +38,7 @@ export const Infos = styled.div`
 export const Gray = styled.div`
     border-radius: 0px 18.4px 18.4px 0px;
     background: #5B5858;
-    height: 13vh;
+    height: 15vh;
     width: 7vw;
 `
 
@@ -51,7 +51,17 @@ export const Nome = styled.p`
     margin: 0;
 `
 
-export const Cargo = styled.p`
+export const Coligacao = styled.p`
+    color: #424242;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    margin: 0;
+    justify-content: left;
+`
+
+export const Numero = styled.p`
     color: #424242;
     font-size: 14px;
     font-style: normal;
@@ -59,7 +69,6 @@ export const Cargo = styled.p`
     line-height: 14px;
     margin: 0;
 `
-
 export const Partido = styled.p`
     color: #424242;
     font-size: 14px;

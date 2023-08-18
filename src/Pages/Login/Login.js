@@ -1,15 +1,20 @@
-import { Abaixo, Acessar, Container, Fundo, Gradiente, Header, Input, LinksAlternativos, Main, SimboloVolt, Volt } from "./styled"
-import VoltSimbol from "../../Assets/SimboloVoltEntrada.png"
+import { Abaixo, Acessar, Container, Fundo, Gradiente, Header, Input, LinksAlternativos, Main } from "./styled"
+import Voltar from "../../components/SimboloVoltar/Voltar"
+import { useNavigate } from "react-router-dom"
 
 function Login(){
+    const navigate = useNavigate()
+
+    const goToCadastro = () =>{
+        navigate('/cadastro')
+    }
+
     return(
         <>
         <Fundo>
             <Gradiente>
                 <Header>
-                    <Volt>
-                        <SimboloVolt src={VoltSimbol}/>
-                    </Volt>
+                    <Voltar/>
                 </Header>
                 <Main>
                     <Container>
@@ -18,7 +23,7 @@ function Login(){
                         <Acessar>Entrar</Acessar>
                         <Abaixo>
                             <LinksAlternativos>Esqueci a senha</LinksAlternativos>
-                            <LinksAlternativos>Não possui cadastro? Cadastre-se</LinksAlternativos>
+                            <LinksAlternativos onClick={goToCadastro}>Não possui cadastro? Cadastre-se</LinksAlternativos>
                         </Abaixo>
                     </Container>
                 </Main>

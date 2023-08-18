@@ -18,9 +18,9 @@ export const Gradiente = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    width: 83vw;
     margin: 0;
-    height: 92vh;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     padding: 4vh;
     flex-direction: column;
@@ -51,19 +51,6 @@ export const Header = styled.div`
     flex-direction: row;
     width: 100%;
     height: 7vh;
-`
-
-export const Volt = styled.button`
-    background: none;
-    border: none;
-    padding: 0;
-    width: 7vh;
-    height: 100%;
-`
-
-export const SimboloVolt = styled.img`
-    width:100%;
-    height: 100%; 
 `
 
 export const Main = styled.div`
