@@ -108,7 +108,7 @@ export const DivPesquisa = styled.div`
     background-color: #1B676B;
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
 `
 
 export const FilterButton = styled.button`

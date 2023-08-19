@@ -1,0 +1,18 @@
+import {styled} from "styled-components"
+
+export const Container = styled.div`
+    width: 93vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+`
+
+export const TituloResults = styled.p`
+    color: #000;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+`

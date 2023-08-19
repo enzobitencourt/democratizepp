@@ -6,8 +6,19 @@ import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, DivP
 import { Select } from '@chakra-ui/react'
 import Filter from "../../Assets/IconFilter.svg"
 import Search from "../../Assets/IconSearch.svg"
+import { useNavigate } from "react-router-dom"
 
 function PrincipalDeps() {
+    const navigate = useNavigate()
+
+    const goToDeps = ()=>{
+        navigate('/agoranacamara')
+    }
+
+    const goToSens =()=>{
+        navigate('/agoranosenado')
+    }
+
     return (
         <>
             <Container>
@@ -16,12 +27,12 @@ function PrincipalDeps() {
                 <ContainerMid>
                     <Titulo>Escolha a instituição desejada</Titulo>
                     <Espacos>
-                        <Deps>
+                        <Deps onClick={goToDeps}>
                             <Esfumado>
                                 <Area>Câmara dos Deputados</Area>
                             </Esfumado>
                         </Deps>
-                        <Sens>
+                        <Sens onClick={goToSens}>
                             <Esfumado>
                                 <Area>Senado Federal</Area>
                             </Esfumado>
@@ -43,7 +54,7 @@ function PrincipalDeps() {
                         </Select>
                     </ContainerInput>
                     <ContainerInput>
-                        <InputNome placeholderTextColor="#000" placeholder="Nome"/>
+                        <InputNome placeholder="Nome"/>
                         <DivPesquisa>
                             <FilterButton>
                                 <Img src={Filter}/>
