@@ -14,8 +14,8 @@ export const Imagem = styled.div`
 export const Titulo = styled.div`
     background-color: rgba(0, 0, 0, 0.59);
     border-radius: 0px 28.5px 28.5px 28.5px;
-    width: 80vw;
-    height: 6vh;
+    width: 85vw;
+    height: auto;
     padding: 0px 0px 0px 13px;
     vertical-align: center;
 `

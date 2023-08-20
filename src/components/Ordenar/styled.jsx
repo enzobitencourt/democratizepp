@@ -16,3 +16,18 @@ export const TituloResults = styled.p`
     line-height: normal;
     margin: 0;
 `
+
+export const OrdenarPor = styled.p`
+    color: #767575;
+    margin: 0;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`
+
+export const DivOrdenar = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+`

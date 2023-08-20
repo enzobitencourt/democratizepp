@@ -4,7 +4,7 @@ export const ContainerFavoritos = styled.div`
     display: flex;
     flex-direction: column;
     width: 33vw;
-    height: 26vh;
+    height: auto;
     gap: 1vh;
     border-radius: 18.24px;
     background: #FFF;

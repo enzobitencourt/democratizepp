@@ -2,7 +2,7 @@ import {styled} from "styled-components"
 
 export const Botao = styled.button`
     width: 93vw;
-    height: 15vh;
+    height: auto;
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
@@ -21,14 +21,15 @@ export const Conteudo = styled.div`
 
 export const ImgPolitico = styled.img`
     border-radius: 18.4px 0px 0px 18.4px;
-    height: 15vh;
+    height: 100%;
     width: 28vw;
     border: 1px solid #000;
 `
 
 export const Infos = styled.div`
     display: flex;
-    width: 50vw;
+    width: 54vw;
+    height: auto;
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
@@ -49,6 +50,7 @@ export const Nome = styled.p`
     font-weight: 500;
     line-height: 26px;
     margin: 0;
+    text-align: left;
 `
 
 export const Coligacao = styled.p`
@@ -58,7 +60,7 @@ export const Coligacao = styled.p`
     font-weight: 400;
     line-height: 14px;
     margin: 0;
-    justify-content: left;
+    text-align: left;
 `
 
 export const Numero = styled.p`
@@ -67,6 +69,7 @@ export const Numero = styled.p`
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
+    text-align: left;
     margin: 0;
 `
 export const Partido = styled.p`
@@ -76,4 +79,5 @@ export const Partido = styled.p`
     font-weight: 400;
     line-height: 14px;
     margin: 0;
+    text-align: left;
 `

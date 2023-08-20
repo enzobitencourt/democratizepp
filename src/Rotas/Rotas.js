@@ -8,6 +8,7 @@ import PageVoto from "../Pages/Voto/Voto"
 import Login from "../Pages/Login/Login"
 import Cadastro from "../Pages/Cadastro/Cadastro"
 import AgoraDeps from "../Pages/AgoraDeps/AgoraDeps"
+import AgoraSens from "../Pages/AgoraSens/AgoraSens"
 
 function Rotas(){
     return(
@@ -22,6 +23,7 @@ function Rotas(){
                 <Route path="login" element={<Login/>}/>
                 <Route path="cadastro" element={<Cadastro/>}/>
                 <Route path="agoranacamara" element={<AgoraDeps/>}/>
+                <Route path="agoranosenado" element={<AgoraSens/>}/>
             </Routes>
         </BrowserRouter>
     )

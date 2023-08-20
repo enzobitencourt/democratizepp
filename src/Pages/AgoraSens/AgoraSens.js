@@ -6,17 +6,16 @@ import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
 import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
 
-function AgoraDeps() {
+function AgoraSens() {
     return (
         <>
             <Container>
-                <HeaderEspaco titulo='Câmara dos Deputados' subtitulo='Agora na Câmara'/>
+                <HeaderEspaco titulo='Senado Federal' subtitulo='Agora no Senado'/>
                 <ContainerFilter>
                     <ContainerInput>
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Descubra'>
-                            <option value='option1'>Proposições</option>
-                            <option value='option2'>Eventos</option>
-                            <option value='option3'>Frentes</option>
+                            <option value='option1'>Projetos/Matérias</option>
+                            <option value='option2'>Comissões</option>
                         </Select>
 
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Tema'>
@@ -47,8 +46,8 @@ function AgoraDeps() {
                 </ContainerFilter>
                 <ContainerResultados>
                     <Ordenar/>
-                    <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
-                    <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
+                    <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
+                    <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                 </ContainerResultados>
                 <Menu />
             </Container>
@@ -56,4 +55,4 @@ function AgoraDeps() {
     )
 }
 
-export default AgoraDeps
+export default AgoraSens
