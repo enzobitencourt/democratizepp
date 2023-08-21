@@ -2,11 +2,10 @@ import CardEleito from "../../Cards/CardEleito/CardEleito"
 import Object from "../../Cards/ObjectCarousel/Object"
 import Headers from "../../components/Headers/Headers"
 import Menu from "../../components/Menu/Menu"
-import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, DivPesquisa, Esfumado, Espacos, FilterButton, Img, Img1, InputNome, Resultados, SearchButton, Sens, Titulo } from "./styled"
+import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, Esfumado, Espacos, Resultados, Sens, Titulo } from "./styled"
 import { Select } from '@chakra-ui/react'
-import Filter from "../../Assets/IconFilter.svg"
-import Search from "../../Assets/IconSearch.svg"
 import { useNavigate } from "react-router-dom"
+import InputComponent from "../../components/InputComponent/InputComponent"
 
 function PrincipalDeps() {
     const navigate = useNavigate()
@@ -53,17 +52,7 @@ function PrincipalDeps() {
                             <option value='option3'>Option 3</option>
                         </Select>
                     </ContainerInput>
-                    <ContainerInput>
-                        <InputNome placeholder="Nome"/>
-                        <DivPesquisa>
-                            <FilterButton>
-                                <Img src={Filter}/>
-                            </FilterButton>
-                            <SearchButton>
-                                <Img1 src={Search}/>
-                            </SearchButton>
-                        </DivPesquisa>
-                    </ContainerInput>
+                    <InputComponent/>
                 </ContainerEnd>
                 <Resultados>
                     <CardEleito/>

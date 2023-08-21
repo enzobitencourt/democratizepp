@@ -9,6 +9,6 @@ export const Volt = styled.button`
 `
 
 export const SimboloVolt = styled.img`
-    width:100%;
-    height: 100%; 
+    width:6vh;
+    height: 6vh; 
 `
