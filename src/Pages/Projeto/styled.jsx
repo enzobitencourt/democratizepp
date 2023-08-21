@@ -26,7 +26,7 @@ export const Titulo = styled.p`
 
 export const GeneralContent = styled.div`
     display:flex;
-    width: 100%;
+    width: 93vw;
     height: auto;
     flex-direction: column;
     gap: 3vh;

@@ -18,7 +18,7 @@ export const MenuContainer = styled.div`
 `
 
 export const HomeImage = styled.img`
-    margin-top: -8%;
+    margin-top: -4vh;
     width: 9vh;
     height: 9vh;
 `
