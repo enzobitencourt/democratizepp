@@ -7,7 +7,7 @@ import settings from "../../Assets/SettingMenu.svg"
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabList, Tab, TabIndicator } from '@chakra-ui/react'
 
-function Menu() {
+function Menu(props) {
     const navigate = useNavigate()
 
     const goToHome = () => {
@@ -33,8 +33,8 @@ function Menu() {
     return (
         <>
             <MenuContainer>
-                <Tabs variant="unstyled" position="relative">
-                    <TabList>
+                <Tabs w='100vw' variant="unstyled" position="relative" defaultIndex={props.barra}>
+                    <TabList w='100%' justifyContent='space-between'>
                         <Tab h='7vh' onClick={goToEleicoes}>
                             <NormalIcon src={vote} />
                         </Tab>

@@ -25,7 +25,7 @@ function FrenteComs() {
                     <InputComponent />
                     <CardPoliticoConteudo/>
                 </Pesquisa>
-                <Menu />
+                <Menu barra='1'/>
             </Container>
         </>
     )

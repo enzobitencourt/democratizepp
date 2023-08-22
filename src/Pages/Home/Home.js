@@ -16,7 +16,7 @@ function Home(){
             <Favoritos/>
         </ContainerFav>
         <Noticias/>
-        <Menu/>
+        <Menu barra='2'/>
         </Container>
         </>
     )

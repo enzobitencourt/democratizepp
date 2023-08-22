@@ -15,7 +15,7 @@ function Configuracoes(){
                 </NomeContainer>
             </Header>
             <ConfigDrop/>
-            <Menu/>
+            <Menu barra='4'/>
         </Container>
         </>
     )

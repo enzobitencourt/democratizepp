@@ -49,7 +49,7 @@ function AgoraSens() {
                     <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                     <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                 </ContainerResultados>
-                <Menu />
+                <Menu barra='1'/>
             </Container>
         </>
     )

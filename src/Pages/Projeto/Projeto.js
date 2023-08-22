@@ -22,7 +22,7 @@ function Projeto(){
             </Resumo>
             </GeneralContent>
             <Object texto="Acesse a pesquisa completa em PDF"/>
-            <Menu/>
+            <Menu barra='3'/>
         </Container>
         </>
     )

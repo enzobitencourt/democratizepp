@@ -50,7 +50,7 @@ function AgoraDeps() {
                     <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
                     <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
                 </ContainerResultados>
-                <Menu />
+                <Menu barra='1'/>
             </Container>
         </>
     )

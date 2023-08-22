@@ -30,7 +30,7 @@ function PageVoto() {
                         <CardCandidato />
                     </Resultados>
                 </ContainerResult>
-                <Menu />
+                <Menu barra='0'/>
             </Container>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

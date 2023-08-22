@@ -58,7 +58,7 @@ function PrincipalDeps() {
                     <CardEleito/>
                     <CardEleito/>
                 </Resultados>
-                <Menu />
+                <Menu barra='1'/>
             </Container>
         </>
     )
