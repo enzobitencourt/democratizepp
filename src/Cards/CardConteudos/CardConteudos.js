@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom"
 function CardConteudos(props) {
     const navigate = useNavigate()
 
-    const goToFrente = ()=>{
-        navigate('/frentes')
+    const goToVotacoes = ()=>{
+        navigate('/votacoes')
     }
 
     return (
         <>
-            <Botao onClick={goToFrente}>
+            <Botao onClick={goToVotacoes}>
                 <Conteudo>
                     <Infos>
                         <Titulo>{props.titulo}</Titulo>

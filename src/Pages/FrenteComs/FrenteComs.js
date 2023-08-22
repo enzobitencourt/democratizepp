@@ -1,3 +1,4 @@
+import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoConteudo"
 import HeadersConteud from "../../components/HeadersConteud/HeadersConteud"
 import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
@@ -22,6 +23,7 @@ function FrenteComs() {
                 <Pesquisa>
                     <Participantes>Quem participa dessa frente?</Participantes>
                     <InputComponent />
+                    <CardPoliticoConteudo/>
                 </Pesquisa>
                 <Menu />
             </Container>

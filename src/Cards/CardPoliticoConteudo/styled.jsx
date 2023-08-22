@@ -2,14 +2,14 @@ import {styled} from "styled-components"
 
 export const Botao = styled.button`
     width: 93vw;
-    height: 12vh;
+    height: auto;
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
     border-radius: 18.4px;
     border: 1px solid #000;
+    margin-bottom: 12vh;
     justify-content: space-between;
-    margin-bottom: 10vh;
 `
 
 export const Conteudo = styled.div`
@@ -20,12 +20,19 @@ export const Conteudo = styled.div`
     gap: 4vw;
 `
 
+export const ImgPolitico = styled.img`
+    border-radius: 18.4px 0px 0px 18.4px;
+    height: 12vh;
+    width: 28vw;
+    border: 1px solid #000;
+`
+
 export const Infos = styled.div`
     display: flex;
-    width: 75vw;
+    width: 50vw;
     flex-direction: column;
     gap: 2vw;
-    margin-left: 5vw;
+    align-items: flex-start;
     justify-content: center;
 `
 
@@ -36,13 +43,32 @@ export const Gray = styled.div`
     width: 7vw;
 `
 
-export const Titulo = styled.p`
+export const Nome = styled.p`
     color: #000;
-    margin: 0;
-    font-size: 15px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 500;
+    line-height: 26px;
+    margin: 0;
+    text-align: left;
+`
+
+export const Status = styled.p`
+    color: #000;
+    margin: 0;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
     line-height: normal;
+`
+
+export const Cargo = styled.p`
+    color: #424242;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    margin: 0;
     text-align: left;
 `
 
@@ -51,7 +77,7 @@ export const Partido = styled.p`
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
-    margin:0;
+    line-height: 14px;
+    margin: 0;
     text-align: left;
 `

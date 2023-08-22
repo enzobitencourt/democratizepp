@@ -10,6 +10,7 @@ import Cadastro from "../Pages/Cadastro/Cadastro"
 import AgoraDeps from "../Pages/AgoraDeps/AgoraDeps"
 import AgoraSens from "../Pages/AgoraSens/AgoraSens"
 import FrenteComs from "../Pages/FrenteComs/FrenteComs"
+import ProjetoeVotac from "../Pages/ProjetoseVotac/ProjetoeVotac"
 
 function Rotas(){
     return(
@@ -26,6 +27,7 @@ function Rotas(){
                 <Route path="agoranacamara" element={<AgoraDeps/>}/>
                 <Route path="agoranosenado" element={<AgoraSens/>}/>
                 <Route path="frentes" element={<FrenteComs/>}/>
+                <Route path="votacoes" element={<ProjetoeVotac/>}/>
             </Routes>
         </BrowserRouter>
     )
