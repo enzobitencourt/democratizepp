@@ -1,5 +1,4 @@
 import Headers from "../../components/Headers/Headers"
-import Menu from "../../components/Menu/Menu"
 import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Titulo, Resultados } from "./styled"
 import Filter from "../../Assets/IconFilter.svg"
 import Search from "../../Assets/IconSearch.svg"
@@ -9,7 +8,6 @@ import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos
 
 function PageVoto() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-
     return (
         <>
             <Container>
@@ -30,7 +28,6 @@ function PageVoto() {
                         <CardCandidato />
                     </Resultados>
                 </ContainerResult>
-                <Menu />
             </Container>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

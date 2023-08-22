@@ -9,7 +9,7 @@ export const MenuContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    bottom: 0;
+    bottom:0;
     width: 100vw;
     height: 7vh;
     padding-left: 2vh;
@@ -18,7 +18,7 @@ export const MenuContainer = styled.div`
 `
 
 export const HomeImage = styled.img`
-    margin-top: -4vh;
+    margin-top: -5vh;
     width: 9vh;
     height: 9vh;
 `

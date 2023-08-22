@@ -4,66 +4,65 @@ import vote from "../../Assets/VoteMenu.svg"
 import deps from "../../Assets/DepMenu.svg"
 import project from "../../Assets/ProjectMenu.svg"
 import settings from "../../Assets/SettingMenu.svg"
-import { useNavigate } from "react-router-dom";
-import { Tabs, TabList, Tab, TabIndicator } from '@chakra-ui/react'
+import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from '@chakra-ui/react'
+import PageVoto from "../../Pages/Voto/Voto";
+import Home from "../../Pages/Home/Home";
 
 function Menu() {
-    const navigate = useNavigate()
-
-    const goToHome = () => {
-        navigate('/home')
-    }
-
-    const goToConfig = () => {
-        navigate('/config')
-    }
-
-    const goToProjeto = () => {
-        navigate('/projeto')
-    }
-
-    const goToDepsSens = () => {
-        navigate('/agoraembrasilia')
-    }
-
-    const goToEleicoes = () => {
-        navigate('/eleicoes')
-    }
-
     return (
         <>
-            <MenuContainer>
-                <Tabs variant="unstyled" position="relative">
+            <Tabs variant="unstyled" position="relative">
+                <MenuContainer>
                     <TabList>
-                        <Tab h='7vh' onClick={goToEleicoes}>
+                        <Tab h='7vh'>
                             <NormalIcon src={vote} />
                         </Tab>
 
-                        <Tab h='7vh' onClick={goToDepsSens}>
+                        <Tab h='7vh'>
                             <NormalIcon src={deps} />
                         </Tab>
 
-                        <Tab onClick={goToHome} h='7vh'>
+                        <Tab h='7vh'>
                             <HomeImage src={home} />
                         </Tab>
 
-                        <Tab h='7vh' onClick={goToProjeto} >
+                        <Tab h='7vh'>
                             <NormalIcon src={project} />
                         </Tab>
 
-                        <Tab h='7vh' onClick={goToConfig}>
+                        <Tab h='7vh'>
                             <NormalIcon src={settings} />
                         </Tab>
                     </TabList>
 
                     <TabIndicator
-                        mt="-6px"
+                        mt="6vh"
                         height="2px"
                         bg="#EBEBEB"
                         borderRadius="2px"
                     />
-                </Tabs>
-            </MenuContainer>
+                </MenuContainer>
+                <TabPanels>
+                    <TabPanel>
+                        <PageVoto />
+                    </TabPanel>
+                    <TabPanel>
+                        <p>oi</p>
+                    </TabPanel>
+                    <TabPanel>
+                        <Home/>
+                    </TabPanel>
+                    <TabPanel>
+                        <p>oi</p>
+                    </TabPanel>
+                    <TabPanel>
+                        <p>oi</p>
+                    </TabPanel>
+                    <TabPanel>
+                        <p>oi</p>
+                    </TabPanel>
+                </TabPanels>
+            </Tabs>
         </>
     )
 }
