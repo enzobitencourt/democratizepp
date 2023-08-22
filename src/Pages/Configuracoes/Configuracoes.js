@@ -1,4 +1,3 @@
-import Menu from "../../components/Menu/Menu"
 import { Cidadao, Container, FotoLogin, Header, Nome, NomeContainer } from "./styled"
 import Foto from "../../Assets/FotoLogin.png"
 import ConfigDrop from "../../components/ConfigDropDown/Dropdown"
@@ -15,7 +14,6 @@ function Configuracoes(){
                 </NomeContainer>
             </Header>
             <ConfigDrop/>
-            <Menu/>
         </Container>
         </>
     )

@@ -7,30 +7,33 @@ import settings from "../../Assets/SettingMenu.svg"
 import { Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel } from '@chakra-ui/react'
 import PageVoto from "../../Pages/Voto/Voto";
 import Home from "../../Pages/Home/Home";
+import PrincipalDeps from "../../Pages/Deps&Sens/principal";
+import Projeto from "../../Pages/Projeto/Projeto";
+import Configuracoes from "../../Pages/Configuracoes/Configuracoes";
 
 function Menu() {
     return (
         <>
-            <Tabs variant="unstyled" position="relative">
+            <Tabs w="100vw" variant="unstyled" position="relative">
                 <MenuContainer>
-                    <TabList>
-                        <Tab h='7vh'>
+                    <TabList justifyContent='space-between' w='100vw'>
+                        <Tab h='7vh' w='auto'>
                             <NormalIcon src={vote} />
                         </Tab>
 
-                        <Tab h='7vh'>
+                        <Tab h='7vh' w='auto'>
                             <NormalIcon src={deps} />
                         </Tab>
 
-                        <Tab h='7vh'>
+                        <Tab h='7vh' w='auto'>
                             <HomeImage src={home} />
                         </Tab>
 
-                        <Tab h='7vh'>
+                        <Tab h='7vh' w='auto'>
                             <NormalIcon src={project} />
                         </Tab>
 
-                        <Tab h='7vh'>
+                        <Tab h='7vh' w='auto'>
                             <NormalIcon src={settings} />
                         </Tab>
                     </TabList>
@@ -46,21 +49,23 @@ function Menu() {
                     <TabPanel>
                         <PageVoto />
                     </TabPanel>
+
                     <TabPanel>
-                        <p>oi</p>
+                        <PrincipalDeps/>
                     </TabPanel>
+
                     <TabPanel>
                         <Home/>
                     </TabPanel>
+
                     <TabPanel>
-                        <p>oi</p>
+                        <Projeto/>
                     </TabPanel>
+
                     <TabPanel>
-                        <p>oi</p>
+                        <Configuracoes/>
                     </TabPanel>
-                    <TabPanel>
-                        <p>oi</p>
-                    </TabPanel>
+
                 </TabPanels>
             </Tabs>
         </>

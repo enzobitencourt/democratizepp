@@ -1,21 +1,20 @@
 import CardEleito from "../../Cards/CardEleito/CardEleito"
 import Object from "../../Cards/ObjectCarousel/Object"
 import Headers from "../../components/Headers/Headers"
-import Menu from "../../components/Menu/Menu"
 import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, Esfumado, Espacos, Resultados, Sens, Titulo } from "./styled"
 import { Select } from '@chakra-ui/react'
-import { useNavigate } from "react-router-dom"
 import InputComponent from "../../components/InputComponent/InputComponent"
+import { useNavigate } from "react-router-dom"
 
 function PrincipalDeps() {
     const navigate = useNavigate()
 
-    const goToDeps = ()=>{
-        navigate('/agoranacamara')
+    const goToSens = ()=>{
+        navigate('/agoranosenado')
     }
 
-    const goToSens =()=>{
-        navigate('/agoranosenado')
+    const goToDeps =()=>{
+        navigate('/agoranacamara')
     }
 
     return (
@@ -58,7 +57,6 @@ function PrincipalDeps() {
                     <CardEleito/>
                     <CardEleito/>
                 </Resultados>
-                <Menu />
             </Container>
         </>
     )

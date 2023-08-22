@@ -8,6 +8,7 @@ export const Header = styled.div`
     padding: 0 5vw;
     margin-top: 8vh;
     gap: 3vw;
+    width: 93vw;
 `
 
 export const FotoLogin = styled.img`
@@ -43,10 +44,12 @@ export const Cidadao = styled.p`
 `
 
 export const Container = styled.div`
-    display:flex;
+    margin-top: 1vh;
+    justify-content: center;
+    display: flex;
+    gap: 3vh;
     flex-direction: column;
-    gap: 6vh;
-    padding: 0;
-    width: 100vw;
     height: auto;
+    width: auto;
+    align-items: center;
 `

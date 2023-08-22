@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom"
 function Entrada(){
     const navigate = useNavigate()
 
-    const goToHome = () =>{
-        navigate('/home')
+    const goToPrincipal = () =>{
+        navigate('/principal')
     }
 
     return(
@@ -14,7 +14,7 @@ function Entrada(){
         <Fundo>
             <Gradiente>
                 <Logo src={logo}/>
-                <Acessar onClick={goToHome}>Acessar</Acessar>
+                <Acessar onClick={goToPrincipal}>Acessar</Acessar>
             </Gradiente>
         </Fundo>
         </>

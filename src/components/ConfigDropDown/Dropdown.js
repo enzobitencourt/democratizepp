@@ -11,7 +11,7 @@ import Favoritos from '../Favoritos/Favoritos'
 function ConfigDrop() {
     return (
         <>
-            <Accordion defaultIndex={[0]} allowMultiple>
+            <Accordion w='100vw' defaultIndex={[0]} allowMultiple>
                 <AccordionItem>
                     <h2>
                         <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
@@ -70,7 +70,7 @@ function ConfigDrop() {
                     </AccordionPanel>
                 </AccordionItem>
 
-                <AccordionItem>
+                <AccordionItem marginBottom='15vh'>
                     <h2>
                         <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' color="red" textAlign='left'>

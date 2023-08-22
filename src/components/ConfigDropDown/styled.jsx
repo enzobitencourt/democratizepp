@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const Botao = styled.button`
-    width: 100%;
+    width: 100vw;
     height: 6vh;
     padding: 0 5vw;
     align-items: center;

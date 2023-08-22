@@ -1,14 +1,12 @@
 import { styled } from "styled-components";
 
 export const Container = styled.div`
+    margin-top: 1vh;
     justify-content: center;
     display: flex;
     flex-direction: column;
     height: auto;
     align-items: center;
-    padding: 4vh 2vh;
-    width: 90vw;
-    gap: 3vh;
 `
 
 export const Titulo = styled.p`
@@ -32,6 +30,7 @@ export const GeneralContent = styled.div`
     gap: 3vh;
     justify-content: left;
     align-items:left;
+    margin-top: 2vh;
 `
 
 export const Titulos = styled.div`

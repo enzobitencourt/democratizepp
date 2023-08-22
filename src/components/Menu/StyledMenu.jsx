@@ -10,15 +10,16 @@ export const MenuContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     bottom:0;
-    width: 100vw;
-    height: 7vh;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+    height: auto;
     padding-left: 2vh;
-    margin-top: 10vh;
     padding-right: 2vh;
 `
 
 export const HomeImage = styled.img`
-    margin-top: -5vh;
+    margin-top: -6vh;
     width: 9vh;
     height: 9vh;
 `

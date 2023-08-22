@@ -6,12 +6,14 @@ import AgoraDeps from "../Pages/AgoraDeps/AgoraDeps"
 import AgoraSens from "../Pages/AgoraSens/AgoraSens"
 import FrenteComs from "../Pages/FrenteComs/FrenteComs"
 import ProjetoeVotac from "../Pages/ProjetoseVotac/ProjetoeVotac"
+import Principal from "../Pages/Principal/Principal"
 
 function Rotas(){
     return(
         <BrowserRouter>
             <Routes>
                 <Route index element={<Entrada/>}/>
+                <Route path='principal' element={<Principal/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="cadastro" element={<Cadastro/>}/>
                 <Route path="agoranacamara" element={<AgoraDeps/>}/>
