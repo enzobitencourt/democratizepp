@@ -78,7 +78,7 @@ export const Container = styled.div`
 `
 
 export const Input = styled.input`
-    width: 95%;
+    width: 100%;
     height: 5vh;
     border-radius: 18.2px;
     border: 1px solid #000;
@@ -107,11 +107,11 @@ export const Abaixo = styled.div`
 export const DivSenhas = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 1vw;
+    justify-content: space-between;
 `
 
 export const Input2 = styled.input`
-    width: 45%;
+    width: 48%;
     height: 5vh;
     border-radius: 18.2px;
     border: 1px solid #000;

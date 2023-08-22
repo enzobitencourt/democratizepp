@@ -14,7 +14,7 @@ import Configuracoes from "../../Pages/Configuracoes/Configuracoes";
 function Menu() {
     return (
         <>
-            <Tabs w="100vw" variant="unstyled" position="relative">
+            <Tabs w="100vw" variant="unstyled" position="relative" defaultIndex={2}>
                 <MenuContainer>
                     <TabList justifyContent='space-between' w='100vw'>
                         <Tab h='7vh' w='auto'>

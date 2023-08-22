@@ -1,5 +1,4 @@
 import HeaderEspaco from "../../components/HeadersEspacos/HeaderEspaco"
-import Menu from "../../components/Menu/Menu"
 import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNome, SearchButton, InputAutor, ContainerResultados, } from "./styled"
 import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
@@ -49,7 +48,6 @@ function AgoraSens() {
                     <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                     <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                 </ContainerResultados>
-                <Menu />
             </Container>
         </>
     )

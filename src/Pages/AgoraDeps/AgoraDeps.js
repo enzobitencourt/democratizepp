@@ -1,5 +1,4 @@
 import HeaderEspaco from "../../components/HeadersEspacos/HeaderEspaco"
-import Menu from "../../components/Menu/Menu"
 import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNome, SearchButton, InputAutor, ContainerResultados, } from "./styled"
 import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
@@ -50,7 +49,6 @@ function AgoraDeps() {
                     <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
                     <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
                 </ContainerResultados>
-                <Menu />
             </Container>
         </>
     )
