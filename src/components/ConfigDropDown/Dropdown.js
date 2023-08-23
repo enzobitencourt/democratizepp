@@ -11,10 +11,13 @@ import Favoritos from '../Favoritos/Favoritos'
 function ConfigDrop() {
     return (
         <>
-            <Accordion defaultIndex={[0]} allowMultiple>
+            <Accordion
+                defaultIndex={[0]}
+                allowMultiple
+            >
                 <AccordionItem>
                     <h2>
-                        <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
                                 Editar Perfil
                             </Box>
@@ -24,7 +27,7 @@ function ConfigDrop() {
 
                 <AccordionItem>
                     <h2>
-                        <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
                                 Portais de Notícia
                             </Box>
@@ -41,7 +44,7 @@ function ConfigDrop() {
 
                 <AccordionItem>
                     <h2>
-                        <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
                                 Dar nota ao projeto
                             </Box>
@@ -58,7 +61,7 @@ function ConfigDrop() {
 
                 <AccordionItem>
                     <h2>
-                        <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
                                 Favoritos
                             </Box>
@@ -66,13 +69,13 @@ function ConfigDrop() {
                         </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                        <Favoritos/>
+                        <Favoritos />
                     </AccordionPanel>
                 </AccordionItem>
 
                 <AccordionItem marginBottom='13vh'>
                     <h2>
-                        <AccordionButton _hover={{bg:'rgba(255, 255, 255, 0.54)'}} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' color="red" textAlign='left'>
                                 Sair
                             </Box>
