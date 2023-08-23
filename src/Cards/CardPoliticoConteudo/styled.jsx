@@ -7,8 +7,7 @@ export const Botao = styled.button`
     flex-direction: row;
     background-color: #FFFFFF;
     border-radius: 18.4px;
-    border: 1px solid #000;
-    margin-bottom: 12vh;
+    border: 1px solid rgb(0, 0, 0);
     justify-content: space-between;
 `
 

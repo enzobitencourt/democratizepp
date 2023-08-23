@@ -2,7 +2,7 @@ import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoC
 import HeadersConteud from "../../components/HeadersConteud/HeadersConteud"
 import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
-import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, Situacao, TextInfos } from "./styled"
+import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, TextInfos } from "./styled"
 
 function FrenteComs() {
     return (
@@ -13,7 +13,6 @@ function FrenteComs() {
                     subtitulo="Agora na Câmara" />
 
                 <DivConteudo>
-                    <Situacao>Tramitando</Situacao>
                     <Infos>
                         <TextInfos><b>Criação: </b> 18/03/2019</TextInfos>
                         <TextInfos><b>Partido: </b> PP</TextInfos>

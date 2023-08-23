@@ -9,7 +9,6 @@ export const Botao = styled.button`
     border-radius: 18.4px;
     border: 1px solid #000;
     justify-content: space-between;
-    margin-bottom: 10vh;
 `
 
 export const Conteudo = styled.div`
