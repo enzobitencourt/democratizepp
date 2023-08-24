@@ -5,7 +5,7 @@ export const MenuContainer = styled.div`
     border: 1px solid #000;
     background: #1B676B;
     box-shadow: 0px -10px 14px 0px rgba(0, 0, 0, 0.30);
-    position: fixed;
+    position:fixed;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -13,7 +13,6 @@ export const MenuContainer = styled.div`
     width: 100vw;
     height: 7vh;
     padding-left: 2vh;
-    margin-top: 10vh;
     padding-right: 2vh;
 `
 
