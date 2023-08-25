@@ -13,10 +13,10 @@ export const Imagem = styled.div`
 
 export const Titulo = styled.div`
     background-color: rgba(0, 0, 0, 0.59);
-    border-radius: 0px 28.5px 28.5px 28.5px;
+    border-radius: 28.5px;
     width: 85vw;
     height: auto;
-    padding: 0px 0px 0px 13px;
+    padding: 2vh 0px 2vh 13px;
     vertical-align: center;
 `
 
@@ -28,5 +28,4 @@ export const Texto = styled.p`
     font-weight: 700;
     line-height: normal;
     align-items: center;
-
 `

@@ -1,11 +1,11 @@
 import CardEleito from "../../Cards/CardEleito/CardEleito"
-import Object from "../../Cards/ObjectCarousel/Object"
 import Headers from "../../components/Headers/Headers"
 import Menu from "../../components/Menu/Menu"
 import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, Esfumado, Espacos, Resultados, Sens, Titulo } from "./styled"
 import { Select } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 import InputComponent from "../../components/InputComponent/InputComponent"
+import CustomCarousel from "../../components/Carousel/Carousel"
 
 function PrincipalDeps() {
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ function PrincipalDeps() {
         <>
             <Container>
                 <Headers titulo="Câmara e Senado" subtitulo="Espaços de Poder" />
-                <Object />
+                <CustomCarousel/>
                 <ContainerMid>
                     <Titulo>Escolha a instituição desejada</Titulo>
                     <Espacos>
