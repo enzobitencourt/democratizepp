@@ -8,6 +8,7 @@ const StyledCarousel = styled(Carousel)`
   .carousel-slider {
     max-width: 100vw; /* Largura máxima dos slides */
     margin: 0 auto;
+    margin-top: -2vh;
   }
 
   .slide {
@@ -17,10 +18,9 @@ const StyledCarousel = styled(Carousel)`
     justify-content: center;
     text-align: center;
     background-color: #f5f5f5;
-    border: 1px solid #ccc;
     padding: 20px;
     box-sizing: border-box;
-    height: 300px;
+    height: 30vh;
   }
 
   .control-dots {
@@ -29,16 +29,18 @@ const StyledCarousel = styled(Carousel)`
     margin-top: 10px;
     
     .dot {
-      background-color: #ccc;
-      width: 10px;
-      height: 10px;
+      background-color: #BFBFBF;
+      width: 8.29px;
+      height: 8.29px;
       border-radius: 50%;
       margin: 0 5px;
       cursor: pointer;
     }
 
     .dot.selected {
-      background-color: #333;
+      background-color: #F0AD4E;
+      width: 21.29px;
+      border-radius: 23.104px;
     }
   }
 `;
