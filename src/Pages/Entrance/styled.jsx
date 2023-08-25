@@ -34,7 +34,7 @@ export const Logo = styled.img`
 export const Acessar = styled.button`
     background-color: #F0AD4E;
     border: none;
-    border-radius: 200px;
+    border-radius: 30px;
     width: 245px;
     height: 72px;
     color: #FFF;
