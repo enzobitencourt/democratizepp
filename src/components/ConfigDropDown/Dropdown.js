@@ -7,8 +7,15 @@ import {
     Box
 } from '@chakra-ui/react'
 import Favoritos from '../Favoritos/Favoritos'
+import { useNavigate } from 'react-router-dom'
 
 function ConfigDrop() {
+    const navigate = useNavigate()
+
+    const goToPerfil = ()=>{
+        navigate('/perfil')
+    }
+
     return (
         <>
             <Accordion
@@ -17,7 +24,7 @@ function ConfigDrop() {
             >
                 <AccordionItem>
                     <h2>
-                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton onClick={goToPerfil} _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
                                 Editar Perfil
                             </Box>

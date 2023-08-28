@@ -8,25 +8,23 @@ const StyledCarousel = styled(Carousel)`
   .carousel-slider {
     max-width: 100vw; /* Largura máxima dos slides */
     margin: 0 auto;
-    margin-top: -2vh;
   }
 
   .slide {
     display: flex;
+    margin-top: -5vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     background-color: #f5f5f5;
-    padding: 20px;
     box-sizing: border-box;
-    height: 30vh;
+    height: 28vh;
   }
 
   .control-dots {
     display: flex;
     justify-content: center;
-    margin-top: 10px;
     
     .dot {
       background-color: #BFBFBF;
