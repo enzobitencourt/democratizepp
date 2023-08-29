@@ -16,7 +16,7 @@ function Cadastro(){
                         <Input type="tel" id="password" placeholder="Telefone"/>
                         <DivSenhas>
                             <Input2 type="password" id="password" placeholder="Senha"/>
-                            <Input2 type="password" id="password" placeholder="Confirmar"/>
+                            <Input2 type="password" id="confirmpassword" placeholder="Confirmar"/>
                         </DivSenhas>
                         <Acessar>Cadastrar-se</Acessar>
                     </Container>
