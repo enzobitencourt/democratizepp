@@ -30,8 +30,8 @@ const StyledCarousel = styled(Carousel)`
     
     .dot {
       background-color: #BFBFBF;
-      width: 8.29px;
-      height: 8.29px;
+      width: 7.5px;
+      height: 7.5px;
       border-radius: 50%;
       margin: 0 5px;
       cursor: pointer;
