@@ -47,6 +47,7 @@ export const EditDiv = styled.div`
     width: 93vw;
     height: auto;
     flex-direction: column;
+    gap: 5vh;
 `
 
 export const EditTexto = styled.p`
@@ -74,4 +75,12 @@ export const Cidadao = styled.p`
     font-weight: 400;
     line-height: 15px;
     margin: 0;
+`
+
+export const Informacoes = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 93vw;
+    height: auto;
 `
