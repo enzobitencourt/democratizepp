@@ -7,8 +7,21 @@ import {
     Box
 } from '@chakra-ui/react'
 import Favoritos from '../Favoritos/Favoritos'
+import Estrelas from '../EstrelasAvaliacao/EstrelasAvaliacao'
+import { useNavigate } from 'react-router-dom'
 
 function ConfigDrop() {
+    const navigate = useNavigate()
+
+    const goToPerfil = ()=>{
+        navigate('/perfil')
+    }
+
+    const goToEntrada = () => {
+        navigate('/entrada')
+    }
+
+
     return (
         <>
             <Accordion
