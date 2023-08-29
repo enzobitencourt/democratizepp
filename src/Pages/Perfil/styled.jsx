@@ -46,6 +46,7 @@ export const EditDiv = styled.div`
     display: flex;
     width: 93vw;
     height: auto;
+    align-items: center;
     flex-direction: column;
     gap: 5vh;
 `
@@ -81,6 +82,23 @@ export const Informacoes = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
-    width: 93vw;
+    width: 88vw;
     height: auto;
+    gap: 3vh;
+`
+
+export const InfEspecific = styled.div`
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+`
+
+export const TipoInf = styled.p`
+    color: #5B5858;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 138.462% */
 `
