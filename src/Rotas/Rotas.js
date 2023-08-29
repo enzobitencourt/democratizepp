@@ -17,7 +17,7 @@ function Rotas(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="entrada" index element={<Entrada/>}/>
+                <Route index element={<Entrada/>}/>
                 <Route path="home" element={<Home/>}/>
                 <Route path="projeto" element={<Projeto/>}/>
                 <Route path="config" element={<Configuracoes/>}/>
@@ -30,6 +30,7 @@ function Rotas(){
                 <Route path="frentes" element={<FrenteComs/>}/>
                 <Route path="votacoes" element={<ProjetoeVotac/>}/>
                 <Route path="perfil" element={<Perfil/>}/>
+                <Route path="entrada" element={<Entrada/>}/>
             </Routes>
         </BrowserRouter>
     )

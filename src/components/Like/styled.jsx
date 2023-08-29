@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
 export const Img = styled.img`
-    width: 4vw;
-    height: 4vw;
+    width: 4.5vw;
+    height: 4.5vw;
 `
 
 export const Botao = styled.button`

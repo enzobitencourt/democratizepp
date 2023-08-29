@@ -12,7 +12,7 @@ const StyledCarousel = styled(Carousel)`
 
   .slide {
     display: flex;
-    margin-top: -5vh;
+    margin-top: -1vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
