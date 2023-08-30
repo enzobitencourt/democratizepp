@@ -11,10 +11,10 @@ import {
     ButtonGroup,
     Flex,
     IconButton,
+    Text,
 } from '@chakra-ui/react'
 
 import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons"
-
 function Perfil() {
     function EditableControls() {
         const {
@@ -82,6 +82,7 @@ function Perfil() {
                                 textAlign='left'
                                 width='70vw'
                                 defaultValue='galencar@teste.com'
+                                blur='2px'
                                 fontSize='1.5x2'
                                 gap='2vw'
                                 isPreviewFocusable={false}
@@ -101,7 +102,7 @@ function Perfil() {
                                 alignItems='center'
                                 textAlign='left'
                                 width='70vw'
-                                defaultValue='GaAllencar2007'
+                                defaultValue={<Text style={{ filter: `blur(5px)` }}>GaAllencar2007</Text>}
                                 fontSize='1.5x2'
                                 gap='2vw'
                                 isPreviewFocusable={false}

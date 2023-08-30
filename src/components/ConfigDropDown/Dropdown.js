@@ -4,23 +4,32 @@ import {
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-    Box
+    Box,
+    useDisclosure,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    Button
 } from '@chakra-ui/react'
+
 import Favoritos from '../Favoritos/Favoritos'
 import Estrelas from '../EstrelasAvaliacao/EstrelasAvaliacao'
 import { useNavigate } from 'react-router-dom'
 
 function ConfigDrop() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     const navigate = useNavigate()
 
-    const goToPerfil = ()=>{
+    const goToPerfil = () => {
         navigate('/perfil')
     }
 
     const goToEntrada = () => {
         navigate('/entrada')
     }
-
 
     return (
         <>
@@ -85,11 +94,23 @@ function ConfigDrop() {
 
                 <AccordionItem marginBottom='13vh'>
                     <h2>
-                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} onClick={goToEntrada} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
+                        <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} onClick={onOpen} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' color="red" textAlign='left'>
                                 Sair
                             </Box>
                         </AccordionButton>
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent alignSelf='center' w='75vw' alignItems='center' display='flex'>
+                                <ModalHeader width='100%' textAlign='center'>Você tem certeza que deseja sair?</ModalHeader>
+                                <ModalFooter gap='2vw' justifyContent='center' w='70vw'>
+                                    <Button variant='ghost' border='1px solid black' onClick={onClose}>
+                                        Cancelar
+                                    </Button>
+                                    <Button backgroundColor='#1B676B' mr={3} color='#EBEBEB' onClick={goToEntrada}>Sair</Button>
+                                </ModalFooter>
+                            </ModalContent>
+                        </Modal>
                     </h2>
                 </AccordionItem>
 
