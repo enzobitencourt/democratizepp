@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
-import imagem from "../../Assets/notícia_carrossel.jpg"
 
 export const Imagem = styled.div`
-    background: url(${imagem});
+    background: url(${(props) => props.imagem});
     background-size: cover;
     width: 93vw;
     height: 22vh;
@@ -14,9 +13,9 @@ export const Imagem = styled.div`
 export const Titulo = styled.div`
     background-color: rgba(0, 0, 0, 0.59);
     border-radius: 28.5px;
-    width: 85vw;
+    width: 83vw;
     height: auto;
-    padding: 2vh 0px 2vh 13px;
+    padding: 1vh 0px 1vh 13px;
     vertical-align: center;
 `
 
@@ -27,5 +26,5 @@ export const Texto = styled.p`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    align-items: center;
+    text-align: left;
 `

@@ -100,9 +100,8 @@ function Perfil() {
                                 flexDirection='row'
                                 alignItems='center'
                                 textAlign='left'
-                                type='password'
                                 width='70vw'
-                                defaultValue='Gisele Allencar'
+                                defaultValue='GaAllencar2007'
                                 fontSize='1.5x2'
                                 gap='2vw'
                                 isPreviewFocusable={false}

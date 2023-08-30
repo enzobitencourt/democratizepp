@@ -3,7 +3,7 @@ import { Imagem, Titulo, Texto } from "./styled"
 function Object(props){
     return(
         <>
-        <Imagem>
+        <Imagem imagem={props.imagem}>
             <Titulo>
                 <Texto>
                 {props.texto}

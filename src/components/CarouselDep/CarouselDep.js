@@ -45,7 +45,7 @@ const StyledCarousel = styled(Carousel)`
   }
 `;
 
-const CustomCarousel = () => {
+const CustomCarouselDep = () => {
   return (
     <StyledCarousel
       showThumbs={false}
@@ -69,4 +69,4 @@ const CustomCarousel = () => {
   );
 };
 
-export default CustomCarousel;
+export default CustomCarouselDep;

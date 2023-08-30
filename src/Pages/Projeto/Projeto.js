@@ -1,6 +1,7 @@
 import Object from "../../Cards/ObjectCarousel/Object"
 import Menu from "../../components/Menu/Menu"
 import { Barra, Container, GeneralContent, Resumo, Subtitulo, Titulo, Titulos } from "./styled"
+import imagem from '../../Assets/projeto.png'
 
 function Projeto(){
     return(
@@ -21,7 +22,7 @@ function Projeto(){
             aprofundamento necessário para o embasamento dos conceitos trazidos pelo pesquisador.
             </Resumo>
             </GeneralContent>
-            <Object texto="Acesse a pesquisa completa em PDF"/>
+            <Object imagem={imagem} texto="Acesse a pesquisa completa em PDF"/>
             <Menu barra='3'/>
         </Container>
         </>

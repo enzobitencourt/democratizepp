@@ -5,7 +5,7 @@ import { Area, Container, ContainerEnd, ContainerInput, ContainerMid, Deps, Esfu
 import { Select } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 import InputComponent from "../../components/InputComponent/InputComponent"
-import CustomCarousel from "../../components/Carousel/Carousel"
+import CustomCarouselDep from "../../components/CarouselDep/CarouselDep"
 
 function PrincipalDeps() {
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ function PrincipalDeps() {
         <>
             <Container>
                 <Headers titulo="Câmara e Senado" subtitulo="Espaços de Poder" />
-                <CustomCarousel/>
+                <CustomCarouselDep/>
                 <ContainerMid>
                     <Titulo>Escolha a instituição desejada</Titulo>
                     <Espacos>
