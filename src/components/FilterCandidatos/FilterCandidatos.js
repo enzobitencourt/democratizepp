@@ -1,11 +1,39 @@
-import {Box} from "./styled"
+import {
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    Checkbox
+} from '@chakra-ui/react'
 
-function FilterCandidatos(){
-    return(
+import { Direita, Esquerda, Filters } from './styled'
+
+function FilterCandidatos() {
+    return (
         <>
-            <Box>
-               
-            </Box>
+            <ModalOverlay />
+            <ModalContent padding='0.5vh 1vh 3vh 1vh' w='80vw' borderRadius='28.4px' background='#FFF' gap='1.5vh'>
+                <ModalHeader>Filtre por palavras-chave</ModalHeader>
+                <Filters>
+                    <Direita>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                    </Direita>
+                    <Esquerda>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                        <Checkbox colorScheme='green'>Checkbox</Checkbox>
+                    </Esquerda>
+                </Filters>
+            </ModalContent>
         </>
     )
 }

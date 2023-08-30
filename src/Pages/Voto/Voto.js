@@ -33,8 +33,7 @@ function PageVoto() {
                 <Menu barra='0'/>
             </Container>
             <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <FilterCandidatos />
+                <FilterCandidatos/>
             </Modal>
         </>
     )

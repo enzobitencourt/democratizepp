@@ -1,10 +1,25 @@
 import {styled} from "styled-components"
 
-export const Box = styled.div`
-    border-radius: 28.4px;
-    background: #FFF;
+export const Filters = styled.div`
+    display: flex;
+    flex-direction: row;
     width: 80vw;
-    height: 40vh;
+    justify-content: space-between;
+    padding: 0vh 1vh;
+`
+
+export const Direita = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 1.5vh;
+    width: 37vw;
+    height: auto;
+`
+
+export const Esquerda = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    width: 37vw;
+    height: auto;
 `
