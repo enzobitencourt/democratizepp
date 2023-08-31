@@ -9,6 +9,7 @@ export const ContainerFav = styled.div`
     height: 26vh;
     margin-bottom: 2vh;
     margin-top: 2vh;
+    position: relative;
 
     ::-webkit-scrollbar {
     display: none;

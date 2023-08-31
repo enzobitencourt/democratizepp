@@ -27,6 +27,10 @@ function ConfigDrop() {
         navigate('/perfil')
     }
 
+    const goToExcluir =()=>{
+        navigate('/excluirconta')
+    }
+
     const goToEntrada = () => {
         navigate('/entrada')
     }
@@ -47,20 +51,18 @@ function ConfigDrop() {
                     </h2>
                 </AccordionItem>
 
+
                 <AccordionItem>
                     <h2>
                         <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
-                                Portais de Notícia
+                                Favoritos
                             </Box>
                             <AccordionIcon />
                         </AccordionButton>
                     </h2>
-                    <AccordionPanel pb={4}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.
+                    <AccordionPanel w='100vw' padding='0' h='auto' overflow='auto' alignItems='center' display='flex' justifyContent='center' whiteSpace='normal' pb={4}>
+                        <Favoritos />
                     </AccordionPanel>
                 </AccordionItem>
 
@@ -78,18 +80,14 @@ function ConfigDrop() {
                     </AccordionPanel>
                 </AccordionItem>
 
-                <AccordionItem>
+                <AccordionItem onClick={goToExcluir}>
                     <h2>
                         <AccordionButton _hover={{ bg: 'rgba(255, 255, 255, 0.54)' }} h="6vh" border="1px solid #000" bg="rgba(255, 255, 255, 0.54)" color="#9D9D9D">
                             <Box as="span" flex='1' textAlign='left'>
-                                Favoritos
+                                Excluir conta
                             </Box>
-                            <AccordionIcon />
                         </AccordionButton>
                     </h2>
-                    <AccordionPanel w='100vw' h='auto' padding='0' display='flex' justifyContent='center' whiteSpace='normal' pb={4}>
-                        <Favoritos />
-                    </AccordionPanel>
                 </AccordionItem>
 
                 <AccordionItem marginBottom='13vh'>

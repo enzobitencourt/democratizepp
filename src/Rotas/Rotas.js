@@ -12,6 +12,7 @@ import AgoraSens from "../Pages/AgoraSens/AgoraSens"
 import FrenteComs from "../Pages/FrenteComs/FrenteComs"
 import ProjetoeVotac from "../Pages/ProjetoseVotac/ProjetoeVotac"
 import Perfil from "../Pages/Perfil/Perfil"
+import ExcluirConta from "../Pages/ExcluirConta/ExcluirConta"
 
 function Rotas(){
     return(
@@ -31,6 +32,7 @@ function Rotas(){
                 <Route path="votacoes" element={<ProjetoeVotac/>}/>
                 <Route path="perfil" element={<Perfil/>}/>
                 <Route path="entrada" element={<Entrada/>}/>
+                <Route path="excluirconta" element={<ExcluirConta/>}/>
             </Routes>
         </BrowserRouter>
     )

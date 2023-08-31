@@ -28,24 +28,29 @@ export const Esquerda = styled.div`
 export const DivInput = styled.div`
     display: flex;
     flex-direction: row;
-    width: 100%;
-    justify-content: center;
-    height: 3vh;
+    width: 98%;
+    gap: 2vw;
+    height: 5.5vh;
+    border-radius: 28.6px;
+    background: white;
+    border: 1px solid black;
+    align-items: center;
 `
 
 export const Input = styled.input`
     width: 55vw;
-    height: 4vh;
+    height: 5vh;
     border-radius: 28.6px 0 0 28.6px;
     background-color: white;
-    padding: 0 0 0 2vw;
-    border: 1px solid black;
+    padding: 0 0 0 4vw;
     font-size: 15px;
 `
 
 export const Enviar = styled.button`
-    width: 17vw;
-    height: 4vh;
+    width: 18vw;
+    height: 3vh;
     border: 1px solid #1B676B;
-    color: #1B676B;
+    color: white;
+    border-radius: 10px;
+    background-color: #1B676B;
 `
