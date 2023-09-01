@@ -4,7 +4,7 @@ import { Container, Nome, TituloContainer, Texto, PerfilContainer, Perfil } from
 function Header(){
     const navigate = useNavigate()
 
-    const goToLogin = ()=>{
+    const goToOnde = ()=>{
         navigate('/login')
     }
     return(
@@ -15,7 +15,7 @@ function Header(){
                 <Nome>Cidadão</Nome>
             </TituloContainer>
             <PerfilContainer>
-                <Perfil onClick={goToLogin}/>
+                <Perfil onClick={goToOnde}/>
             </PerfilContainer>
         </Container>
         </>
