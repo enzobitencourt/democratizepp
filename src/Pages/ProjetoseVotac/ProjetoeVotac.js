@@ -4,6 +4,7 @@ import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
 import VotacaoDivs from "../../components/VotacaoDiv/VotacaoDiv"
 import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos } from "./styled"
+import senador from "../../Assets/senador.jpg"
 
 function ProjetoeVotac() {
     return (
@@ -22,8 +23,8 @@ function ProjetoeVotac() {
                 <VotacaoDivs/>
                 <Pesquisa>
                     <Participantes>Descubra o voto do seu representante</Participantes>
-                    <InputComponent />
-                    <CardPoliticoConteudo/>
+                    <InputComponent/>
+                    <CardPoliticoConteudo cor='green' imagem={senador} status='À favor'/>
                 </Pesquisa>
                 <Menu barra='1'/>
             </Container>

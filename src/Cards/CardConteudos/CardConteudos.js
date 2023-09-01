@@ -1,16 +1,16 @@
-import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
 import { useNavigate } from "react-router-dom"
+import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
 
 function CardConteudos(props) {
     const navigate = useNavigate()
 
-    const goToVotacoes = ()=>{
-        navigate('/votacoes')
+    const goToConteudo= ()=>{
+        navigate(`/${props.ir}`)
     }
 
     return (
         <>
-            <Botao onClick={goToVotacoes}>
+            <Botao onClick={goToConteudo}>
                 <Conteudo>
                     <Infos>
                         <Titulo>{props.titulo}</Titulo>

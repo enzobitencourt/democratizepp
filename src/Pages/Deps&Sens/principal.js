@@ -6,6 +6,7 @@ import { Select } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 import InputComponent from "../../components/InputComponent/InputComponent"
 import CustomCarouselDep from "../../components/CarouselDep/CarouselDep"
+import dep from "../../Assets/foto_dep_fav.jpeg"
 
 function PrincipalDeps() {
     const navigate = useNavigate()
@@ -55,8 +56,8 @@ function PrincipalDeps() {
                     <InputComponent/>
                 </ContainerEnd>
                 <Resultados>
-                    <CardEleito/>
-                    <CardEleito/>
+                    <CardEleito imagem={dep}/>
+                    <CardEleito imagem={dep}/>
                 </Resultados>
                 <Menu barra='1'/>
             </Container>

@@ -1,6 +1,6 @@
 import {styled} from "styled-components"
 
-export const Botao = styled.button`
+export const Botao = styled.div`
     width: 93vw;
     height: auto;
     display: flex;
@@ -19,14 +19,20 @@ export const Conteudo = styled.div`
     gap: 4vw;
 `
 
-export const ImgPolitico = styled.img`
+export const ImgPolitico = styled.div`
+    background: url(${(props) => props.imagem});
+    background-size: cover;
     border-radius: 18.4px 0px 0px 18.4px;
     height: 13vh;
     width: 28vw;
     border: 1px solid #000;
+    align-items: flex-end;
+    display: flex;
+    justify-content: end;
+    padding: 1vw;
 `
 
-export const Infos = styled.div`
+export const Infos = styled.button`
     display: flex;
     width: 50vw;
     flex-direction: column;

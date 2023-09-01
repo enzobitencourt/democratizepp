@@ -19,11 +19,13 @@ export const Conteudo = styled.div`
     gap: 4vw;
 `
 
-export const ImgPolitico = styled.img`
+export const ImgPolitico = styled.div`
     border-radius: 18.4px 0px 0px 18.4px;
     height: 12vh;
-    width: 28vw;
+    width: 25vw;
     border: 1px solid #000;
+    background: url(${(props) => props.imagem});
+    background-size: cover;
 `
 
 export const Infos = styled.div`
@@ -53,7 +55,7 @@ export const Nome = styled.p`
 `
 
 export const Status = styled.p`
-    color: #000;
+    color: ${(props) => props.cor};
     margin: 0;
     font-size: 14px;
     font-style: normal;

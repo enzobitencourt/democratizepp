@@ -65,7 +65,7 @@ const EstrelasAvaliacao = () => {
                 );
             })}
             </Div>
-            <Texto>Avaliação: {rating !== null ? rating : 0}</Texto>
+            <Texto>Avaliação: {rating !== null ? rating : 0}/5</Texto>
         </DivStar>
     );
 };

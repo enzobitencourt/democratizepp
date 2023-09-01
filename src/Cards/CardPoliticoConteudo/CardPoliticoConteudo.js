@@ -1,16 +1,15 @@
 import { Botao, Conteudo, Gray, ImgPolitico, Infos, Nome, Partido, Status } from "./styled"
-import imgEleito from "../../Assets/foto_dep_fav.jpeg"
 
-function CardPoliticoConteudo(){
+function CardPoliticoConteudo(props){
     return(
         <>
         <Botao>
             <Conteudo>
-                <ImgPolitico src={imgEleito}/>
+                <ImgPolitico imagem={props.imagem}/>
                 <Infos>
                     <Nome>Afonso Motta</Nome>
                     <Partido><b>Partido: </b>PDT-RS</Partido>
-                    <Status>Membro</Status>
+                    <Status cor={props.cor}>{props.status}</Status>
                 </Infos>
             </Conteudo>
             <Gray/>

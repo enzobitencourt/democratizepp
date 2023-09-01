@@ -3,6 +3,7 @@ import HeadersConteud from "../../components/HeadersConteud/HeadersConteud"
 import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
 import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, TextInfos } from "./styled"
+import dep from "../../Assets/foto_dep_fav.jpeg"
 
 function FrenteComs() {
     return (
@@ -22,7 +23,7 @@ function FrenteComs() {
                 <Pesquisa>
                     <Participantes>Quem participa dessa frente?</Participantes>
                     <InputComponent />
-                    <CardPoliticoConteudo/>
+                    <CardPoliticoConteudo cor='black' imagem={dep} status='Membro'/>
                 </Pesquisa>
                 <Menu barra='1'/>
             </Container>

@@ -3,7 +3,7 @@ import {styled} from "styled-components"
 export const Filters = styled.div`
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 75vw;
     justify-content: space-between;
     padding: 0vh 1vh;
     margin-bottom: 2vh;
@@ -13,15 +13,7 @@ export const Direita = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
-    width: 40vw;
-    height: auto;
-`
-
-export const Esquerda = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 1.5vh;
-    width: 35vw;
+    width: auto;
     height: auto;
 `
 
@@ -47,10 +39,10 @@ export const Input = styled.input`
 `
 
 export const Enviar = styled.button`
-    width: 17vw;
-    height: 3vh;
-    border: 1px solid #1B676B;
+    width: 15vw;
+    height: 4vh;
     color: white;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: #1B676B;
 `
+

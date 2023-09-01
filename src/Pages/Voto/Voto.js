@@ -4,7 +4,7 @@ import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, 
 import Filter from "../../Assets/IconFilter.svg"
 import Search from "../../Assets/IconSearch.svg"
 import CardCandidato from "../../Cards/CardCandidato/CardCandidato"
-import { Modal, ModalOverlay, useDisclosure } from '@chakra-ui/react'
+import { Modal, useDisclosure } from '@chakra-ui/react'
 import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos"
 
 function PageVoto() {

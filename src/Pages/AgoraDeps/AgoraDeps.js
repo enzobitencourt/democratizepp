@@ -7,6 +7,16 @@ import Ordenar from "../../components/Ordenar/Ordenar"
 import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
 
 function AgoraDeps() {
+    const customSelectStyles = {
+        control: {
+          height: '5vh',
+        },
+        menu: {
+          maxHeight: '20vh', // Set the maximum height for the dropdown
+          overflowY: 'scroll', // Enable vertical scrolling when needed
+        },
+      };
+
     return (
         <>
             <Container>
@@ -29,10 +39,15 @@ function AgoraDeps() {
                     <ContainerInput>
                         <InputAutor placeholder="Autor"/>
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Partido'>
+                        <Select bg="white" styles={customSelectStyles} w='45vw' h='5vh' borderRadius='28.6px' placeholder='Partido'  maxH="50px" overflowY="" >
                             <option value='option1'>Option 1</option>
                             <option value='option2'>Option 2</option>
                             <option value='option3'>Option 3</option>
+                            <option value='option4'>Option 1</option>
+                            <option value='option5'>Option 2</option>
+                            <option value='option6'>Option 3</option>
+                            <option value='option7'>Option 1</option>
+                            <option value='option8'>Option 2</option>
                         </Select>
                     </ContainerInput>
 
@@ -47,8 +62,8 @@ function AgoraDeps() {
                 </ContainerFilter>
                 <ContainerResultados>
                     <Ordenar/>
-                    <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
-                    <CardConteudos titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
+                    <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
+                    <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019'/>
                 </ContainerResultados>
                 <Menu barra='1'/>
             </Container>

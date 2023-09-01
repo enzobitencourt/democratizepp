@@ -46,8 +46,8 @@ function AgoraSens() {
                 </ContainerFilter>
                 <ContainerResultados>
                     <Ordenar/>
-                    <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
-                    <CardConteudos titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
+                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
+                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
                 </ContainerResultados>
                 <Menu barra='1'/>
             </Container>
