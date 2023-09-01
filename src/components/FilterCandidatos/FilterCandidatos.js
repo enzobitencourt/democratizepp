@@ -7,11 +7,35 @@ import {
     Checkbox
 } from '@chakra-ui/react'
 
-import { Direita, Esquerda, Filters, Input, DivInput, Enviar} from './styled'
+import { Direita, Esquerda, Filters, Input, DivInput, Enviar } from './styled'
 import { InfoIcon } from '@chakra-ui/icons'
+import { useState } from 'react'
 
 function FilterCandidatos() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const checkboxesData = [
+        { label: 'Animais', checked: false },
+        { label: 'Meio-ambiente', checked: false },
+        { label: 'Educação', checked: false },
+        { label: 'Reforma Agrária', checked: false },
+        { label: 'Segurança', checked: false },
+        { label: 'Saúde', checked: false },
+        { label: 'Feminismo', checked: false },
+        { label: 'Igualdade', checked: false },
+        { label: 'Economia', checked: false },
+        { label: 'Empreendedor', checked: false },
+        { label: 'Salário', checked: false },
+        { label: 'Previdência', checked: false },
+    ];
+
+    const [checkboxes, setCheckboxes] = useState(checkboxesData);
+
+    const handleCheckboxChange = (index) => {
+        const updatedCheckboxes = [...checkboxes];
+        updatedCheckboxes[index].checked = !updatedCheckboxes[index].checked;
+        setCheckboxes(updatedCheckboxes);
+    };
 
     return (
         <>
@@ -29,25 +53,33 @@ function FilterCandidatos() {
                 </ModalHeader>
                 <Filters>
                     <Direita>
-                        <Checkbox colorScheme='green'>Animais</Checkbox>
-                        <Checkbox colorScheme='green'>Meio-ambiente</Checkbox>
-                        <Checkbox colorScheme='green'>Educação</Checkbox>
-                        <Checkbox colorScheme='green'>Reforma Agrária</Checkbox>
-                        <Checkbox colorScheme='green'>Segurança</Checkbox>
-                        <Checkbox colorScheme='green'>Saúde</Checkbox>
+                        {checkboxes.slice(0, 6).map((checkbox, index) => (
+                            <Checkbox
+                                key={index}
+                                colorScheme='green'
+                                checked={checkbox.checked}
+                                onChange={() => handleCheckboxChange(index)}
+                            >
+                                {checkbox.label}
+                            </Checkbox>
+                        ))}
                     </Direita>
                     <Esquerda>
-                        <Checkbox colorScheme='green'>Feminismo</Checkbox>
-                        <Checkbox colorScheme='green'>Igualdade</Checkbox>
-                        <Checkbox colorScheme='green'>Economia</Checkbox>
-                        <Checkbox colorScheme='green'>Empreendedor</Checkbox>
-                        <Checkbox colorScheme='green'>Salário</Checkbox>
-                        <Checkbox colorScheme='green'>Previdência</Checkbox>
+                        {checkboxes.slice(6).map((checkbox, index) => (
+                            <Checkbox
+                                key={index + 6}
+                                colorScheme='green'
+                                checked={checkbox.checked}
+                                onChange={() => handleCheckboxChange(index + 6)}
+                            >
+                                {checkbox.label}
+                            </Checkbox>
+                        ))}
                     </Esquerda>
                 </Filters>
                 <DivInput>
-                        <Input placeholder='Digite palavras-chave'/>
-                        <Enviar>Enviar</Enviar>
+                    <Input placeholder='Digite palavras-chave' />
+                    <Enviar>Enviar</Enviar>
                 </DivInput>
             </ModalContent>
         </>
