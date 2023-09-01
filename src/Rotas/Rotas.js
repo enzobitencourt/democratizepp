@@ -13,6 +13,7 @@ import FrenteComs from "../Pages/FrenteComs/FrenteComs"
 import ProjetoeVotac from "../Pages/ProjetoseVotac/ProjetoeVotac"
 import Perfil from "../Pages/Perfil/Perfil"
 import ExcluirConta from "../Pages/ExcluirConta/ExcluirConta"
+import Erro from "../Pages/Erro/Erro"
 
 function Rotas(){
     return(
@@ -33,6 +34,7 @@ function Rotas(){
                 <Route path="perfil" element={<Perfil/>}/>
                 <Route path="entrada" element={<Entrada/>}/>
                 <Route path="excluirconta" element={<ExcluirConta/>}/>
+                <Route path="*" element={<Erro/>}/>
             </Routes>
         </BrowserRouter>
     )
