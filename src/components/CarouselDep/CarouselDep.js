@@ -3,8 +3,11 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from 'styled-components';
 import Object from '../../Cards/ObjectCarousel/Object'
-import imagem from '../../Assets/img_not.png'
-import imagem1 from '../../Assets/notícia_carrossel.jpg'
+import congresso from '../../Assets/congresso.png'
+import teste from '../../Assets/testepolitic.png'
+import conceito from '../../Assets/oqepolitic.jpg'
+import camara from '../../Assets/camara.png'
+import senado from '../../Assets/senado.png'
 
 const StyledCarousel = styled(Carousel)`
   .carousel-slider {
@@ -54,15 +57,28 @@ const CustomCarouselDep = () => {
       showIndicators={true}
       infiniteLoop={true}
       transitionTime={500}
+      autoPlay={true} // Enable auto-rotation
+      interval={3000} // Set the interval (3 seconds in this example)
+
     >
       <div className="slide">
-            <Object imagem={imagem} texto='Governo anuncia bloqueio de R$ 5,7 bilhões do Orçamento de 2022'/>
+        <Object imagem={conceito} texto='O que é política?' link='https://youtu.be/lcdqEIPalbM' />
       </div>
+
       <div className="slide">
-            <Object imagem={imagem1} texto='Para Lira, problemas orçamentários impedem mais investimentos na defesa do meio ambiente'/>
+        <Object imagem={teste} link='https://www.idrlabs.com/pt/coordenadas-politicas/teste.php' texto='Descubra sua posição no espectro político' />
       </div>
+
       <div className="slide">
-            <Object imagem={imagem} texto='Governo anuncia bloqueio de R$ 5,7 bilhões do Orçamento de 2022'/>
+        <Object imagem={congresso} texto='Acesse o site oficial do Congresso Nacional!' link='https://www.congressonacional.leg.br/' />
+      </div>
+
+      <div className="slide">
+        <Object imagem={camara} texto='Acesse o site oficial da Câmera dos Deputados!' link='https://www.camara.leg.br/' />
+      </div>
+
+      <div className="slide">
+        <Object imagem={senado} texto='Acesse o site oficial do Senado Federal!' link='https://www12.senado.leg.br/hpsenado' />
       </div>
 
     </StyledCarousel>
