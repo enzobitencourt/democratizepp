@@ -60,6 +60,20 @@ export const Participantes = styled.p`
 export const Pesquisa = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 1vh;
+`
+
+export const ContainerInput = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 93vw;
+    height: auto;
+    justify-content: space-between;
+`
+
+export const Resultados = styled.div`
+    display: flex;
+    flex-direction: column;
     gap: 2vh;
     margin-bottom: 13vh;
 `

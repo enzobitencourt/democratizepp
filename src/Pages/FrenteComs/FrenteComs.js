@@ -23,7 +23,7 @@ function FrenteComs() {
                 <Pesquisa>
                     <Participantes>Quem participa dessa frente?</Participantes>
                     <InputComponent />
-                    <CardPoliticoConteudo cor='black' imagem={dep} status='Membro'/>
+                    <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro'/>
                 </Pesquisa>
                 <Menu barra='1'/>
             </Container>

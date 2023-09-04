@@ -3,8 +3,9 @@ import HeadersConteud from "../../components/HeadersConteud/HeadersConteud"
 import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
 import VotacaoDivs from "../../components/VotacaoDiv/VotacaoDiv"
-import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos } from "./styled"
+import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos, ContainerInput, Resultados } from "./styled"
 import senador from "../../Assets/senador.jpg"
+import { Select } from "@chakra-ui/react"
 
 function ProjetoeVotac() {
     return (
@@ -15,18 +16,33 @@ function ProjetoeVotac() {
                     subtitulo="Agora no Senado" />
                 <DivConteudo>
                     <Infos>
-                        <TextInfos>Descrição: Altera o art. 144 da Constituição Federal para instituir 
-                        garantias para os policiais civis, penais e militares, os bombeiros militares e suas famílias. </TextInfos>
+                        <TextInfos>Descrição: Altera o art. 144 da Constituição Federal para instituir
+                            garantias para os policiais civis, penais e militares, os bombeiros militares e suas famílias. </TextInfos>
                         <TextInfos>Autores: Fernando Collor (PROS/AL), Zequinha Marinho (PSC/PA)</TextInfos>
                     </Infos>
                 </DivConteudo>
-                <VotacaoDivs/>
+                <VotacaoDivs />
                 <Pesquisa>
                     <Participantes>Descubra o voto do seu representante</Participantes>
-                    <InputComponent/>
-                    <CardPoliticoConteudo cor='green' imagem={senador} status='À favor'/>
+                    <ContainerInput>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Voto'>
+                            <option value='option1'>À favor</option>
+                            <option value='option2'>Contra</option>
+                            <option value='option3'>Nulo</option>
+                        </Select>
+
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Partido'>
+                            <option value='option1'>Option 1</option>
+                            <option value='option2'>Option 2</option>
+                            <option value='option3'>Option 3</option>
+                        </Select>
+                    </ContainerInput>
+                    <InputComponent />
                 </Pesquisa>
-                <Menu barra='1'/>
+                <Resultados>
+                    <CardPoliticoConteudo nome='Soraia Thronike' cor='green' imagem={senador} status='À favor' />
+                </Resultados>
+                <Menu barra='1' />
             </Container>
         </>
     )
