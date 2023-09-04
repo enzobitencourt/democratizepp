@@ -15,6 +15,8 @@ import {
 } from '@chakra-ui/react'
 
 import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons"
+
+
 function Perfil() {
     function EditableControls() {
         const {
