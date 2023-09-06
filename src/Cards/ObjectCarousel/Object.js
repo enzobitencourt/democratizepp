@@ -8,15 +8,13 @@ function Object(props) {
   };
 
   return (
-    <a onClick={handleObjectClick}>
-      <Imagem imagem={props.imagem}>
-        <Titulo>
-          <Texto>
-            {props.texto}
-          </Texto>
-        </Titulo>
-      </Imagem>
-    </a>
+    <Imagem onClick={handleObjectClick} imagem={props.imagem}>
+      <Titulo>
+        <Texto>
+          {props.texto}
+        </Texto>
+      </Titulo>
+    </Imagem>
   );
 }
 

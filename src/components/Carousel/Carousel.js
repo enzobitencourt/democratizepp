@@ -2,17 +2,16 @@ import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from 'styled-components';
-import Object from '../../Cards/ObjectCarousel/Object'
+import Object from '../../Cards/ObjectCarousel/Object';
 
 const StyledCarousel = styled(Carousel)`
   .carousel-slider {
-    max-width: 100vw; /* Largura máxima dos slides */
+    max-width: 100vw;
     margin: 0 auto;
   }
 
   .slide {
     display: flex;
-    margin-top: -1vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -44,30 +43,29 @@ const StyledCarousel = styled(Carousel)`
 `;
 
 const CustomCarousel = (props) => {
-  const news = props.noticias
+  const news = props.noticias;
   const limitedNews = news.slice(5, 10);
 
   return (
     <StyledCarousel
       showThumbs={false}
       showStatus={false}
-      showArrows={false}
+      showArrows={false} 
       showIndicators={true}
       infiniteLoop={true}
       transitionTime={500}
-      autoPlay={true} // Enable auto-rotation
-      interval={3000} // Set the interval (3 seconds in this example)
+      autoPlay={true}
+      interval={3000}
     >
-
       {limitedNews.map((article, index) => (
-        <div className="slide">
+        <div className="slide" key={index}> 
           <Object 
-          link={article.url}
-          imagem={article.image} 
-          texto={article.title} />
+            link={article.url}
+            imagem={article.image} 
+            texto={article.title}
+          />
         </div>
       ))}
-
     </StyledCarousel>
   );
 };
