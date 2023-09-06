@@ -3,8 +3,6 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styled from 'styled-components';
 import Object from '../../Cards/ObjectCarousel/Object'
-import imagem from '../../Assets/img_not.png'
-import imagem1 from '../../Assets/notícia_carrossel.jpg'
 
 const StyledCarousel = styled(Carousel)`
   .carousel-slider {
@@ -45,7 +43,10 @@ const StyledCarousel = styled(Carousel)`
   }
 `;
 
-const CustomCarousel = () => {
+const CustomCarousel = (props) => {
+  const news = props.noticias
+  const limitedNews = news.slice(5, 10);
+
   return (
     <StyledCarousel
       showThumbs={false}
@@ -54,16 +55,18 @@ const CustomCarousel = () => {
       showIndicators={true}
       infiniteLoop={true}
       transitionTime={500}
+      autoPlay={true} // Enable auto-rotation
+      interval={3000} // Set the interval (3 seconds in this example)
     >
-      <div className="slide">
-            <Object imagem={imagem} texto='Governo anuncia bloqueio de R$ 5,7 bilhões do Orçamento de 2022'/>
-      </div>
-      <div className="slide">
-            <Object imagem={imagem1} texto='Para Lira, problemas orçamentários impedem mais investimentos na defesa do meio ambiente'/>
-      </div>
-      <div className="slide">
-            <Object imagem={imagem} texto='Governo anuncia bloqueio de R$ 5,7 bilhões do Orçamento de 2022'/>
-      </div>
+
+      {limitedNews.map((article, index) => (
+        <div className="slide">
+          <Object 
+          link={article.url}
+          imagem={article.image} 
+          texto={article.title} />
+        </div>
+      ))}
 
     </StyledCarousel>
   );

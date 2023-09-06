@@ -1,14 +1,18 @@
 import { ContainerNot, ImgNot, Nottitulo, Portal, TextContainer } from "./styled"
-import Notimg from "../../Assets/img_not.png"
 
-function CardNoticias(){
+function CardNoticias(props){
+    const handleObjectClick = () => {
+        // Redirect the user to the specified URL in a new tab when clicked
+        window.open(props.url, '_blank');
+      };
+
     return(
         <>
-        <ContainerNot>
-            <ImgNot src={Notimg}/>
+        <ContainerNot onClick={handleObjectClick}>
+            <ImgNot imagem={props.img}/>
             <TextContainer>
-                <Nottitulo>Governo anuncia bloqueio de R$ 5,7 bilhões do Orçamento de 2022</Nottitulo>
-                <Portal>G1 - Política</Portal>
+                <Nottitulo>{props.titulo}</Nottitulo>
+                <Portal>{props.local}</Portal>
             </TextContainer>
         </ContainerNot>
         </>

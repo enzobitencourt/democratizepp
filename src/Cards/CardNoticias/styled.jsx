@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const ContainerNot = styled.div`
     width: 93vw;
-    height: auto;
+    height: 13vh;
     display: flex;
     flex-direction: row;
     border-radius: 24.32px;
@@ -10,14 +10,17 @@ export const ContainerNot = styled.div`
     margin-top: 2vh;
 `
 
-export const ImgNot = styled.img`
+export const ImgNot = styled.div`
+    background: url(${(props) => props.imagem});
+    background-size: cover;
+    background-position: center;
     border-radius: 24.32px 0px 0px 24.32px;
-    width: 27vw;
-    height: 100%;
+    width: 25vw;
+    height: 13vh;
 `
 
 export const TextContainer = styled.div`
-    width: auto;
+    width: 62vw;
     height: auto;
     margin-left: 4vw;
     margin-right: 5vw;

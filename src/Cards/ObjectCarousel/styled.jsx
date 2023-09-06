@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 export const Imagem = styled.div`
     background: url(${(props) => props.imagem});
     background-size: cover;
+    background-position: center;
     width: 93vw;
     height: 22vh;
     border-radius: 28.5px;
@@ -21,6 +22,7 @@ export const Titulo = styled.div`
 
 export const Texto = styled.p`
     color: #FFF;
+    width: 95%;
     font-family: 'Poppins';
     font-size: 12px;
     font-style: normal;
