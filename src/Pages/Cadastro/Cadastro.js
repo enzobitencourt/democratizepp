@@ -12,8 +12,8 @@ function Cadastro(){
                 <Main>
                     <Container>
                         <Input type="text" id="user" placeholder="Usuário"/>
-                        <Input type="email" id="password" placeholder="Email"/>
-                        <Input type="tel" id="password" placeholder="Telefone"/>
+                        <Input type="email" id="email" placeholder="Email"/>
+                        <Input type="tel" id="telefone" placeholder="Telefone"/>
                         <DivSenhas>
                             <Input2 type="password" id="password" placeholder="Senha"/>
                             <Input2 type="password" id="confirmpassword" placeholder="Confirmar"/>
