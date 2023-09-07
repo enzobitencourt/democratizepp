@@ -1,4 +1,4 @@
-import {styled} from "styled-components"
+import { styled } from "styled-components"
 
 export const Filters = styled.div`
     display: flex;
@@ -44,6 +44,7 @@ export const Input = styled.input`
     background-color: white;
     padding: 0 0 0 4vw;
     font-size: 15px;
+    outline: none;
 `
 
 export const Enviar = styled.button`
@@ -53,4 +54,12 @@ export const Enviar = styled.button`
     color: white;
     border-radius: 10px;
     background-color: #1B676B;
+`
+
+export const Selects = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    gap: 1vw;
+    justify-content: center;
 `

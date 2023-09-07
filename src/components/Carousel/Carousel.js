@@ -8,6 +8,8 @@ const StyledCarousel = styled(Carousel)`
   .carousel-slider {
     max-width: 100vw;
     margin: 0 auto;
+    position: relative;
+    display: flex;
   }
 
   .slide {

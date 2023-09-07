@@ -1,18 +1,21 @@
+import React, { useState } from 'react';
 import {
     ModalOverlay,
     ModalContent,
     ModalHeader,
     Modal,
     useDisclosure,
-    Checkbox
-} from '@chakra-ui/react'
+    Checkbox,
+    Tag,
+    TagCloseButton,
+} from '@chakra-ui/react';
 
-import { Direita, Esquerda, Filters, Input, DivInput, Enviar } from './styled'
-import { InfoIcon } from '@chakra-ui/icons'
-import { useState } from 'react'
+import { Direita, Esquerda, Filters, Input, DivInput, Enviar, Selects } from './styled';
+import { InfoIcon } from '@chakra-ui/icons';
+
 
 function FilterCandidatos() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const checkboxesData = [
         { label: 'Animais', checked: false },
@@ -30,12 +33,38 @@ function FilterCandidatos() {
     ];
 
     const [checkboxes, setCheckboxes] = useState(checkboxesData);
+    const [inputValue, setInputValue] = useState(''); // State for the input value
+    const [tags, setTags] = useState([]); // State for storing tags
 
     const handleCheckboxChange = (index) => {
         const updatedCheckboxes = [...checkboxes];
         updatedCheckboxes[index].checked = !updatedCheckboxes[index].checked;
         setCheckboxes(updatedCheckboxes);
     };
+
+    const getCheckedCheckboxes = () => {
+        const checkedLabels = checkboxes
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.label);
+        return checkedLabels;
+    };
+
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleTagSubmit = () => {
+        if (inputValue.trim() !== '') {
+            setTags([...tags, inputValue.trim()]);
+            setInputValue('');
+        }
+    };
+
+    const handleTagClick = (clickedTag) => {
+        // Filter the tags array to remove the clicked tag
+        const updatedTags = tags.filter((tag) => tag !== clickedTag);
+        setTags(updatedTags);
+      };
 
     return (
         <>
@@ -56,7 +85,7 @@ function FilterCandidatos() {
                         {checkboxes.slice(0, 6).map((checkbox, index) => (
                             <Checkbox
                                 key={index}
-                                colorScheme='green'
+                                colorScheme='teal'
                                 checked={checkbox.checked}
                                 onChange={() => handleCheckboxChange(index)}
                             >
@@ -68,7 +97,7 @@ function FilterCandidatos() {
                         {checkboxes.slice(6).map((checkbox, index) => (
                             <Checkbox
                                 key={index + 6}
-                                colorScheme='green'
+                                colorScheme='teal'
                                 checked={checkbox.checked}
                                 onChange={() => handleCheckboxChange(index + 6)}
                             >
@@ -78,12 +107,31 @@ function FilterCandidatos() {
                     </Esquerda>
                 </Filters>
                 <DivInput>
-                    <Input placeholder='Digite palavras-chave' />
-                    <Enviar>Enviar</Enviar>
+                    <Input
+                        placeholder='Digite palavras-chave'
+                        value={inputValue}
+                        onChange={handleInputChange}
+                    />
+                    <Enviar type='submit' onClick={handleTagSubmit}>Enviar</Enviar>
                 </DivInput>
+                <Selects>
+                    {getCheckedCheckboxes().map((label, index) => (
+                        <Tag key={index} variant='solid' bg='#1B676B'>
+                            {label}
+                        </Tag>
+                    ))}
+                    {tags.map((tag, index) => (
+                        <Tag key={index} variant='solid' bg='#1B676B'>
+                            {tag}
+                            <TagCloseButton 
+                            onClick={() => handleTagClick(tag)} 
+                            cursor='pointer'/>
+                        </Tag>
+                    ))}
+                </Selects>
             </ModalContent>
         </>
-    )
+    );
 }
 
-export default FilterCandidatos
+export default FilterCandidatos;

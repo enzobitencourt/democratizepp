@@ -34,6 +34,7 @@ export const InputNome = styled.input`
     background: white;
     color: black;
     padding-left: 3vw;
+    outline: none;
 `
 
 export const DivPesquisa = styled.div`
@@ -72,6 +73,7 @@ export const InputAutor = styled.input`
     background: white;
     color: black;
     padding-left: 3vw;
+    outline: none;
 `
 
 export const ContainerResultados = styled.div`
