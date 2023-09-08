@@ -16,9 +16,10 @@ function ProjetoeVotac() {
                     subtitulo="Agora no Senado" />
                 <DivConteudo>
                     <Infos>
-                        <TextInfos>Descrição: Altera o art. 144 da Constituição Federal para instituir
+                        <TextInfos>
+                            <b>Descrição:</b> Altera o art. 144 da Constituição Federal para instituir
                             garantias para os policiais civis, penais e militares, os bombeiros militares e suas famílias. </TextInfos>
-                        <TextInfos>Autores: Fernando Collor (PROS/AL), Zequinha Marinho (PSC/PA)</TextInfos>
+                        <TextInfos><b>Autores:</b> Fernando Collor (PROS/AL), Zequinha Marinho (PSC/PA)</TextInfos>
                     </Infos>
                 </DivConteudo>
                 <VotacaoDivs />

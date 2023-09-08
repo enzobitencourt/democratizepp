@@ -1,6 +1,6 @@
 import Menu from "../../components/Menu/Menu"
 import VoltarBlack from "../../components/SimboloVoltarBlack/VoltarBlack"
-import { Header, FotoLogin, DivComplemento, EditDiv, EditTexto, Container, InfPerfil, Nome, Cidadao, Informacoes, InfEspecific, TipoInf } from "./styled"
+import { Header, DivComplemento, EditDiv, EditTexto, Container, InfPerfil, Nome, Cidadao, Informacoes, InfEspecific, TipoInf, Botao } from "./styled"
 import Foto from "../../Assets/FotoLogin.png"
 import {
     Editable,
@@ -11,13 +11,27 @@ import {
     ButtonGroup,
     Flex,
     IconButton,
-    Text,
 } from '@chakra-ui/react'
 
-import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons"
-
+import { CheckIcon, CloseIcon, EditIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons"
+import FotoLogin from "../../components/FotoLogin/FotoLogin"
+import { useState } from "react"
 
 function Perfil() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [password, setPassword] = useState('teste'); // Use um estado para armazenar a senha
+    const [icon, setIcon] = useState(<ViewIcon />);
+
+    const handleShowPassword = () => {
+        setShowPassword(!showPassword);
+        // Alterne o ícone do botão com base no estado showPassword
+        setIcon(showPassword ? <ViewIcon /> : <ViewOffIcon />);
+      };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
     function EditableControls() {
         const {
             isEditing,
@@ -96,6 +110,8 @@ function Perfil() {
                             </Editable>
                         </InfEspecific>
 
+
+                        {/* Seção de edição de senha */}
                         <InfEspecific>
                             <TipoInf>Senha</TipoInf>
                             <Editable
@@ -104,17 +120,29 @@ function Perfil() {
                                 alignItems='center'
                                 textAlign='left'
                                 width='70vw'
-                                defaultValue={<Text style={{ filter: `blur(5px)` }}>GaAllencar2007</Text>}
+                                defaultValue={password} // Use o estado para defaultValue
                                 fontSize='1.5x2'
                                 gap='2vw'
                                 isPreviewFocusable={false}
                             >
-                                <EditablePreview />
-                                {/* Here is the custom input */}
-                                <Input h='3vh' type='password' as={EditableInput} />
+                                <EditablePreview
+                                    style={{ filter: showPassword ? 'none' : 'blur(5px)' }}
+                                />
+                                <Input
+                                    h='3vh'
+                                    type={showPassword ? 'text' : 'password'}
+                                    as={EditableInput}
+                                    value='password'
+                                    onChange={handlePasswordChange}
+                                />
+                                <Botao onClick={handleShowPassword}>
+                                    {icon}
+                                </Botao>
                                 <EditableControls />
                             </Editable>
                         </InfEspecific>
+
+
 
                         <InfEspecific>
                             <TipoInf>Número de telefone</TipoInf>

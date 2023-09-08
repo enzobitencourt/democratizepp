@@ -102,3 +102,10 @@ export const TipoInf = styled.p`
     font-weight: 400;
     line-height: 18px; /* 138.462% */
 `
+
+export const Botao = styled.button`
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
+`

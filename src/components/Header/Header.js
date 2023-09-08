@@ -12,7 +12,7 @@ function Header(){
         <Container>
             <TituloContainer>
                 <Texto>Olá,</Texto>
-                <Nome>Cidadão</Nome>
+                <Nome>Cidadã(o)</Nome>
             </TituloContainer>
             <PerfilContainer>
                 <Perfil onClick={goToOnde}/>

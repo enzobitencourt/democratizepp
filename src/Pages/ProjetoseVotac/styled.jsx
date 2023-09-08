@@ -33,8 +33,8 @@ export const TextInfos = styled.p`
     font-weight: 400;
     line-height: normal;
     margin: 0;
-    display: flex;
-    flex-direction: row;
+    text-align: justify;
+    width: 90vw;
     gap: 1vw;
 `
 
