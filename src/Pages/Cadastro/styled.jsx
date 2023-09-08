@@ -67,12 +67,12 @@ export const Container = styled.div`
     background: rgba(255, 255, 255, 0.83);
     border-radius: 35px;
     border: 2px solid #000;
-    width: 70vw;
+    width: 80vw;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 3vh;
+    padding: 3vh 2vh;
     height: auto;
     gap: 2vh;
 `
@@ -110,10 +110,28 @@ export const DivSenhas = styled.div`
     justify-content: space-between;
 `
 
-export const Input2 = styled.input`
-    width: 47%;
-    height: 5vh;
+export const DivSenha = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 48%;
+    height: 5.2vh;
+    background: white;
     border-radius: 18.2px;
+    padding: 0 2vw 0 0;
     border: 1px solid #000;
+`
+
+export const InputSenha = styled.input`
+    width: 90%;
+    height: 4.5vh;
+    outline: none;
+    border-radius: 18.2px 0px 0px 18.2px;
     padding: 0 0 0 3vw;
+`
+
+export const Botao = styled.button`
+    width: auto;
+    height: auto;
+    background: none;
+    border: none;
 `
