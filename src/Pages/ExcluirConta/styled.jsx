@@ -121,6 +121,6 @@ export const Input2 = styled.input`
 export const Confirmacao = styled.p`
     text-align: center;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 400;
     width: 70vw;
 `
