@@ -25,7 +25,7 @@ export const Esquerda = styled.div`
     height: auto;
 `
 
-export const DivInput = styled.div`
+export const DivInput = styled.form`
     display: flex;
     flex-direction: row;
     width: 98%;

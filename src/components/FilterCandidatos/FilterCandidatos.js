@@ -64,7 +64,14 @@ function FilterCandidatos() {
         // Filter the tags array to remove the clicked tag
         const updatedTags = tags.filter((tag) => tag !== clickedTag);
         setTags(updatedTags);
-      };
+    };
+
+    const handleInputKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Previne o comportamento padrão (fechar o modal)
+            handleTagSubmit(); // Submeta a ação desejada (adicionar uma tag, por exemplo)
+        }
+    };
 
     return (
         <>
@@ -111,6 +118,7 @@ function FilterCandidatos() {
                         placeholder='Digite palavras-chave'
                         value={inputValue}
                         onChange={handleInputChange}
+                        onKeyDown={handleInputKeyPress}
                     />
                     <Enviar type='submit' onClick={handleTagSubmit}>Enviar</Enviar>
                 </DivInput>
@@ -123,9 +131,9 @@ function FilterCandidatos() {
                     {tags.map((tag, index) => (
                         <Tag key={index} variant='solid' bg='#1B676B'>
                             {tag}
-                            <TagCloseButton 
-                            onClick={() => handleTagClick(tag)} 
-                            cursor='pointer'/>
+                            <TagCloseButton
+                                onClick={() => handleTagClick(tag)}
+                                cursor='pointer' />
                         </Tag>
                     ))}
                 </Selects>

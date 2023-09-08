@@ -24,7 +24,7 @@ function Home() {
       })
       .catch((error) => {
         console.log("error");
-        setLoading(false); // Define o carregamento como concluído em caso de erro
+        setLoading(true); 
       });
   };
 
