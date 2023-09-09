@@ -57,7 +57,7 @@ const CustomCarousel = (props) => {
       infiniteLoop={true}
       transitionTime={500}
       autoPlay={true}
-      interval={3000}
+      interval={5000}
     >
       {limitedNews.map((article, index) => (
         <div className="slide" key={index}> 
