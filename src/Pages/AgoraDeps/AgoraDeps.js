@@ -21,7 +21,6 @@ function AgoraDeps() {
 
     
     const [partidos, setPartidos] = useState([])
-    const [loading, setLoading] = useState(true); // Estado de carregamento
 
     const Database = () => {
         axios
@@ -30,11 +29,9 @@ function AgoraDeps() {
             )
             .then((response) => {
                 setPartidos(response.data.dados);
-                setLoading(false); // Define o carregamento como concluído quando os dados são obtidos
             })
             .catch((error) => {
                 console.log("error");
-                setLoading(true);
             });
     };
 
