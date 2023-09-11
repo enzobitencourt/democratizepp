@@ -23,6 +23,7 @@ export const InputNome = styled.input`
     padding-left: 3vw;
     background: none;
     border-radius: 28.6px 0 0 28.6px;
+    outline: none;
 `
 
 export const ButtonFilter = styled.button`
