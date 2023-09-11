@@ -63,3 +63,7 @@ export const Selects = styled.div`
     gap: 1vw;
     justify-content: center;
 `
+
+export const Titulo = styled.p`
+    font-size: 16px;
+`

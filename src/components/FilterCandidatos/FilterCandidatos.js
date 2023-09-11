@@ -10,7 +10,7 @@ import {
     TagCloseButton,
 } from '@chakra-ui/react';
 
-import { Direita, Esquerda, Filters, Input, DivInput, Enviar, Selects } from './styled';
+import { Direita, Esquerda, Filters, Input, DivInput, Enviar, Selects, Titulo } from './styled';
 import { InfoIcon } from '@chakra-ui/icons';
 
 
@@ -78,7 +78,7 @@ function FilterCandidatos() {
             <ModalOverlay />
             <ModalContent display='flex' padding='0.5vh 1vh 3vh 1vh' w='83vw' borderRadius='28.4px' background='#FFF' gap='1.5vh' alignItems='center'>
                 <ModalHeader fontSize='18px' gap='2vw' display='flex' flexDirection='row' alignItems='center'>
-                    <p>Filtre por palavras-chave</p>
+                    <Titulo>Filtre por palavras-chave</Titulo>
                     <InfoIcon onClick={onOpen} color='#1B676B' />
                     <Modal isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />

@@ -15,7 +15,7 @@ export const Conteudo = styled.div`
     display: flex;
     flex-direction: row;
     width: auto;
-    height: 15vh;
+    height: 17vh;
     gap: 4vw;
 `
 
@@ -33,13 +33,14 @@ export const Infos = styled.div`
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
+    padding: 2vh 0vh;
     justify-content: center;
 `
 
 export const Gray = styled.div`
     border-radius: 0px 18.4px 18.4px 0px;
     background: #5B5858;
-    height: 15vh;
+    height: 17vh;
     width: 7vw;
 `
 
@@ -55,7 +56,7 @@ export const Nome = styled.p`
 
 export const Coligacao = styled.p`
     color: #424242;
-    font-size: 14px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -65,7 +66,7 @@ export const Coligacao = styled.p`
 
 export const Numero = styled.p`
     color: #424242;
-    font-size: 14px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -74,7 +75,7 @@ export const Numero = styled.p`
 `
 export const Partido = styled.p`
     color: #424242;
-    font-size: 14px;
+    font-size: 13px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;

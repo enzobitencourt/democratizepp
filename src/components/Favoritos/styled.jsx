@@ -6,7 +6,7 @@ export const ContainerFav = styled.div`
     overflow-x: scroll;
     gap: 3vw;
     width: 93vw;
-    height: 26vh;
+    height: auto;
     margin-bottom: 2vh;
     margin-top: 2vh;
     position: relative;

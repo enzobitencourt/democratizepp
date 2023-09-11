@@ -3,20 +3,21 @@ import { styled } from "styled-components";
 export const ContainerFavoritos = styled.div`
     display: flex;
     flex-direction: column;
-    width: 33vw;
-    height: 25vh;
+    width: 37vw;
+    height: auto;
     gap: 1vh;
     border-radius: 18.24px;
+    padding: 0 0 1vh 0vh;
     background: #FFF;
 `
 
 export const ImgFavs = styled.img`
-    width: 33vw;
+    width: 37vw;
     height: 18vh;
     border-radius: 18.24px;
 `
 export const Informacoes = styled.div`
-    width: 33vw;
+    width: 37vw;
     height: auto;
     padding: 1vw 2vw;
 `
