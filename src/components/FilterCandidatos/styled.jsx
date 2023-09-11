@@ -49,7 +49,8 @@ export const Input = styled.input`
 
 export const Enviar = styled.button`
     width: 17vw;
-    height: 3vh;
+    height: 3.5vh;
+    font-size: 15px;
     border: 1px solid #1B676B;
     color: white;
     border-radius: 10px;

@@ -108,6 +108,7 @@ export const DivSenhas = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 `
 
 export const DivSenha = styled.div`
