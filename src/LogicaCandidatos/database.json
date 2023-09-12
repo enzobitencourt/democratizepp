@@ -1,0 +1,112 @@
+[
+    {
+        "nome": "PADRE KELMON",
+        "id": 280001734029,
+        "partido": "PTB",
+        "coligacao": "PTB",
+        "numero": 14,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/920502/foto.jpeg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/920502/5_1662156618296.pdf"
+    },
+    {
+        "nome": "SIMONE TEBET",
+        "id": 280001607833,
+        "partido": "MDB",
+        "coligacao": "Coligação Brasil para Todos",
+        "numero": 15,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/899992/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/280001607833/pje-c6a5300b-Proposta%20de%20governo.pdf"
+    },
+    {
+        "nome": "SOFIA MANZANO",
+        "id": 280001600167,
+        "partido": "PCB",
+        "coligacao": "PCB",
+        "numero": 21,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/890829/foto.jpeg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BR/280001600167"
+    },
+    {
+        "nome": "LÉO PÉRICLES",
+        "id": 280001602702,
+        "partido": "UP",
+        "coligacao": "UP",
+        "numero": 80,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/884623/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/884623/PROPOSTAS.pdf"
+    },
+    {
+        "nome": "CONSTITUINTE EYMAEL",
+        "id": 280001677435,
+        "partido": "DC",
+        "coligacao": "DC",
+        "numero": 27,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/914331/foto.jpeg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/914331/5_1660324288072.pdf"
+    },
+    {
+        "nome": "CIRO GOMES",
+        "id": 280001612393,
+        "partido": "PDT",
+        "coligacao": "PDT",
+        "numero": 12,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/882713/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/882713/5_1659989903215.pdf"
+    },
+    {
+        "nome": "VERA",
+        "id": 280001607831,
+        "partido": "PSTU",
+        "coligacao": "PSTU",
+        "numero": 16,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/898012/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/898012/5_1659739349964.pdf"
+    },
+    {
+        "nome": "FELIPE D AVILA",
+        "id": 280001603612,
+        "partido": "NOVO",
+        "coligacao": "NOVO",
+        "numero": 30,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/892517/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/892517/5_1659557501045.pdf"
+    },
+    {
+        "nome": "JAIR BOLSONARO",
+        "id": 280001618036,
+        "partido": "PL",
+        "coligacao": "Pelo bem do Brasil",
+        "numero": 22,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/908966/foto.jpeg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/908966/5_1660093698051.pdf"
+    },
+    {
+        "nome": "LULA",
+        "id": 280001607829,
+        "partido": "PT",
+        "coligacao": "COLIGAÇÃO BRASIL DA ESPERANÇA",
+        "numero": 13,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/893498/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/280001607829/pje-3b1196fd-Proposta%20de%20governo.pdf"
+    },
+    {
+        "nome": "SORAYA THRONICKE",
+        "id": 280001644128,
+        "partido": "UNIÃO",
+        "coligacao": "UNIÃO",
+        "numero": 44,
+        "UF": "BR",
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/913738/foto.jpg",
+        "pdf": "https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/913738/5_1660315476677.pdf"
+    }
+]

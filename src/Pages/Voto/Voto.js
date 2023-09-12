@@ -1,20 +1,23 @@
-import Headers from "../../components/Headers/Headers"
-import Menu from "../../components/Menu/Menu"
-import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Titulo, Resultados } from "./styled"
-import Filter from "../../Assets/IconFilter.svg"
-import Search from "../../Assets/IconSearch.svg"
-import CardCandidato from "../../Cards/CardCandidato/CardCandidato"
-import { Modal, useDisclosure } from '@chakra-ui/react'
-import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos"
+import Headers from "../../components/Headers/Headers";
+import Menu from "../../components/Menu/Menu";
+import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Titulo, Resultados } from "./styled";
+import Filter from "../../Assets/IconFilter.svg";
+import Search from "../../Assets/IconSearch.svg";
+import CardCandidato from "../../Cards/CardCandidato/CardCandidato";
+import { Modal, useDisclosure } from "@chakra-ui/react";
+import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos";
+import candidatos from "../../LogicaCandidatos/database.json";
 
 function PageVoto() {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
+    console.log(candidatos)
+    
     const handleKeywordsSubmit = (tags, checkboxes) => {
         // Set the selected keywords when the "Enviar1" button is clicked
-        const selectedKeywords = tags.concat(checkboxes)
+        const selectedKeywords = tags.concat(checkboxes);
         onClose(); // Close the modal
-        console.log(selectedKeywords)
+        console.log(selectedKeywords);
     };
 
     return (
@@ -35,15 +38,16 @@ function PageVoto() {
                     <Resultados>
                         <CardCandidato />
                         <CardCandidato />
+                        <CardCandidato />
                     </Resultados>
                 </ContainerResult>
-                <Menu barra='0'/>
+                <Menu barra="0" />
             </Container>
             <Modal isOpen={isOpen} onClose={onClose}>
-                <FilterCandidatos onSubmitKeywords={handleKeywordsSubmit}/>
+                <FilterCandidatos onSubmitKeywords={handleKeywordsSubmit} />
             </Modal>
         </>
-    )
+    );
 }
 
-export default PageVoto
+export default PageVoto;
