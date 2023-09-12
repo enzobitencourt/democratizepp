@@ -3,7 +3,7 @@ import { styled } from "styled-components"
 export const Filters = styled.div`
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 100%;
     justify-content: space-between;
     padding: 0vh 1vh;
     margin-bottom: 2vh;
@@ -13,7 +13,7 @@ export const Direita = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
-    width: 40vw;
+    width: auto;
     height: auto;
 `
 
@@ -21,7 +21,7 @@ export const Esquerda = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
-    width: 35vw;
+    width: auto;
     height: auto;
 `
 
