@@ -84,7 +84,7 @@ function Perfil() {
                             >
                                 <EditablePreview />
                                 {/* Here is the custom input */}
-                                <Input h='3vh' as={EditableInput} />
+                                <Input h='auto' as={EditableInput} />
                                 <EditableControls />
                             </Editable>
                         </InfEspecific>
@@ -105,7 +105,7 @@ function Perfil() {
                             >
                                 <EditablePreview />
                                 {/* Here is the custom input */}
-                                <Input h='3vh' as={EditableInput} />
+                                <Input h='auto' as={EditableInput} />
                                 <EditableControls />
                             </Editable>
                         </InfEspecific>
@@ -129,7 +129,7 @@ function Perfil() {
                                     style={{ filter: showPassword ? 'none' : 'blur(5px)' }}
                                 />
                                 <Input
-                                    h='3vh'
+                                    h='auto'
                                     type={showPassword ? 'text' : 'password'}
                                     as={EditableInput}
                                     value='password'
@@ -160,7 +160,7 @@ function Perfil() {
                             >
                                 <EditablePreview />
                                 {/* Here is the custom input */}
-                                <Input h='3vh' type='tel' as={EditableInput} />
+                                <Input h='auto' type='tel' as={EditableInput} />
                                 <EditableControls />
                             </Editable>
                         </InfEspecific>
