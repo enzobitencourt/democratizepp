@@ -6,7 +6,8 @@
         "coligacao": "PTB",
         "numero": 14,
         "UF": "BR",
-        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/920502/foto.jpeg"
+        "imagem":"https://divulgacandcontas.tse.jus.br/candidaturas/oficial/2022/BR/BR/544/candidatos/920502/foto.jpeg",
+        "pdf": "./BR/teste.pdf"
     },
     {
         "nome": "SIMONE TEBET",

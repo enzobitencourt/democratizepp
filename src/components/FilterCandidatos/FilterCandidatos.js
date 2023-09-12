@@ -10,26 +10,24 @@ import {
     TagCloseButton,
 } from '@chakra-ui/react';
 
-import { Direita, Esquerda, Filters, Input, DivInput, Enviar, Selects, Titulo } from './styled';
+import { Direita, Esquerda, Filters, Input, DivInput, Enviar, Enviar1, Selects, Titulo } from './styled';
 import { InfoIcon } from '@chakra-ui/icons';
 
 
-function FilterCandidatos() {
+function FilterCandidatos(props) {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const checkboxesData = [
-        { label: 'Animais', checked: false },
         { label: 'Meio-ambiente', checked: false },
         { label: 'Educação', checked: false },
         { label: 'Reforma Agrária', checked: false },
         { label: 'Segurança', checked: false },
         { label: 'Saúde', checked: false },
-        { label: 'Feminismo', checked: false },
         { label: 'Igualdade', checked: false },
         { label: 'Economia', checked: false },
         { label: 'Empreendedor', checked: false },
         { label: 'Salário', checked: false },
-        { label: 'Previdência', checked: false },
+        { label: 'Previdência', checked: false }
     ];
 
     const [checkboxes, setCheckboxes] = useState(checkboxesData);
@@ -53,8 +51,9 @@ function FilterCandidatos() {
         setInputValue(e.target.value);
     };
 
-    const handleTagSubmit = () => {
+    const handleTagSubmit = (e) => {
         if (inputValue.trim() !== '') {
+            e.preventDefault()
             setTags([...tags, inputValue.trim()]);
             setInputValue('');
         }
@@ -66,10 +65,11 @@ function FilterCandidatos() {
         setTags(updatedTags);
     };
 
-    const handleInputKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault(); // Previne o comportamento padrão (fechar o modal)
-            handleTagSubmit(); // Submeta a ação desejada (adicionar uma tag, por exemplo)
+
+    const handleKeywordsSubmit = () => {
+        const selectedCheckboxesLabels = getCheckedCheckboxes();
+        if (tags.length > 0 || selectedCheckboxesLabels.length > 0) {
+            props.onSubmitKeywords(tags, selectedCheckboxesLabels); // Pass both data to the parent component
         }
     };
 
@@ -89,7 +89,7 @@ function FilterCandidatos() {
                 </ModalHeader>
                 <Filters>
                     <Direita>
-                        {checkboxes.slice(0, 6).map((checkbox, index) => (
+                        {checkboxes.slice(0, 5).map((checkbox, index) => (
                             <Checkbox
                                 key={index}
                                 colorScheme='teal'
@@ -101,12 +101,12 @@ function FilterCandidatos() {
                         ))}
                     </Direita>
                     <Esquerda>
-                        {checkboxes.slice(6).map((checkbox, index) => (
+                        {checkboxes.slice(5).map((checkbox, index) => (
                             <Checkbox
-                                key={index + 6}
+                                key={index + 5}
                                 colorScheme='teal'
                                 checked={checkbox.checked}
-                                onChange={() => handleCheckboxChange(index + 6)}
+                                onChange={() => handleCheckboxChange(index + 5)}
                             >
                                 {checkbox.label}
                             </Checkbox>
@@ -118,18 +118,17 @@ function FilterCandidatos() {
                         placeholder='Digite palavras-chave'
                         value={inputValue}
                         onChange={handleInputChange}
-                        onKeyDown={handleInputKeyPress}
                     />
-                    <Enviar type='submit' onClick={handleTagSubmit}>Enviar</Enviar>
+                    <Enviar onClick={handleTagSubmit}>Adicionar</Enviar>
                 </DivInput>
                 <Selects>
                     {getCheckedCheckboxes().map((label, index) => (
-                        <Tag key={index} variant='solid' bg='#1B676B'>
+                        <Tag key={index} variant='solid' bg='none' color='#1B676B' border='2px solid #1B676B'>
                             {label}
                         </Tag>
                     ))}
                     {tags.map((tag, index) => (
-                        <Tag key={index} variant='solid' bg='#1B676B'>
+                        <Tag key={index} variant='solid' bg='none' color='#1B676B' border='2px solid #1B676B'>
                             {tag}
                             <TagCloseButton
                                 onClick={() => handleTagClick(tag)}
@@ -137,6 +136,7 @@ function FilterCandidatos() {
                         </Tag>
                     ))}
                 </Selects>
+                <Enviar1 onClick={handleKeywordsSubmit}>Enviar palavras-chave</Enviar1>
             </ModalContent>
         </>
     );

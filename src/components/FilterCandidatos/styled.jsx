@@ -38,7 +38,7 @@ export const DivInput = styled.form`
 `
 
 export const Input = styled.input`
-    width: 55vw;
+    width: 50vw;
     height: 5vh;
     border-radius: 28.6px 0 0 28.6px;
     background-color: white;
@@ -48,10 +48,20 @@ export const Input = styled.input`
 `
 
 export const Enviar = styled.button`
-    width: 17vw;
+    width: auto;
+    padding: 0px 5px;
     height: 3.5vh;
     font-size: 15px;
-    border: 1px solid #1B676B;
+    border: 2px solid #1B676B;
+    border-radius: 10px;
+    background-color: none;
+    color: #1B676B;
+`
+export const Enviar1 = styled.button`
+    width: 80%;
+    height: 4.5vh;
+    font-size: 15px;
+    border: 3px solid #1B676B;
     color: white;
     border-radius: 10px;
     background-color: #1B676B;

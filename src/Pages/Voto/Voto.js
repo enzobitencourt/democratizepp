@@ -10,6 +10,13 @@ import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos
 function PageVoto() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const handleKeywordsSubmit = (tags, checkboxes) => {
+        // Set the selected keywords when the "Enviar1" button is clicked
+        const selectedKeywords = tags.concat(checkboxes)
+        onClose(); // Close the modal
+        console.log(selectedKeywords)
+    };
+
     return (
         <>
             <Container>
@@ -33,7 +40,7 @@ function PageVoto() {
                 <Menu barra='0'/>
             </Container>
             <Modal isOpen={isOpen} onClose={onClose}>
-                <FilterCandidatos/>
+                <FilterCandidatos onSubmitKeywords={handleKeywordsSubmit}/>
             </Modal>
         </>
     )
