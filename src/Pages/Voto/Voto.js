@@ -12,13 +12,15 @@ function PageVoto() {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     console.log(candidatos)
-    
+
     const handleKeywordsSubmit = (tags, checkboxes) => {
         // Set the selected keywords when the "Enviar1" button is clicked
         const selectedKeywords = tags.concat(checkboxes);
         onClose(); // Close the modal
         console.log(selectedKeywords);
     };
+
+
 
     return (
         <>
