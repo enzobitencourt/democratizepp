@@ -2,7 +2,18 @@ import React, { useState, useEffect } from 'react';
 import * as pdfjs from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.entry';
 import { styled } from 'styled-components';
-import pdfs from '../pdfs/2022BR280001607833.pdf'
+import BR280001734029 from '../pdfs/2022BR280001734029.pdf'
+import BR280001607833 from '../pdfs/2022BR280001607833.pdf'
+import BR280001600167 from '../pdfs/2022BR280001600167.pdf'
+import BR280001602702 from '../pdfs/2022BR280001602702.pdf'
+import BR280001677435 from '../pdfs/2022BR280001677435.pdf'
+import BR280001612393 from '../pdfs/2022BR280001612393.pdf'
+import BR280001607831 from '../pdfs/2022BR280001607831.pdf'
+import BR280001603612 from '../pdfs/2022BR280001603612.pdf'
+import BR280001618036 from '../pdfs/2022BR280001618036.pdf'
+import BR280001607829 from '../pdfs/2022BR280001607829.pdf'
+import BR280001644128 from '../pdfs/2022BR280001644128.pdf'
+import candidatos from '../../../LogicaCandidatos/database.json'
 
 const PdfTextExtractor = () => {
     const Div = styled.div`
@@ -50,7 +61,7 @@ const PdfTextExtractor = () => {
 
     // Use useEffect para carregar o PDF ao montar o componente (substitua 'caminho_do_seu_arquivo.pdf' pelo caminho real do arquivo)
     useEffect(() => {
-        const filePath = pdfs;
+        const filePath = BR280001607833;
         extractTextFromPdf(filePath);
     }, []);
 
