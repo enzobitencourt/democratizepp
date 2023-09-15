@@ -3,6 +3,7 @@ import * as pdfjs from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.entry';
 import { styled } from 'styled-components';
 import candidatos from '../../../LogicaCandidatos/database.json';
+import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
 
 const PdfTextExtractor = () => {
     const Div = styled.div`
@@ -13,7 +14,7 @@ const PdfTextExtractor = () => {
     `;
 
     const [pdfResults, setPdfResults] = useState([]);
-    const keyword = 'economia';
+    const keywords = ['economia', 'Lula']; 
 
     const extractTextFromPdf = async (pdfData, candidate) => {
         try {
@@ -31,12 +32,15 @@ const PdfTextExtractor = () => {
                 fullText += pageText;
             }
 
-            const containsKeyword = fullText.includes(keyword);
+            const keywordMatches = keywords.filter(keyword => fullText.includes(keyword));
 
-            return { candidate, containsKeyword };
+            // Verifica se o candidato possui todas as palavras-chave
+            const hasAllKeywords = keywordMatches.length === keywords.length;
+
+            return { candidate, hasAllKeywords };
         } catch (error) {
             console.error(`Error extracting text from PDF for candidate ${candidate.nome}:`, error);
-            return { candidate, containsKeyword: false };
+            return { candidate, hasAllKeywords: false };
         }
     };
 
@@ -49,11 +53,12 @@ const PdfTextExtractor = () => {
                     return result;
                 } catch (error) {
                     console.error('Error loading dynamic component:', error);
-                    return { candidate, containsKeyword: false };
+                    return { candidate, hasAllKeywords: false };
                 }
             });
 
-            const results = await Promise.all(pdfPromises);
+            // Filtra os candidatos que possuem todas as palavras-chave
+            const results = (await Promise.all(pdfPromises)).filter(result => result.hasAllKeywords);
             setPdfResults(results);
         };
 
@@ -62,12 +67,15 @@ const PdfTextExtractor = () => {
 
     return (
         <Div>
-            <h2>Extrair Texto de PDF</h2>
             {pdfResults.map((result, index) => (
-                <div key={index}>
-                    <h3>{result.candidate.nome}</h3>
-                    <p>Contains Keyword: {result.containsKeyword.toString()}</p>
-                </div>
+                <CardCandidato
+                key={index}
+                nome={result.candidate.nome}
+                img={result.candidate.imagem}
+                coligacao={result.candidate.coligacao}
+                partido={result.candidate.partido}
+                numero={result.candidate.numero}
+                />
             ))}
         </Div>
     );

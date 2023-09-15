@@ -1,7 +1,7 @@
 import { React } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Rotas from "./Rotas/Rotas";
-import PdfTextExtractor from "./Pages/Voto/TesteCandidatos/teste";
+import PdfTextExtractor from "./Pages/Voto/FiltroCandidatos/FiltroCandidatos";
 
 function App() {
   const styles = {

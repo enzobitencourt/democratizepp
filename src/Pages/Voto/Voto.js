@@ -21,7 +21,6 @@ function PageVoto() {
     };
 
 
-
     return (
         <>
             <Container>
