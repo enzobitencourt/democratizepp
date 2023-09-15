@@ -33,7 +33,6 @@ export const Infos = styled.div`
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
-    padding: 1vh 0vh;
     justify-content: center;
 `
 

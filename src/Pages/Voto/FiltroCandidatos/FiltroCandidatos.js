@@ -5,16 +5,17 @@ import { styled } from 'styled-components';
 import candidatos from '../../../LogicaCandidatos/database.json';
 import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
 
-const PdfTextExtractor = () => {
+const FiltroCandidatos = (props) => {
     const Div = styled.div`
-        width: 98vw;
         height: auto;
+        align-items: center;
+        gap: 2vh;
         display: flex;
         flex-direction: column;
     `;
 
     const [pdfResults, setPdfResults] = useState([]);
-    const keywords = ['economia', 'Lula']; 
+    const keywords = props.keywords; 
 
     const extractTextFromPdf = async (pdfData, candidate) => {
         try {
@@ -81,4 +82,4 @@ const PdfTextExtractor = () => {
     );
 };
 
-export default PdfTextExtractor;
+export default FiltroCandidatos;
