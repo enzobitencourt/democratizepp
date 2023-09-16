@@ -1,6 +1,6 @@
 [
     {
-        "nome": "PADRE KELMON",
+        "nome": "Padre Kelmon",
         "id": 280001734029,
         "partido": "PTB",
         "coligacao": "PTB",
@@ -10,7 +10,7 @@
         "pdf": "BR280001734029"
     },
     {
-        "nome": "SIMONE TEBET",
+        "nome": "Simone Tebet",
         "id": 280001607833,
         "partido": "MDB",
         "coligacao": "Brasil para Todos",
@@ -20,7 +20,7 @@
         "pdf": "BR280001607833"
     },
     {
-        "nome": "SOFIA MANZANO",
+        "nome": "Sofia Manzano",
         "id": 280001600167,
         "partido": "PCB",
         "coligacao": "PCB",
@@ -30,7 +30,7 @@
         "pdf": "BR280001600167"
     },
     {
-        "nome": "LÉO PÉRICLES",
+        "nome": "Léo Péricles",
         "id": 280001602702,
         "partido": "UP",
         "coligacao": "UP",
@@ -40,7 +40,7 @@
         "pdf": "BR280001602702"
     },
     {
-        "nome": "CONSTITUINTE EYMAEL",
+        "nome": "Constituinte Eymael",
         "id": 280001677435,
         "partido": "DC",
         "coligacao": "DC",
@@ -50,7 +50,7 @@
         "pdf": "BR280001677435"
     },
     {
-        "nome": "CIRO GOMES",
+        "nome": "Ciro Gomes",
         "id": 280001612393,
         "partido": "PDT",
         "coligacao": "PDT",
@@ -60,7 +60,7 @@
         "pdf": "BR280001612393"
     },
     {
-        "nome": "VERA",
+        "nome": "Vera",
         "id": 280001607831,
         "partido": "PSTU",
         "coligacao": "PSTU",
@@ -70,7 +70,7 @@
         "pdf": "BR280001607831"
     },
     {
-        "nome": "FELIPE D AVILA",
+        "nome": "Felipe D Avila",
         "id": 280001603612,
         "partido": "NOVO",
         "coligacao": "NOVO",
@@ -80,7 +80,7 @@
         "pdf": "BR280001603612"
     },
     {
-        "nome": "JAIR BOLSONARO",
+        "nome": "Jair Bolsonaro",
         "id": 280001618036,
         "partido": "PL",
         "coligacao": "Pelo bem do Brasil",
@@ -90,7 +90,7 @@
         "pdf": "BR280001618036"
     },
     {
-        "nome": "LULA",
+        "nome": "Lula",
         "id": 280001607829,
         "partido": "PT",
         "coligacao": "BRASIL DA ESPERANÇA",
@@ -100,7 +100,7 @@
         "pdf": "BR280001607829"
     },
     {
-        "nome": "SORAYA THRONICKE",
+        "nome": "Soraya Thronicke",
         "id": 280001644128,
         "partido": "UNIÃO",
         "coligacao": "UNIÃO",
