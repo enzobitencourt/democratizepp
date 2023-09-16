@@ -6,6 +6,11 @@ import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, Text
 import dep from "../../Assets/foto_dep_fav.jpeg"
 
 function FrenteComs() {
+    const keywords =(checkboxes)=>{
+        const selectedKeywords = checkboxes
+        console.log(selectedKeywords)
+    }
+
     return (
         <>
             <Container>
@@ -22,7 +27,7 @@ function FrenteComs() {
                 </DivConteudo>
                 <Pesquisa>
                     <Participantes>Quem participa dessa frente?</Participantes>
-                    <InputComponent />
+                    <InputComponent submitKeywords={keywords}/>
                     <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro'/>
                 </Pesquisa>
                 <Menu barra='1'/>

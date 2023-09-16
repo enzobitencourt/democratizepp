@@ -19,6 +19,11 @@ function PrincipalDeps() {
         navigate('/agoranosenado')
     }
 
+    const keywords =(checkboxes)=>{
+        const selectedKeywords = checkboxes
+        console.log(selectedKeywords)
+    }
+
     return (
         <>
             <Container>
@@ -53,7 +58,7 @@ function PrincipalDeps() {
                             <option value='option3'>Option 3</option>
                         </Select>
                     </ContainerInput>
-                    <InputComponent/>
+                    <InputComponent submitKeywords={keywords}/>
                 </ContainerEnd>
                 <Resultados>
                     <CardEleito imagem={dep}/>

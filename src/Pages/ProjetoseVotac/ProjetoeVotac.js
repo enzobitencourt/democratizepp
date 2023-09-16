@@ -8,6 +8,11 @@ import senador from "../../Assets/senador.jpg"
 import { Select } from "@chakra-ui/react"
 
 function ProjetoeVotac() {
+    const keywords =(checkboxes)=>{
+        const selectedKeywords = checkboxes
+        console.log(selectedKeywords)
+    }
+
     return (
         <>
             <Container>
@@ -38,7 +43,7 @@ function ProjetoeVotac() {
                             <option value='option3'>Option 3</option>
                         </Select>
                     </ContainerInput>
-                    <InputComponent />
+                    <InputComponent submitKeywords={keywords}/>
                 </Pesquisa>
                 <Resultados>
                     <CardPoliticoConteudo nome='Soraia Thronike' cor='green' imagem={senador} status='À favor' />

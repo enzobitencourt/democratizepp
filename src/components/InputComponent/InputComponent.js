@@ -4,12 +4,18 @@ import Search from "../../Assets/IconSearch.svg"
 import {
     Modal,
     useDisclosure
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 import FilterDepsSens from "../FilterDeps&Sens/FilterDeps&Sens"
 
 
-function InputComponent() {
+function InputComponent(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const handleKeywordsSubmit = (checkboxes) => {
+        const selectedKeywords = checkboxes;
+        onClose();
+        props.submitKeywords(selectedKeywords)
+    };
 
     return (
         <>
@@ -20,7 +26,7 @@ function InputComponent() {
                         <Img src={Filter} />
                     </FilterButton>
                     <Modal isOpen={isOpen} onClose={onClose}>
-                        <FilterDepsSens funcao={onClose}/>
+                        <FilterDepsSens onSubmitKeywords={handleKeywordsSubmit} />
                     </Modal>
                     <SearchButton>
                         <Img1 src={Search} />
