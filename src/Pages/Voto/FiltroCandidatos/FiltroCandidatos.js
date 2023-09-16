@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import * as pdfjs from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.entry';
 import { styled } from 'styled-components';
-import candidatos from '../../../LogicaCandidatos/database.json';
+import candidatos from '../LogicaCandidatos/database.json'
 import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
+import Carregando from '../../../components/Carregando/Carregando';
 
 const FiltroCandidatos = (props) => {
     const Div = styled.div`
@@ -15,7 +16,8 @@ const FiltroCandidatos = (props) => {
     `;
 
     const [pdfResults, setPdfResults] = useState([]);
-    const keywords = props.keywords; 
+    const keywords = props.keywords;
+    const [loading, setLoading] = useState(true)
 
     const extractTextFromPdf = async (pdfData, candidate) => {
         try {
@@ -47,38 +49,57 @@ const FiltroCandidatos = (props) => {
 
     useEffect(() => {
         const loadPDFs = async () => {
-            const pdfPromises = candidatos.map(async (candidate) => {
-                try {
-                    const module = await import(`../pdfs/2022${candidate.pdf}.pdf`);
-                    const result = await extractTextFromPdf(module.default, candidate);
-                    return result;
-                } catch (error) {
-                    console.error('Error loading dynamic component:', error);
-                    return { candidate, hasAllKeywords: false };
-                }
-            });
+            const loadedResults = await Promise.all(
+                candidatos.map(async (candidate) => {
+                    try {
+                        const module = await import(`../pdfs/2022${candidate.pdf}.pdf`);
+                        const result = await extractTextFromPdf(module.default, candidate);
+                        return result;
+                    } catch (error) {
+                        console.error('Error loading dynamic component:', error);
+                        return { candidate, hasAllKeywords: false };
+                    }
+                })
+            );
 
-            // Filtra os candidatos que possuem todas as palavras-chave
-            const results = (await Promise.all(pdfPromises)).filter(result => result.hasAllKeywords);
+            // Filter candidates with all keywords
+            const results = loadedResults.filter(result => result.hasAllKeywords);
             setPdfResults(results);
+            setLoading(false)
         };
 
         loadPDFs();
     }, []);
 
     return (
-        <Div>
-            {pdfResults.map((result, index) => (
-                <CardCandidato
-                key={index}
-                nome={result.candidate.nome}
-                img={result.candidate.imagem}
-                coligacao={result.candidate.coligacao}
-                partido={result.candidate.partido}
-                numero={result.candidate.numero}
-                />
-            ))}
-        </Div>
+        <>
+            {loading === true ? (
+                <Carregando loading={loading} />
+            ) : (
+                <Div>
+                    {pdfResults.map((result, index) => {
+                        if (result && result.hasAllKeywords) {
+                            return (
+                                <CardCandidato
+                                    key={index}
+                                    nome={result.candidate.nome}
+                                    img={result.candidate.imagem}
+                                    coligacao={result.candidate.coligacao}
+                                    partido={result.candidate.partido}
+                                    numero={result.candidate.numero}
+                                />
+                            );
+                        } else {
+                            // Handle undefined result or missing keywords
+                            return (
+                                <div key={index}>Candidate not found or missing keywords</div>
+                            );
+                        }
+                    })}
+                </Div>
+            )}
+        </>
+
     );
 };
 

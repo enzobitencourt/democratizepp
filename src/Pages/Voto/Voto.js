@@ -7,18 +7,21 @@ import { Modal, useDisclosure } from "@chakra-ui/react";
 import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos";
 import { useState } from "react";
 import FiltroCandidatos from "./FiltroCandidatos/FiltroCandidatos";
+import Carregando from "../../components/Carregando/Carregando";
 
 function PageVoto() {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [keywords, setKeywords] = useState([]);
+    const [sendKeywords, setSendKeywords] = useState([]);
+    const loading = useState(false);
 
-    
     const handleKeywordsSubmit = (tags, checkboxes) => {
         const selectedKeywords = tags.concat(checkboxes);
         onClose(); // Close the modal
-        console.log(selectedKeywords);
+        setKeywords(selectedKeywords)
     };
 
-    const handleSearch =()=>{
+    const handleSearch = () => {
         console.log(keywords)
         setSendKeywords(keywords)
     }
@@ -40,7 +43,7 @@ function PageVoto() {
                     <Titulo>Resultados</Titulo>
                     <Resultados>
                         {sendKeywords.length === 0 ? (
-                            <div>Sem pesquisa</div>
+                            <Carregando loading={loading} />
                         ) : (
                             <FiltroCandidatos keywords={sendKeywords} />
                         )}
