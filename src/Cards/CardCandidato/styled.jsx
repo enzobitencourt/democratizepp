@@ -2,13 +2,14 @@ import {styled} from "styled-components"
 
 export const Botao = styled.button`
     width: 93vw;
-    height: auto;
+    height: 17vh;
     display: flex;
     flex-direction: row;
     background-color: #FFFFFF;
     border-radius: 18.4px;
     border: 1px solid #000;
     justify-content: space-between;
+    align-items: center;
 `
 
 export const Conteudo = styled.div`
@@ -39,6 +40,7 @@ export const Infos = styled.div`
 export const Gray = styled.div`
     border-radius: 0px 18.4px 18.4px 0px;
     background: #5B5858;
+    color: #5B5858;
     height: 100%;
     width: 7vw;
 `

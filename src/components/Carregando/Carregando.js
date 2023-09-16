@@ -1,7 +1,9 @@
-import { Container, Conteudo, ImgCarregando, Texto } from "./styled"
+import { Container, Conteudo, ImgCarregando, Texto, Texto1 } from "./styled"
 import carregando from '../../Assets/carregandofundo.gif'
 
-function Carregando(loading) {
+function Carregando(props) {
+    const loading = props.loading
+    
     return (
         <>
             <Container>
@@ -9,7 +11,8 @@ function Carregando(loading) {
                     {loading === true ? (
                         <>
                             <ImgCarregando src={carregando} />
-                            <Texto>Carregando...</Texto>
+                            <Texto1>Carregando...</Texto1>
+
                         </>
                     ) : (
                         <Texto>Não houve pesquisa efetuada até o momento.</Texto>

@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import candidatos from '../LogicaCandidatos/database.json'
 import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
 import Carregando from '../../../components/Carregando/Carregando';
+import { Container, Conteudo, Texto } from './styled';
 
 const FiltroCandidatos = (props) => {
     const Div = styled.div`
@@ -69,7 +70,7 @@ const FiltroCandidatos = (props) => {
         };
 
         loadPDFs();
-    }, []);
+    }); 
 
     return (
         <>
@@ -77,25 +78,25 @@ const FiltroCandidatos = (props) => {
                 <Carregando loading={loading} />
             ) : (
                 <Div>
-                    {pdfResults.map((result, index) => {
-                        if (result && result.hasAllKeywords) {
-                            return (
-                                <CardCandidato
-                                    key={index}
-                                    nome={result.candidate.nome}
-                                    img={result.candidate.imagem}
-                                    coligacao={result.candidate.coligacao}
-                                    partido={result.candidate.partido}
-                                    numero={result.candidate.numero}
-                                />
-                            );
-                        } else {
-                            // Handle undefined result or missing keywords
-                            return (
-                                <div key={index}>Candidate not found or missing keywords</div>
-                            );
-                        }
-                    })}
+                    {pdfResults.length > 0 ? (
+                        pdfResults.map((result, index) => (
+                            <CardCandidato
+                                key={index}
+                                nome={result.candidate.nome}
+                                img={result.candidate.imagem}
+                                coligacao={result.candidate.coligacao}
+                                partido={result.candidate.partido}
+                                numero={result.candidate.numero}
+                                url={`https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BR/${result.candidate.id}`}
+                            />
+                        ))
+                    ) : (
+                        <Container>
+                            <Conteudo>
+                                <Texto>Nenhum candidato encontrado ou faltando palavras-chave</Texto>
+                            </Conteudo>
+                        </Container>
+                    )}
                 </Div>
             )}
         </>

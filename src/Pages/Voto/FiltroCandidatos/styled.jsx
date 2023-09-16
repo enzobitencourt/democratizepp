@@ -1,4 +1,4 @@
-import {styled} from 'styled-components'
+import {styled} from "styled-components"
 
 export const Container = styled.div`
     width: 100%;
@@ -14,22 +14,10 @@ export const Conteudo = styled.div`
     align-items: center;
     gap: 2vw;
 `
-export const ImgCarregando = styled.img`
-    width: 12vw;
-    height: 12vw;
-`
 
 export const Texto = styled.p`
     color: #767575;
-    padding: 0 15vw;
-    text-align: center;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-`
-export const Texto1 = styled.p`
-    color: #767575;
+    padding: 0 10vw;
     text-align: center;
     font-size: 18px;
     font-style: normal;
