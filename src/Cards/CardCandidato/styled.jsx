@@ -15,7 +15,7 @@ export const Conteudo = styled.div`
     display: flex;
     flex-direction: row;
     width: auto;
-    height: 17vh;
+    height: auto;
     gap: 4vw;
 `
 
@@ -33,14 +33,13 @@ export const Infos = styled.div`
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
-    padding: 2vh 0vh;
     justify-content: center;
 `
 
 export const Gray = styled.div`
     border-radius: 0px 18.4px 18.4px 0px;
     background: #5B5858;
-    height: 17vh;
+    height: 100%;
     width: 7vw;
 `
 

@@ -1,17 +1,16 @@
 import { Botao, Coligacao, Conteudo, Gray, ImgPolitico, Infos, Nome, Numero, Partido } from "./styled"
-import imgEleito from "../../Assets/FotoCandidato.jpg"
 
-function CardCandidato() {
+function CardCandidato(props) {
     return (
         <>
             <Botao>
                 <Conteudo>
-                    <ImgPolitico src={imgEleito} />
+                    <ImgPolitico src={props.img} />
                     <Infos>
-                        <Nome>Simone Tebet</Nome>
-                        <Partido><b>Partido: </b>PDT-RS</Partido>
-                        <Coligacao><b>Coligação: </b> Brasil Para Todos</Coligacao>
-                        <Numero><b>Número: </b>15</Numero>
+                        <Nome>{props.nome}</Nome>
+                        <Partido><b>Partido: </b>{props.partido}</Partido>
+                        <Coligacao><b>Coligação: </b> {props.coligacao}</Coligacao>
+                        <Numero><b>Número: </b>{props.numero}</Numero>
                     </Infos>
                 </Conteudo>
                 <Gray />

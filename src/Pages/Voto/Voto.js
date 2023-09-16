@@ -3,21 +3,25 @@ import Menu from "../../components/Menu/Menu";
 import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Titulo, Resultados } from "./styled";
 import Filter from "../../Assets/IconFilter.svg";
 import Search from "../../Assets/IconSearch.svg";
-import CardCandidato from "../../Cards/CardCandidato/CardCandidato";
 import { Modal, useDisclosure } from "@chakra-ui/react";
 import FilterCandidatos from "../../components/FilterCandidatos/FilterCandidatos";
-import candidatos from "../../LogicaCandidatos/database.json";
+import { useState } from "react";
+import FiltroCandidatos from "./FiltroCandidatos/FiltroCandidatos";
 
 function PageVoto() {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    console.log(candidatos)
-
+    
     const handleKeywordsSubmit = (tags, checkboxes) => {
         const selectedKeywords = tags.concat(checkboxes);
-        onClose();
+        onClose(); // Close the modal
         console.log(selectedKeywords);
     };
+
+    const handleSearch =()=>{
+        console.log(keywords)
+        setSendKeywords(keywords)
+    }
 
     return (
         <>
@@ -28,16 +32,18 @@ function PageVoto() {
                     <ButtonFilter onClick={onOpen}>
                         <Img src={Filter} />
                     </ButtonFilter>
-                    <ButtonSearch>
+                    <ButtonSearch onClick={handleSearch}>
                         <Img1 src={Search} />
                     </ButtonSearch>
                 </DivInput>
                 <ContainerResult>
                     <Titulo>Resultados</Titulo>
                     <Resultados>
-                        <CardCandidato />
-                        <CardCandidato />
-                        <CardCandidato />
+                        {sendKeywords.length === 0 ? (
+                            <div>Sem pesquisa</div>
+                        ) : (
+                            <FiltroCandidatos keywords={sendKeywords} />
+                        )}
                     </Resultados>
                 </ContainerResult>
                 <Menu barra="0" />
