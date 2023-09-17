@@ -18,6 +18,8 @@ const FiltroCandidatos = (props) => {
 
     const [pdfResults, setPdfResults] = useState([]);
     const keywords = props.keywords;
+    const nome = props.nome;
+    console.log(nome)
     const [loading, setLoading] = useState(true)
 
     const extractTextFromPdf = async (pdfData, candidate) => {
@@ -50,27 +52,47 @@ const FiltroCandidatos = (props) => {
 
     useEffect(() => {
         const loadPDFs = async () => {
-            const loadedResults = await Promise.all(
-                candidatos.map(async (candidate) => {
-                    try {
-                        const module = await import(`../pdfs/2022${candidate.pdf}.pdf`);
-                        const result = await extractTextFromPdf(module.default, candidate);
-                        return result;
-                    } catch (error) {
-                        console.error('Error loading dynamic component:', error);
-                        return { candidate, hasAllKeywords: false };
-                    }
-                })
-            );
-
-            // Filter candidates with all keywords
-            const results = loadedResults.filter(result => result.hasAllKeywords);
-            setPdfResults(results);
-            setLoading(false)
+            if (props.resetSearch) {
+                setLoading(true);
+                setPdfResults([]); // Limpar os resultados de busca anteriores
+                props.setResetSearch(false); // Resetar o estado de resetSearch de volta para false
+    
+                if (keywords.length === 0) {
+                    // Se keywords estiver vazio, exibir todos os candidatos
+                    setPdfResults(candidatos);
+                    setLoading(false);
+                } else {
+                    const loadedResults = await Promise.all(
+                        candidatos.map(async (candidate) => {
+                            try {
+                                const module = await import(`../pdfs/2022${candidate.pdf}.pdf`);
+                                const result = await extractTextFromPdf(module.default, candidate);
+                                return result;
+                            } catch (error) {
+                                console.error('Erro ao carregar componente dinâmico:', error);
+                                return { candidate, hasAllKeywords: false };
+                            }
+                        })
+                    );
+    
+                    // Filtrar candidatos com todas as palavras-chave
+                    const results = loadedResults.filter(result => result.hasAllKeywords);
+                    setPdfResults(results);
+                    setLoading(false);
+                }
+            }
         };
 
-        loadPDFs();
-    }); 
+        if (props.resetSearch) {
+            setLoading(true)
+            setPdfResults([]); // Clear previous search results
+            props.setResetSearch(false); // Reset resetSearch back to false
+            loadPDFs(); // Trigger a new search
+        }
+
+   });
+
+
 
     return (
         <>

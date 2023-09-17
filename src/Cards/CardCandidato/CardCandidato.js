@@ -8,7 +8,7 @@ function CardCandidato(props) {
     return (
         <>
             <Botao onClick={handleObjectClick}>
-                <ImgPolitico src={props.img} />
+                <ImgPolitico imagem={props.img} />
                     <Infos>
                         <Nome>{props.nome}</Nome>
                         <Partido><b>Partido: </b>{props.partido}</Partido>

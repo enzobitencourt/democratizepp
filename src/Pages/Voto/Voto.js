@@ -14,6 +14,9 @@ function PageVoto() {
     const [keywords, setKeywords] = useState([]);
     const [sendKeywords, setSendKeywords] = useState([]);
     const loading = useState(false);
+    const [searchInput, setSearchInput] = useState("");
+    const [resetSearch, setResetSearch] = useState(false);
+    const [inputCandidato, setInputCandidato] = useState();
 
     const handleKeywordsSubmit = (tags, checkboxes) => {
         const selectedKeywords = tags.concat(checkboxes);
@@ -22,8 +25,11 @@ function PageVoto() {
     };
 
     const handleSearch = () => {
-        console.log(keywords)
-        setSendKeywords(keywords)
+        setInputCandidato("")
+        setResetSearch(true);
+        setInputCandidato(searchInput)
+        setSendKeywords(keywords);
+        setSearchInput("");
     }
 
     return (
@@ -31,7 +37,11 @@ function PageVoto() {
             <Container>
                 <Headers titulo="Candidatos à presidência" subtitulo="Eleições 2022" />
                 <DivInput>
-                    <InputNome placeholder="Pesquisa por nome" />
+                    <InputNome 
+                    placeholder="Pesquisa por nome"
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)} />
+
                     <ButtonFilter onClick={onOpen}>
                         <Img src={Filter} />
                     </ButtonFilter>
@@ -45,7 +55,7 @@ function PageVoto() {
                         {sendKeywords.length === 0 ? (
                             <Carregando loading={loading} />
                         ) : (
-                            <FiltroCandidatos keywords={sendKeywords} />
+                            <FiltroCandidatos resetSearch={resetSearch} setResetSearch={setResetSearch} nome={inputCandidato} keywords={sendKeywords} />
                         )}
                     </Resultados>
                 </ContainerResult>

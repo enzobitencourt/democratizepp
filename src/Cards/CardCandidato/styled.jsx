@@ -20,8 +20,11 @@ export const Conteudo = styled.div`
     gap: 4vw;
 `
 
-export const ImgPolitico = styled.img`
+export const ImgPolitico = styled.div`
     border-radius: 18.4px 0px 0px 18.4px;
+    background: url(${(props) => props.imagem});
+    background-size: cover;
+    background-position: center;
     height: 100%;
     width: 28vw;
     border: 1px solid #000;
