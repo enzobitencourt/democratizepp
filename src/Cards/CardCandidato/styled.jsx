@@ -50,7 +50,7 @@ export const Gray = styled.div`
 
 export const Nome = styled.p`
     color: #000;
-    font-size: 25px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 26px;
@@ -60,7 +60,7 @@ export const Nome = styled.p`
 
 export const Coligacao = styled.p`
     color: #424242;
-    font-size: 13px;
+    font-size: 12.2px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -70,7 +70,7 @@ export const Coligacao = styled.p`
 
 export const Numero = styled.p`
     color: #424242;
-    font-size: 13px;
+    font-size: 12.2px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -79,7 +79,7 @@ export const Numero = styled.p`
 `
 export const Partido = styled.p`
     color: #424242;
-    font-size: 13px;
+    font-size: 12.2px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
