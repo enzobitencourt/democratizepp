@@ -76,6 +76,7 @@ export const Cidadao = styled.p`
     font-weight: 400;
     line-height: 15px;
     margin: 0;
+    text-align: center;
 `
 
 export const Informacoes = styled.div`

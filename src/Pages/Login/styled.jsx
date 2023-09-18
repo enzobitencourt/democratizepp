@@ -91,7 +91,7 @@ export const LinksAlternativos = styled.button`
     height: auto;
     color: #000;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

@@ -17,6 +17,7 @@ function PageVoto() {
     const [searchInput, setSearchInput] = useState("");
     const [resetSearch, setResetSearch] = useState(false);
     const [inputCandidato, setInputCandidato] = useState();
+    const [pesquisa, setPesquisa] = useState(false)
 
     const handleKeywordsSubmit = (tags, checkboxes) => {
         const selectedKeywords = tags.concat(checkboxes);
@@ -25,10 +26,12 @@ function PageVoto() {
     };
 
     const handleSearch = () => {
+        setPesquisa(true)
         setInputCandidato("")
         setResetSearch(true);
         setInputCandidato(searchInput)
         setSendKeywords(keywords);
+        setKeywords([])
         setSearchInput("");
     }
 
@@ -52,7 +55,7 @@ function PageVoto() {
                 <ContainerResult>
                     <Titulo>Resultados</Titulo>
                     <Resultados>
-                        {sendKeywords.length === 0 ? (
+                        {pesquisa === false ? (
                             <Carregando loading={loading} />
                         ) : (
                             <FiltroCandidatos resetSearch={resetSearch} setResetSearch={setResetSearch} nome={inputCandidato} keywords={sendKeywords} />

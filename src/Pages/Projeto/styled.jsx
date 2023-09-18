@@ -43,7 +43,7 @@ export const Titulos = styled.div`
 
 export const Subtitulo = styled.div`
     color: #767575;
-    width: 80vw;
+    width: 85vw;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

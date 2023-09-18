@@ -76,13 +76,13 @@ function FilterCandidatos(props) {
     return (
         <>
             <ModalOverlay />
-            <ModalContent display='flex' padding='0.5vh 1vh 3vh 1vh' w='83vw' borderRadius='28.4px' background='#FFF' gap='1.5vh' alignItems='center'>
+            <ModalContent display='flex' padding='0.5vh 1vh 3vh 1vh' w='87vw' borderRadius='28.4px' background='#FFF' gap='1.5vh' alignItems='center'>
                 <ModalHeader fontSize='18px' gap='2vw' display='flex' flexDirection='row' alignItems='center'>
                     <Titulo>Filtre por palavras-chave</Titulo>
                     <InfoIcon onClick={onOpen} color='#1B676B' />
                     <Modal isOpen={isOpen} onClose={onClose}>
                         <ModalOverlay />
-                        <ModalContent w='50vw' padding='23px 0px 22px 7px' borderRadius='18.2px'>
+                        <ModalContent w='53vw' justifyContent='center' padding='2vh 1vh' borderRadius='18.2px'>
                             Filtre os candidatos conforme palavras-chave nas suas propostas de mandato
                         </ModalContent>
                     </Modal>

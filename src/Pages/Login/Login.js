@@ -43,7 +43,7 @@ function Login() {
                             <Acessar>Entrar</Acessar>
                             <Abaixo>
                                 <LinksAlternativos>Esqueci a senha</LinksAlternativos>
-                                <LinksAlternativos onClick={goToCadastro}>Não possui cadastro? Cadastre-se</LinksAlternativos>
+                                <LinksAlternativos onClick={goToCadastro}>Não possui cadastro? <b>Cadastre-se</b></LinksAlternativos>
                             </Abaixo>
                         </Container>
                     </Main>
