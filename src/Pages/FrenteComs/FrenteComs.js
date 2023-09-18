@@ -4,11 +4,22 @@ import InputComponent from "../../components/InputComponent/InputComponent"
 import Menu from "../../components/Menu/Menu"
 import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, TextInfos } from "./styled"
 import dep from "../../Assets/foto_dep_fav.jpeg"
+import { useState } from "react"
 
 function FrenteComs() {
-    const keywords =(checkboxes)=>{
-        const selectedKeywords = checkboxes
-        console.log(selectedKeywords)
+    const [keyword, setKeyword] = useState([])
+    const [nome, setNome] = useState('')
+
+    const keywords = (checkboxes) => {
+        setKeyword(checkboxes)
+        console.log('Keywords:', checkboxes)
+        console.log(keyword)
+    }
+
+    const nomeCandidato = (nomes) => {
+        setNome(nomes)
+        console.log('Nome do candidato:', nomes)
+        console.log(nome)
     }
 
     return (
@@ -27,10 +38,10 @@ function FrenteComs() {
                 </DivConteudo>
                 <Pesquisa>
                     <Participantes>Quem participa dessa frente?</Participantes>
-                    <InputComponent submitKeywords={keywords}/>
-                    <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro'/>
+                    <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
+                    <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro' />
                 </Pesquisa>
-                <Menu barra='1'/>
+                <Menu barra='1' />
             </Container>
         </>
     )

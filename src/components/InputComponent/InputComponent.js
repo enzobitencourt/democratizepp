@@ -6,21 +6,34 @@ import {
     useDisclosure
 } from '@chakra-ui/react'
 import FilterDepsSens from "../FilterDeps&Sens/FilterDeps&Sens"
-
+import { useState } from 'react'; // Importe o useRef do React
 
 function InputComponent(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const [nome, setNome] = useState('')
+    const [keywords, setKeywords] = useState([])
+
     const handleKeywordsSubmit = (checkboxes) => {
         const selectedKeywords = checkboxes;
         onClose();
-        props.submitKeywords(selectedKeywords)
+        setKeywords(selectedKeywords)
+    };
+
+    const handleSearchClick = () => {
+        props.submitKeywords(keywords)
+        props.submitNome(nome)
+        setKeywords([])
+        setNome('')
     };
 
     return (
         <>
             <ContainerInput>
-                <InputNome placeholder="Nome" />
+                <InputNome
+                    placeholder="Nome"
+                    onChange={(e) => setNome(e.target.value)}
+                    value={nome}/>
                 <DivPesquisa>
                     <FilterButton onClick={onOpen}>
                         <Img src={Filter} />
@@ -28,7 +41,7 @@ function InputComponent(props) {
                     <Modal isOpen={isOpen} onClose={onClose}>
                         <FilterDepsSens onSubmitKeywords={handleKeywordsSubmit} />
                     </Modal>
-                    <SearchButton>
+                    <SearchButton onClick={handleSearchClick}> {/* Adicione o evento de clique */}
                         <Img1 src={Search} />
                     </SearchButton>
                 </DivPesquisa>

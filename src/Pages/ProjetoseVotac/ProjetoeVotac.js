@@ -6,11 +6,22 @@ import VotacaoDivs from "../../components/VotacaoDiv/VotacaoDiv"
 import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos, ContainerInput, Resultados } from "./styled"
 import senador from "../../Assets/senador.jpg"
 import { Select } from "@chakra-ui/react"
+import { useState } from "react"
 
 function ProjetoeVotac() {
-    const keywords =(checkboxes)=>{
-        const selectedKeywords = checkboxes
-        console.log(selectedKeywords)
+    const [keyword, setKeyword] = useState([])
+    const [nome, setNome] = useState('')
+
+    const keywords = (checkboxes) => {
+        setKeyword(checkboxes)
+        console.log('Keywords:', checkboxes)
+        console.log(keyword)
+    }
+
+    const nomeCandidato = (nomes) => {
+        setNome(nomes)
+        console.log('Nome do candidato:', nomes)
+        console.log(nome)
     }
 
     return (
@@ -43,7 +54,7 @@ function ProjetoeVotac() {
                             <option value='option3'>Option 3</option>
                         </Select>
                     </ContainerInput>
-                    <InputComponent submitKeywords={keywords}/>
+                    <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
                 </Pesquisa>
                 <Resultados>
                     <CardPoliticoConteudo nome='Soraia Thronike' cor='green' imagem={senador} status='À favor' />
