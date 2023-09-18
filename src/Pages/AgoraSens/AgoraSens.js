@@ -5,20 +5,35 @@ import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
 import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
+import { useState } from "react"
 
 function AgoraSens() {
+    const [selectedTema, setSelectedTema] = useState("");
+    const [selectedPartido, setSelectedPartido] = useState(""); 
+    const [authorInput, setAuthorInput] = useState(""); 
+    const [nameInput, setNameInput] = useState(""); 
+    const [descubraSelect, setDescubraSelect] = useState('')
+
+    const handleSearchClick = () => {
+        console.log("Valor do descubra é: ", descubraSelect)
+        console.log("Valor do primeiro select:", selectedTema);
+        console.log("Valor do segundo select:", selectedPartido);
+        console.log("Valor do input de autor:", authorInput);
+        console.log("Valor do input de nome:", nameInput);
+    };
+
     return (
         <>
             <Container>
-                <HeaderEspaco titulo='Senado Federal' subtitulo='Agora no Senado'/>
+                <HeaderEspaco titulo='Senado Federal' subtitulo='Agora no Senado' />
                 <ContainerFilter>
                     <ContainerInput>
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Descubra'>
-                            <option value='option1'>Projetos/Matérias</option>
-                            <option value='option2'>Comissões</option>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={descubraSelect} onChange={(e) => setDescubraSelect(e.target.value)} placeholder='Descubra'>
+                            <option value='Projetos/Matérias'>Projetos/Matérias</option>
+                            <option value='Comissões'>Comissões</option>
                         </Select>
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Tema'>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
                             <option value='option1'>Option 1</option>
                             <option value='option2'>Option 2</option>
                             <option value='option3'>Option 3</option>
@@ -26,9 +41,12 @@ function AgoraSens() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputAutor placeholder="Autor"/>
+                        <InputAutor
+                            placeholder="Autor"
+                            value={authorInput}
+                            onChange={(e) => setAuthorInput(e.target.value)} />
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Partido'>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido'>
                             <option value='option1'>Option 1</option>
                             <option value='option2'>Option 2</option>
                             <option value='option3'>Option 3</option>
@@ -36,20 +54,20 @@ function AgoraSens() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputNome placeholder="Nome"/>
+                        <InputNome placeholder="Nome" value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                         <DivPesquisa>
-                            <SearchButton>
-                                <Img1 src={Search}/>
+                            <SearchButton onClick={handleSearchClick}>
+                                <Img1 src={Search} />
                             </SearchButton>
                         </DivPesquisa>
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar/>
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES'/>
+                    <Ordenar />
+                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
+                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
                 </ContainerResultados>
-                <Menu barra='1'/>
+                <Menu barra='1' />
             </Container>
         </>
     )

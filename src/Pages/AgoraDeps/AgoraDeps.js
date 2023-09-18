@@ -9,6 +9,20 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 function AgoraDeps() {
+    const [selectedTema, setSelectedTema] = useState(""); 
+    const [selectedPartido, setSelectedPartido] = useState(""); 
+    const [authorInput, setAuthorInput] = useState(""); 
+    const [nameInput, setNameInput] = useState(""); 
+    const [descubraSelect, setDescubraSelect] = useState('')
+
+    const handleSearchClick = () => {
+        console.log("Valor do descubra é: ", descubraSelect)
+        console.log("Valor do primeiro select:", selectedTema);
+        console.log("Valor do segundo select:", selectedPartido);
+        console.log("Valor do input de autor:", authorInput);
+        console.log("Valor do input de nome:", nameInput);  
+    };
+
     const customSelectStyles = {
         control: {
             height: '5vh',
@@ -19,7 +33,7 @@ function AgoraDeps() {
         },
     };
 
-    
+
     const [partidos, setPartidos] = useState([])
 
     const Database = () => {
@@ -46,13 +60,13 @@ function AgoraDeps() {
                 <HeaderEspaco titulo='Câmara dos Deputados' subtitulo='Agora na Câmara' />
                 <ContainerFilter>
                     <ContainerInput>
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Descubra'>
-                            <option value='option1'>Proposições</option>
-                            <option value='option2'>Eventos</option>
-                            <option value='option3'>Frentes</option>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={descubraSelect} onChange={(e) => setDescubraSelect(e.target.value)} placeholder='Descubra'>
+                            <option value='Proposições'>Proposições</option>
+                            <option value='Eventos'>Eventos</option>
+                            <option value='Frentes'>Frentes</option>
                         </Select>
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' placeholder='Tema'>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
                             <option value='option1'>Option 1</option>
                             <option value='option2'>Option 2</option>
                             <option value='option3'>Option 3</option>
@@ -60,11 +74,14 @@ function AgoraDeps() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputAutor placeholder="Autor" />
+                        <InputAutor
+                            placeholder="Autor"
+                            value={authorInput}
+                            onChange={(e) => setAuthorInput(e.target.value)} />
 
-                        <Select bg="white" styles={customSelectStyles} w='45vw' h='5vh' borderRadius='28.6px' placeholder='Partido' maxH="50px" overflowY="" >
+                        <Select bg="white" styles={customSelectStyles} w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido' maxH="50px" overflowY="" >
                             {partidos.map((partido, index) => (
-                                <option value={index}>
+                                <option key={index} value={partido.sigla}>
                                     {partido.sigla}
                                 </option>
                             ))}
@@ -72,9 +89,9 @@ function AgoraDeps() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputNome placeholder="Nome" />
+                        <InputNome placeholder="Nome" value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                         <DivPesquisa>
-                            <SearchButton>
+                            <SearchButton onClick={handleSearchClick}>
                                 <Img1 src={Search} />
                             </SearchButton>
                         </DivPesquisa>
