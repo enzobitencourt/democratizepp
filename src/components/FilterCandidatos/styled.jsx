@@ -38,7 +38,7 @@ export const DivInput = styled.form`
 `
 
 export const Input = styled.input`
-    width: 50vw;
+    width: 68%;
     height: 5vh;
     border-radius: 28.6px 0 0 28.6px;
     background-color: white;
