@@ -14,6 +14,7 @@ function AgoraDeps() {
     const [authorInput, setAuthorInput] = useState(""); 
     const [nameInput, setNameInput] = useState(""); 
     const [descubraSelect, setDescubraSelect] = useState('')
+    const [ordem, setOrdem] = useState('')
 
     const handleSearchClick = () => {
         console.log("Valor do descubra é: ", descubraSelect)
@@ -21,6 +22,12 @@ function AgoraDeps() {
         console.log("Valor do segundo select:", selectedPartido);
         console.log("Valor do input de autor:", authorInput);
         console.log("Valor do input de nome:", nameInput);  
+
+        setNameInput('')
+        setDescubraSelect('')
+        setSelectedPartido('')
+        setAuthorInput('')
+        setSelectedTema('')
     };
 
     const customSelectStyles = {
@@ -98,7 +105,7 @@ function AgoraDeps() {
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar />
+                    <Ordenar ordenar={setOrdem} ordem={ordem}/>
                     <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
                     <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
                 </ContainerResultados>

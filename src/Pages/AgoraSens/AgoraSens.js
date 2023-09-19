@@ -9,10 +9,11 @@ import { useState } from "react"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
-    const [selectedPartido, setSelectedPartido] = useState(""); 
-    const [authorInput, setAuthorInput] = useState(""); 
-    const [nameInput, setNameInput] = useState(""); 
+    const [selectedPartido, setSelectedPartido] = useState("");
+    const [authorInput, setAuthorInput] = useState("");
+    const [nameInput, setNameInput] = useState("");
     const [descubraSelect, setDescubraSelect] = useState('')
+    const [ordem, setOrdem] = useState('')
 
     const handleSearchClick = () => {
         console.log("Valor do descubra é: ", descubraSelect)
@@ -20,6 +21,12 @@ function AgoraSens() {
         console.log("Valor do segundo select:", selectedPartido);
         console.log("Valor do input de autor:", authorInput);
         console.log("Valor do input de nome:", nameInput);
+
+        setNameInput('')
+        setDescubraSelect('')
+        setSelectedPartido('')
+        setAuthorInput('')
+        setSelectedTema('')
     };
 
     return (
@@ -63,7 +70,7 @@ function AgoraSens() {
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar />
+                    <Ordenar ordenar={setOrdem} ordem={ordem} />
                     <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
                     <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
                 </ContainerResultados>
