@@ -1,25 +1,7 @@
 import React, { useState } from "react";
 import Headers from "../../components/Headers/Headers";
 import Menu from "../../components/Menu/Menu";
-import {
-    Area,
-    Container,
-    ContainerEnd,
-    ContainerInput,
-    InputNome,
-    DivPesquisa,
-    FilterButton,
-    Img,
-    SearchButton,
-    Img1,
-    Esfumado,
-    Espacos,
-    Resultados,
-    Sens,
-    Titulo,
-    ContainerMid,
-    Deps
-} from "./styled";
+import {Area,Container,ContainerEnd,ContainerInput,InputNome,DivPesquisa,FilterButton,Img,SearchButton,Img1,Esfumado,Espacos,Resultados,Sens,Titulo,ContainerMid,Deps} from "./styled";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Filter from "../../Assets/IconFilter.svg";
