@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Headers from "../../components/Headers/Headers";
 import Menu from "../../components/Menu/Menu";
-import {Area,Container,ContainerEnd,ContainerInput,InputNome,DivPesquisa,FilterButton,Img,SearchButton,Img1,Esfumado,Espacos,Resultados,Sens,Titulo,ContainerMid,Deps} from "./styled";
+import { Area, Container, ContainerEnd, ContainerInput, InputNome, DivPesquisa, FilterButton, Img, SearchButton, Img1, Esfumado, Espacos, Resultados, Sens, Titulo, ContainerMid, Deps } from "./styled";
 import { Select } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import Filter from "../../Assets/IconFilter.svg";
@@ -67,11 +67,22 @@ function PrincipalDeps() {
     const [nome, setNome] = useState("");
     const [keywords, setKeywords] = useState([])
 
+    const [tipoEnviar, setTipoEnviar] = useState("");
+    const [partidoEnviar, setPartidoEnviar] = useState("");
+    const [nomeEnviar, setNomeEnviar] = useState("");
+    const [ufsEnviar, setUfsEnviar] = useState([])
+
+    const [pesquisa, setPesquisa] = useState(false)
+    const [loading, setLoading] = useState(false)
+
     const handleSearchClick = () => {
-        console.log("Tipo Select:", tipoSelect);
-        console.log("Partido Select:", partidoSelect);
-        console.log("Nome Input:", nome);
-        console.log("Keywords: ", keywords);
+        setTipoEnviar(tipoSelect)
+        setPartidoEnviar(partidoSelect)
+        setNomeEnviar(nome)
+        setUfsEnviar(keywords)
+
+        setLoading(true)
+        setPesquisa(true)
 
         setKeywords([])
         setTipoSelect("");
@@ -167,7 +178,11 @@ function PrincipalDeps() {
                     </ContainerInput>
                 </ContainerEnd>
                 <Resultados>
-                    <FiltroEleitos/>
+                    {pesquisa ? (
+                        <FiltroEleitos loading={loading} tipo={tipoEnviar} partido={partidoEnviar} nome={nomeEnviar} ufs={ufsEnviar} />
+                    ) : (
+                        <></>
+                    )}
                 </Resultados>
                 <Menu barra="1" />
             </Container>

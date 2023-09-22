@@ -9,8 +9,8 @@ import CustomCarouselCarregando from "../../components/CarouselCarregando/Carous
 import NoticiasCarregando from "../../components/NoticiasCarregando/NoticiasCarregando";
 
 function Home(props) {
-    const loading = props.loading
-    const news = props.database
+  const loading = props.loading
+  const news = props.database
 
   return (
     <>
@@ -18,9 +18,9 @@ function Home(props) {
         <Header />
 
         {loading ? (
-          <CustomCarouselCarregando/>
+          <CustomCarouselCarregando />
         ) : (
-          <CarouselFunction noticias={news}/>
+          <CarouselFunction noticias={news} />
         )}
 
         <ContainerFav>
@@ -28,7 +28,7 @@ function Home(props) {
           <Favoritos />
         </ContainerFav>
         {loading ? (
-          <NoticiasCarregando/>
+          <NoticiasCarregando />
         ) : (
           <Noticias noticias={news} />
         )}

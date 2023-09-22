@@ -10,9 +10,9 @@ function CardEleito(props){
                     <Like/>
                 </ImgPolitico>
                 <Infos>
-                    <Nome>Afonso Motta</Nome>
-                    <Cargo>Deputado Federal</Cargo>
-                    <Partido><b>Partido: </b>PDT-RS</Partido>
+                    <Nome>{props.nome}</Nome>
+                    <Cargo>{props.cargo}</Cargo>
+                    <Partido><b>Partido: </b>{props.partido}-{props.uf}</Partido>
                 </Infos>
             </Conteudo>
             <Gray/>
