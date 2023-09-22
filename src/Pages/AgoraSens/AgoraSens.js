@@ -5,7 +5,8 @@ import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
 import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -14,6 +15,7 @@ function AgoraSens() {
     const [nameInput, setNameInput] = useState("");
     const [descubraSelect, setDescubraSelect] = useState('')
     const [ordem, setOrdem] = useState('')
+    const [partidos, setPartidos] = useState([])
 
     const handleSearchClick = () => {
         console.log("Valor do descubra é: ", descubraSelect)
@@ -28,6 +30,24 @@ function AgoraSens() {
         setAuthorInput('')
         setSelectedTema('')
     };
+
+    const Database = () => {
+        axios
+            .get(
+                'https://legis.senado.leg.br/dadosabertos/senador/partidos'
+            )
+            .then((response) => {
+                setPartidos(response.data.ListaPartidos.Partidos.Partido);
+            })
+            .catch((error) => {
+                console.log("error");
+            });
+    };
+
+    useEffect(() => {
+        Database();
+    }, []);
+
 
     return (
         <>
@@ -54,9 +74,15 @@ function AgoraSens() {
                             onChange={(e) => setAuthorInput(e.target.value)} />
 
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido'>
-                            <option value='option1'>Option 1</option>
-                            <option value='option2'>Option 2</option>
-                            <option value='option3'>Option 3</option>
+                            <>
+                                {partidos
+                                    .filter(partido => !partido.DataExtincao)
+                                    .map((partido, index) => (
+                                        <option key={index} value={partido.Sigla}>
+                                            {partido.Sigla}
+                                        </option>
+                                    ))}
+                            </>
                         </Select>
                     </ContainerInput>
 

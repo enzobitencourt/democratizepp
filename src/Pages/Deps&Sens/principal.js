@@ -29,6 +29,7 @@ import { Modal, useDisclosure } from "@chakra-ui/react";
 import CustomCarouselDep from "../../components/CarouselDep/CarouselDep";
 import dep from "../../Assets/foto_dep_fav.jpeg";
 import FilterDepsSens from "../../components/FilterDeps&Sens/FilterDeps&Sens";
+import axios from "axios";
 
 function PrincipalDeps() {
     const navigate = useNavigate();
@@ -42,14 +43,46 @@ function PrincipalDeps() {
         navigate("/agoranosenado");
     };
 
+    const [partidos, setPartidos] = useState([])
+
+    const Database = (url, tipo) => {
+        axios
+            .get(
+                url
+            )
+            .then((response) => {
+                if (tipo === "Deputado Federal") {
+                    setPartidos(response.data.dados);
+                } else if (tipo === "Senador") {
+                    setPartidos(response.data.ListaPartidos.Partidos.Partido);
+                }
+
+            })
+            .catch((error) => {
+                console.log("error");
+            });
+    };
+
+    const selectEleito = (e) => {
+        if (e.target.value === "Deputado Federal") {
+            const url = 'https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla'
+            Database(url, e.target.value)
+            setTipoSelect(e.target.value)
+        } else if (e.target.value === "Senador") {
+            const url = 'https://legis.senado.leg.br/dadosabertos/senador/partidos'
+            Database(url, e.target.value)
+            setTipoSelect(e.target.value)
+        }
+    }
+
     const handleKeywordsSubmit = (checkboxes) => {
         const selectedKeywords = checkboxes;
         onClose();
         setKeywords(selectedKeywords)
     };
 
-    const [tipoSelect, setTipoSelect] = useState(""); 
-    const [partidoSelect, setPartidoSelect] = useState(""); 
+    const [tipoSelect, setTipoSelect] = useState("");
+    const [partidoSelect, setPartidoSelect] = useState("");
     const [nome, setNome] = useState("");
     const [keywords, setKeywords] = useState([])
 
@@ -60,9 +93,9 @@ function PrincipalDeps() {
         console.log("Keywords: ", keywords);
 
         setKeywords([])
-        setTipoSelect(""); 
-        setPartidoSelect(""); 
-        setNome(""); 
+        setTipoSelect("");
+        setPartidoSelect("");
+        setNome("");
     };
 
     return (
@@ -93,8 +126,8 @@ function PrincipalDeps() {
                             w="45vw"
                             h="5vh"
                             borderRadius="28.6px"
-                            placeholder="Tipo"
-                            onChange={(e) => setTipoSelect(e.target.value)}
+                            placeholder="Cargo"
+                            onChange={(e) => selectEleito(e)}
                             value={tipoSelect}
                         >
                             <option value="Deputado Federal">Deputado Federal</option>
@@ -110,9 +143,27 @@ function PrincipalDeps() {
                             onChange={(e) => setPartidoSelect(e.target.value)}
                             value={partidoSelect}
                         >
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                            {tipoSelect === "Deputado Federal" ? (
+                                <>
+                                    {partidos.map((partido, index) => (
+                                        <option key={index} value={partido.sigla}>
+                                            {partido.sigla}
+                                        </option>
+                                    ))}
+                                </>
+                            ) : tipoSelect === "Senador" ? (
+                                <>
+                                    {partidos
+                                        .filter(partido => !partido.DataExtincao)
+                                        .map((partido, index) => (
+                                            <option key={index} value={partido.Sigla}>
+                                                {partido.Sigla}
+                                            </option>
+                                        ))}
+                                </>
+                            ) : (
+                                <option value="Selecionar">Selecione algum cargo</option>
+                            )}
                         </Select>
                     </ContainerInput>
                     <ContainerInput>
