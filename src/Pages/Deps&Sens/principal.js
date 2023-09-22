@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CardEleito from "../../Cards/CardEleito/CardEleito";
 import Headers from "../../components/Headers/Headers";
 import Menu from "../../components/Menu/Menu";
 import {
@@ -27,9 +26,9 @@ import Filter from "../../Assets/IconFilter.svg";
 import Search from "../../Assets/IconSearch.svg";
 import { Modal, useDisclosure } from "@chakra-ui/react";
 import CustomCarouselDep from "../../components/CarouselDep/CarouselDep";
-import dep from "../../Assets/foto_dep_fav.jpeg";
 import FilterDepsSens from "../../components/FilterDeps&Sens/FilterDeps&Sens";
 import axios from "axios";
+import FiltroEleitos from "./FiltroEleitos/FiltroEleitos";
 
 function PrincipalDeps() {
     const navigate = useNavigate();
@@ -186,8 +185,7 @@ function PrincipalDeps() {
                     </ContainerInput>
                 </ContainerEnd>
                 <Resultados>
-                    <CardEleito imagem={dep} />
-                    <CardEleito imagem={dep} />
+                    <FiltroEleitos/>
                 </Resultados>
                 <Menu barra="1" />
             </Container>

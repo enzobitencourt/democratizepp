@@ -16,6 +16,7 @@ function AgoraSens() {
     const [descubraSelect, setDescubraSelect] = useState('')
     const [ordem, setOrdem] = useState('')
     const [partidos, setPartidos] = useState([])
+    const [temas, setTemas] = useState([])
 
     const handleSearchClick = () => {
         console.log("Valor do descubra é: ", descubraSelect)
@@ -44,8 +45,22 @@ function AgoraSens() {
             });
     };
 
+    const DatabaseTemas = () => {
+        axios
+            .get(
+                "https://legis.senado.leg.br/dadosabertos/materia/classes"
+            )
+            .then((response) => {
+                setTemas(response.data.ListaClassificacoesMateria.ArvoreClassificacao.Classes.Classe);
+            })
+            .catch((error) => {
+                console.log("error");
+            });
+    };
+
     useEffect(() => {
         Database();
+        DatabaseTemas();
     }, []);
 
 
@@ -61,9 +76,11 @@ function AgoraSens() {
                         </Select>
 
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
-                            <option value='option1'>Option 1</option>
-                            <option value='option2'>Option 2</option>
-                            <option value='option3'>Option 3</option>
+                            {temas.map((tema, index) => (
+                                <option key={index} value={tema.nome}>
+                                    {tema.nome}
+                                </option>
+                            ))}
                         </Select>
                     </ContainerInput>
 

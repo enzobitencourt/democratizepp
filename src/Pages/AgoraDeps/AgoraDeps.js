@@ -9,10 +9,10 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 function AgoraDeps() {
-    const [selectedTema, setSelectedTema] = useState(""); 
-    const [selectedPartido, setSelectedPartido] = useState(""); 
-    const [authorInput, setAuthorInput] = useState(""); 
-    const [nameInput, setNameInput] = useState(""); 
+    const [selectedTema, setSelectedTema] = useState("");
+    const [selectedPartido, setSelectedPartido] = useState("");
+    const [authorInput, setAuthorInput] = useState("");
+    const [nameInput, setNameInput] = useState("");
     const [descubraSelect, setDescubraSelect] = useState('')
     const [ordem, setOrdem] = useState('')
 
@@ -21,7 +21,7 @@ function AgoraDeps() {
         console.log("Valor do primeiro select:", selectedTema);
         console.log("Valor do segundo select:", selectedPartido);
         console.log("Valor do input de autor:", authorInput);
-        console.log("Valor do input de nome:", nameInput);  
+        console.log("Valor do input de nome:", nameInput);
 
         setNameInput('')
         setDescubraSelect('')
@@ -42,6 +42,7 @@ function AgoraDeps() {
 
 
     const [partidos, setPartidos] = useState([])
+    const [temas, setTemas] = useState([])
 
     const Database = () => {
         axios
@@ -56,8 +57,22 @@ function AgoraDeps() {
             });
     };
 
+    const DatabaseTemas = () => {
+        axios
+            .get(
+                "https://dadosabertos.camara.leg.br/api/v2/referencias/proposicoes/codTema"
+            )
+            .then((response) => {
+                setTemas(response.data.dados);
+            })
+            .catch((error) => {
+                console.log("error");
+            });
+    };
+
     useEffect(() => {
         Database();
+        DatabaseTemas()
     }, []);
 
 
@@ -74,9 +89,11 @@ function AgoraDeps() {
                         </Select>
 
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
-                            <option value='option1'>Option 1</option>
-                            <option value='option2'>Option 2</option>
-                            <option value='option3'>Option 3</option>
+                            {temas.map((tema, index) => (
+                                <option key={index} value={tema.nome}>
+                                    {tema.nome}
+                                </option>
+                            ))}
                         </Select>
                     </ContainerInput>
 
@@ -105,7 +122,7 @@ function AgoraDeps() {
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar ordenar={setOrdem} ordem={ordem}/>
+                    <Ordenar ordenar={setOrdem} ordem={ordem} />
                     <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
                     <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
                 </ContainerResultados>
