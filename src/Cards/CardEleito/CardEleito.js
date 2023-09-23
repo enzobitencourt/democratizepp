@@ -2,6 +2,11 @@ import { Botao, Cargo, Conteudo, Gray, ImgPolitico, Infos, Nome, Partido } from 
 import Like from "../../components/Like/Like"
 
 function CardEleito(props){
+    const handleClick = () => {
+        // Redirect the user to the specified URL in a new tab when clicked
+        window.open(props.url, '_blank');
+      };
+
     return(
         <>
         <Botao>
@@ -9,7 +14,7 @@ function CardEleito(props){
                 <ImgPolitico imagem={props.imagem}>
                     <Like/>
                 </ImgPolitico>
-                <Infos>
+                <Infos onClick={handleClick}>
                     <Nome>{props.nome}</Nome>
                     <Cargo>{props.cargo}</Cargo>
                     <Partido><b>Partido: </b>{props.partido}-{props.uf}</Partido>
