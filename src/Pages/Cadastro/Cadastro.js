@@ -30,9 +30,8 @@ function Cadastro() {
                     </Header>
                     <Main>
                         <Container>
-                            <Input type="text" id="user" placeholder="Usuário" />
+                            <Input type="text" id="user" placeholder="Nome de usuário" />
                             <Input type="email" id="email" placeholder="Email" />
-                            <Input type="tel" id="telefone" placeholder="Telefone" />
                             <DivSenhas>
                                 <DivSenha>
                                     <InputSenha

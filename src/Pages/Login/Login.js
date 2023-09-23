@@ -29,7 +29,7 @@ function Login() {
                     </Header>
                     <Main>
                         <Container>
-                            <Input type="text" id="user" placeholder="Usuário" />
+                            <Input type="email" id="user" placeholder="Email" />
                             <DivSenha>
                                 <InputSenha
                                     type={showPassword ? 'text' : 'password'}

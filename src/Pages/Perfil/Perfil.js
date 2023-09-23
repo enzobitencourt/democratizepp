@@ -141,29 +141,6 @@ function Perfil() {
                                 <EditableControls />
                             </Editable>
                         </InfEspecific>
-
-
-
-                        <InfEspecific>
-                            <TipoInf>Número de telefone</TipoInf>
-                            <Editable
-                                display='flex'
-                                flexDirection='row'
-                                alignItems='center'
-                                textAlign='left'
-                                type='password'
-                                width='70vw'
-                                defaultValue='(51) 99999-9999'
-                                fontSize='1.5x2'
-                                gap='2vw'
-                                isPreviewFocusable={false}
-                            >
-                                <EditablePreview />
-                                {/* Here is the custom input */}
-                                <Input h='auto' type='tel' as={EditableInput} />
-                                <EditableControls />
-                            </Editable>
-                        </InfEspecific>
                     </Informacoes>
                 </EditDiv>
                 <Menu barra="4" />
