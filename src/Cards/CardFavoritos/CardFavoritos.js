@@ -11,7 +11,7 @@ function CardFavoritos(){
                 <CargoFav>Deputado Federal</CargoFav>
                 <Favorito>
                     <NomeFav>Afonso Motta</NomeFav>
-                    <Like/>
+                    <Like like={true}/>
                 </Favorito>
             </Informacoes>
         </ContainerFavoritos>

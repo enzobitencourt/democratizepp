@@ -17,7 +17,7 @@ export const Conteudo = styled.div`
 
 export const Texto = styled.p`
     color: #767575;
-    padding: 0 10vw;
+    padding: 0 8vw;
     text-align: center;
     font-size: 18px;
     font-style: normal;

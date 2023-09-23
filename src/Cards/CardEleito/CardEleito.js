@@ -12,7 +12,7 @@ function CardEleito(props){
         <Botao>
             <Conteudo>
                 <ImgPolitico imagem={props.imagem}>
-                    <Like/>
+                    <Like like={false}/>
                 </ImgPolitico>
                 <Infos onClick={handleClick}>
                     <Nome>{props.nome}</Nome>

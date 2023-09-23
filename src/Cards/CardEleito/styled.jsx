@@ -26,7 +26,7 @@ export const ImgPolitico = styled.div`
     height: 13vh;
     width: 28vw;
     border: 1px solid #000;
-    align-items: flex-end;
+    align-items: flex-start;
     display: flex;
     justify-content: end;
     padding: 1vw;
@@ -50,10 +50,10 @@ export const Gray = styled.div`
 
 export const Nome = styled.p`
     color: #000;
-    font-size: 21px;
+    font-size: 17px;
     font-style: normal;
     font-weight: 600;
-    line-height: 26px;
+    line-height: 20px;
     margin: 0;
     text-align: left;
 `

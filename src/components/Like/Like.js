@@ -3,8 +3,8 @@ import like from "../../Assets/like.png"
 import dislike from "../../Assets/dislike.png"
 import { Botao, Img } from './styled';
 
-function Like() {
-  const [liked, setLiked] = useState(true);
+function Like(props) {
+  const [liked, setLiked] = useState(props.like);
 
   function handleClick() {
     setLiked(!liked);

@@ -4,6 +4,7 @@ import axios from "axios";
 import Carregando from "../../../components/Carregando/Carregando";
 import { Container, Conteudo, Texto } from './styled';
 import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } from '@chakra-ui/react'
+import { Titulo } from "../styled";
 
 function FiltroEleitos(props) {
     const { tipo, partido, nome, ufs } = props;
@@ -46,7 +47,7 @@ function FiltroEleitos(props) {
             onClose()
             setRepresentantes([])
             axios
-                .get("https://legis.senado.leg.br/dadosabertos/senador/lista/atual?participacao=T")
+                .get("https://legis.senado.leg.br/dadosabertos/senador/lista/atual")
                 .then((response) => {
                     const parlamentares = response.data.ListaParlamentarEmExercicio.Parlamentares.Parlamentar;
                     const deputados = parlamentares.map((parlamentar) => ({
@@ -101,22 +102,26 @@ function FiltroEleitos(props) {
                             </Conteudo>
                         </Container>
                     ) : (
-                        representantes.map((representante, index) => (
-                            <CardEleito
-                                nome={representante.nome}
-                                cargo={tipo}
-                                uf={representante.uf}
-                                partido={representante.partido}
-                                imagem={representante.imagem}
-                                key={index}
-                                url={representante.url}
-                            />
-                        ))
+                        <>
+                            <Titulo>{representantes.length} resultados</Titulo>
+                            {representantes.map((representante, index) => (
+                                <CardEleito
+                                    nome={representante.nome}
+                                    cargo={tipo}
+                                    uf={representante.uf}
+                                    partido={representante.partido}
+                                    imagem={representante.imagem}
+                                    key={index}
+                                    url={representante.url}
+                                />
+                            ))}
+                        </>
                     )
                 )
             )}
         </>
     );
+
 }
 
 export default FiltroEleitos;
