@@ -49,9 +49,9 @@ export const Input = styled.input`
 
 export const Enviar = styled.button`
     width: auto;
-    padding: 0px 5px;
-    height: 3.5vh;
-    font-size: 15px;
+    padding: 0.5px 9px;
+    height: auto;
+    font-size: 13px;
     border: 2px solid #1B676B;
     border-radius: 10px;
     background-color: none;

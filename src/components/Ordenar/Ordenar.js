@@ -5,7 +5,6 @@ function Ordenar(props) {
 
     const handleOrdenar = (e) =>{
         props.ordenar(e.target.value)
-        console.log(e.target.value)
     }
 
     return (

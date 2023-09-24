@@ -4,9 +4,10 @@ import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNom
 import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
-import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import ResultadosSens from "./ResultadosSens/ResultadosSens"
+import Carregando from "../../components/Carregando/Carregando"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -17,13 +18,21 @@ function AgoraSens() {
     const [ordem, setOrdem] = useState('')
     const [partidos, setPartidos] = useState([])
     const [temas, setTemas] = useState([])
+    const [selectedTipo, setSelectedTipo] = useState('')
+    const [temaSelected, setTemaSelected] = useState('')
+    const [partidoSelected, setPartidoSelected] = useState('')
+    const [autorSelected, setAutorSelected] = useState('')
+    const [nomeSelected, setNomeSelected] = useState('')
+    const [pesquisa, setPesquisa] = useState(false)
 
     const handleSearchClick = () => {
-        console.log("Valor do descubra é: ", descubraSelect)
-        console.log("Valor do primeiro select:", selectedTema);
-        console.log("Valor do segundo select:", selectedPartido);
-        console.log("Valor do input de autor:", authorInput);
-        console.log("Valor do input de nome:", nameInput);
+        setSelectedTipo(descubraSelect)
+        setTemaSelected(selectedTema)
+        setPartidoSelected(selectedPartido)
+        setAutorSelected(authorInput)
+        setNomeSelected(nameInput)
+
+        setPesquisa(true)
 
         setNameInput('')
         setDescubraSelect('')
@@ -114,8 +123,11 @@ function AgoraSens() {
                 </ContainerFilter>
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
+                    {pesquisa ? (
+                        <ResultadosSens ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                    ) : (
+                        <Carregando loading={false}/>
+                    )}
                 </ContainerResultados>
                 <Menu barra='1' />
             </Container>

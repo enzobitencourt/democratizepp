@@ -4,9 +4,10 @@ import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNom
 import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
-import CardConteudos from "../../Cards/CardConteudos/CardConteudos"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Carregando from "../../components/Carregando/Carregando"
+import ResultadosDeps from "./ResultadosDeps/ResultadosDeps"
 
 function AgoraDeps() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -15,29 +16,27 @@ function AgoraDeps() {
     const [nameInput, setNameInput] = useState("");
     const [descubraSelect, setDescubraSelect] = useState('')
     const [ordem, setOrdem] = useState('')
+    const [selectedTipo, setSelectedTipo] = useState('')
+    const [temaSelected, setTemaSelected] = useState('')
+    const [partidoSelected, setPartidoSelected] = useState('')
+    const [autorSelected, setAutorSelected] = useState('')
+    const [nomeSelected, setNomeSelected] = useState('')
+    const [pesquisa, setPesquisa] = useState(false)
 
     const handleSearchClick = () => {
-        console.log("Valor do descubra é: ", descubraSelect)
-        console.log("Valor do primeiro select:", selectedTema);
-        console.log("Valor do segundo select:", selectedPartido);
-        console.log("Valor do input de autor:", authorInput);
-        console.log("Valor do input de nome:", nameInput);
+        setSelectedTipo(descubraSelect)
+        setTemaSelected(selectedTema)
+        setPartidoSelected(selectedPartido)
+        setAutorSelected(authorInput)
+        setNomeSelected(nameInput)
+
+        setPesquisa(true)
 
         setNameInput('')
         setDescubraSelect('')
         setSelectedPartido('')
         setAuthorInput('')
         setSelectedTema('')
-    };
-
-    const customSelectStyles = {
-        control: {
-            height: '5vh',
-        },
-        menu: {
-            maxHeight: '20vh', // Set the maximum height for the dropdown
-            overflowY: 'scroll', // Enable vertical scrolling when needed
-        },
     };
 
 
@@ -103,7 +102,7 @@ function AgoraDeps() {
                             value={authorInput}
                             onChange={(e) => setAuthorInput(e.target.value)} />
 
-                        <Select bg="white" styles={customSelectStyles} w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido' maxH="50px" overflowY="" >
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido' maxH="50px" overflowY="" >
                             {partidos.map((partido, index) => (
                                 <option key={index} value={partido.sigla}>
                                     {partido.sigla}
@@ -123,8 +122,11 @@ function AgoraDeps() {
                 </ContainerFilter>
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
-                    <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
-                    <CardConteudos ir='frentes' titulo='Frente Parlamentar em Defesa dos Direitos da Mulher' partido='Partido: PP/2019' />
+                    {pesquisa ? (
+                        <ResultadosDeps ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                    ) : (
+                        <Carregando loading={false}/>
+                    )}
                 </ContainerResultados>
                 <Menu barra='1' />
             </Container>
