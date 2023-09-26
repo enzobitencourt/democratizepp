@@ -31,12 +31,12 @@ function ResultadosSens(props) {
             onClose()
             axios
                 .get(
-                    "https://legis.senado.leg.br/dadosabertos/materia/legislaturaatual"
+                    "https://legis.senado.leg.br/dadosabertos/materia/atualizadas?numdias=30"
                 )
                 .then((response) => {
-                    const projetos = response.data.ListaMateriasLegislaturaAtual.Materias.Materia.map((projeto) => ({
-                        id: projeto.CodigoMateria,
-                        ano: projeto.AnoMateria,
+                    const projetos = response.data.ListaMateriasAtualizadas.Materias.Materia.map((materia) => ({
+                        id: materia.IdentificacaoMateria.CodigoMateria,
+                        ano: materia.IdentificacaoMateria.AnoMateria,
                     }));
 
                     console.log(projetos)
