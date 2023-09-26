@@ -1,6 +1,10 @@
 import { useEffect } from "react"
 import CardConteudos from "../../../Cards/CardConteudos/CardConteudos"
 import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } from '@chakra-ui/react'
+import { useState } from "react"
+import Carregando from "../../../components/Carregando/Carregando"
+import { Conteudo, Container, Texto, Titulo } from "./styled"
+import axios from "axios"
 
 function ResultadosSens(props) {
     const tipo = props.tipo
@@ -9,7 +13,10 @@ function ResultadosSens(props) {
     const nome = props.nome
     const autor = props.autor
     const ordem = props.ordenar
+    const loading = props.loading
+    const setLoading = props.setLoading
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false })
+    const [resultados, setResultados] = useState([])
 
     console.log(tipo)
     console.log(tema)
@@ -20,13 +27,39 @@ function ResultadosSens(props) {
 
     useEffect(() => {
         if (tipo === "Projetos/Matérias") {
+            setResultados([])
             onClose()
+            axios
+                .get(
+                    "https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome"
+                )
+                .then((response) => {
+                    const projetos = response.data.dados.map((projeto) => ({
+                        id: projeto.id,
+                        nome: projeto.nome,
+                        partido: projeto.siglaPartido,
+                        uf: projeto.siglaUf,
+                        imagem: projeto.urlFoto,
+                    }));
+
+                    const filteredResultados = projetos.filter((projeto) => (
+                        (!partido || partido === projeto.partido) &&
+                        (!nome || projeto.nome.includes(nome))
+                    ));
+
+                    setResultados(filteredResultados);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.log("Erro na API:", error);
+                    setLoading(false);
+                });
         } else if (tipo === "Comissões") {
             onClose()
         } else {
             onOpen()
         }
-    })
+    }, [nome, onClose, onOpen, partido, setLoading, tipo])
 
     return (
         <>
@@ -41,10 +74,28 @@ function ResultadosSens(props) {
                     </Box>
                 </Alert>
             ) : (
-                <>
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
-                    <CardConteudos ir='votacoes' titulo='Projeto de Lei 175/2022' partido='Partido: PT/ES' />
-                </>
+                loading ? (
+                    <Carregando loading={loading} />
+                ) : (
+                    resultados.length === 0 ? (
+                        <Container>
+                            <Conteudo>
+                                <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
+                            </Conteudo>
+                        </Container>
+                    ) : (
+                        <>
+                            <Titulo>{resultados.length} resultados</Titulo>
+                            {resultados.map((resultado, index) => (
+                                <CardConteudos 
+                                key={index}
+                                ir='votacoes' 
+                                titulo='Projeto de Lei 175/2022' 
+                                partido='Partido: PT/ES' />                   
+                            ))}
+                        </>
+                    )
+                )
             )}
         </>
     )

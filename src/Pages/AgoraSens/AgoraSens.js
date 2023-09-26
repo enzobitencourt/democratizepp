@@ -24,6 +24,7 @@ function AgoraSens() {
     const [autorSelected, setAutorSelected] = useState('')
     const [nomeSelected, setNomeSelected] = useState('')
     const [pesquisa, setPesquisa] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -32,6 +33,7 @@ function AgoraSens() {
         setAutorSelected(authorInput)
         setNomeSelected(nameInput)
 
+        setLoading(true)
         setPesquisa(true)
 
         setNameInput('')
@@ -124,7 +126,7 @@ function AgoraSens() {
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
-                        <ResultadosSens ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                        <ResultadosSens setLoading={setLoading()} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
                         <Carregando loading={false}/>
                     )}
