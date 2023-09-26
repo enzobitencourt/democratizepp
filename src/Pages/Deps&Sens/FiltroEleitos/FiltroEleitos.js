@@ -14,6 +14,7 @@ function FiltroEleitos(props) {
 
     useEffect(() => {
         if (tipo === "Deputado Federal") {
+            setLoading(true)
             setRepresentantes([])
             onClose()
             axios
@@ -44,6 +45,7 @@ function FiltroEleitos(props) {
                     setLoading(false);
                 });
         } else if (tipo === "Senador") {
+            setLoading(true)
             onClose()
             setRepresentantes([])
             axios
