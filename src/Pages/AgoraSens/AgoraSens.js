@@ -126,9 +126,10 @@ function AgoraSens() {
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
-                        <ResultadosSens setLoading={setLoading()} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                        <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+
                     ) : (
-                        <Carregando loading={false}/>
+                        <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />

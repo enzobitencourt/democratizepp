@@ -31,23 +31,15 @@ function ResultadosSens(props) {
             onClose()
             axios
                 .get(
-                    "https://dadosabertos.camara.leg.br/api/v2/deputados?ordem=ASC&ordenarPor=nome"
+                    "https://legis.senado.leg.br/dadosabertos/materia/legislaturaatual"
                 )
                 .then((response) => {
-                    const projetos = response.data.dados.map((projeto) => ({
-                        id: projeto.id,
-                        nome: projeto.nome,
-                        partido: projeto.siglaPartido,
-                        uf: projeto.siglaUf,
-                        imagem: projeto.urlFoto,
+                    const projetos = response.data.ListaMateriasLegislaturaAtual.Materias.Materia.map((projeto) => ({
+                        id: projeto.CodigoMateria,
+                        ano: projeto.AnoMateria,
                     }));
 
-                    const filteredResultados = projetos.filter((projeto) => (
-                        (!partido || partido === projeto.partido) &&
-                        (!nome || projeto.nome.includes(nome))
-                    ));
-
-                    setResultados(filteredResultados);
+                    console.log(projetos)
                     setLoading(false);
                 })
                 .catch((error) => {
