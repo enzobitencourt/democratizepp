@@ -1,6 +1,6 @@
 import HeaderEspaco from "../../components/HeadersEspacos/HeaderEspaco"
 import Menu from "../../components/Menu/Menu"
-import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNome, SearchButton, InputAutor, ContainerResultados, } from "./styled"
+import { ContainerFilter, Container, ContainerInput, DivPesquisa, Img1, InputNome, SearchButton, ContainerResultados, } from "./styled"
 import { Select } from '@chakra-ui/react'
 import Search from "../../Assets/IconSearch.svg"
 import Ordenar from "../../components/Ordenar/Ordenar"
@@ -11,17 +11,12 @@ import Carregando from "../../components/Carregando/Carregando"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
-    const [selectedPartido, setSelectedPartido] = useState("");
-    const [authorInput, setAuthorInput] = useState("");
     const [nameInput, setNameInput] = useState("");
     const [descubraSelect, setDescubraSelect] = useState('')
     const [ordem, setOrdem] = useState('')
-    const [partidos, setPartidos] = useState([])
     const [temas, setTemas] = useState([])
     const [selectedTipo, setSelectedTipo] = useState('')
     const [temaSelected, setTemaSelected] = useState('')
-    const [partidoSelected, setPartidoSelected] = useState('')
-    const [autorSelected, setAutorSelected] = useState('')
     const [nomeSelected, setNomeSelected] = useState('')
     const [pesquisa, setPesquisa] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -29,8 +24,6 @@ function AgoraSens() {
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
         setTemaSelected(selectedTema)
-        setPartidoSelected(selectedPartido)
-        setAutorSelected(authorInput)
         setNomeSelected(nameInput)
 
         setLoading(true)
@@ -38,18 +31,16 @@ function AgoraSens() {
 
         setNameInput('')
         setDescubraSelect('')
-        setSelectedPartido('')
-        setAuthorInput('')
         setSelectedTema('')
     };
 
     const Database = () => {
         axios
             .get(
-                'https://legis.senado.leg.br/dadosabertos/senador/partidos'
+                'https://legis.senado.leg.br/dadosabertos/comissao/lista/tiposColegiado'
             )
             .then((response) => {
-                setPartidos(response.data.ListaPartidos.Partidos.Partido);
+                setTemas(response.data.ListaTiposColegiado.TiposColegiado.TipoColegiado);
             })
             .catch((error) => {
                 console.log("error");
@@ -86,31 +77,28 @@ function AgoraSens() {
                             <option value='Comissões'>Comissões</option>
                         </Select>
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
-                            {temas.map((tema, index) => (
-                                <option key={index} value={tema.nome}>
-                                    {tema.nome}
-                                </option>
-                            ))}
-                        </Select>
-                    </ContainerInput>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Classificação'>
 
-                    <ContainerInput>
-                        <InputAutor
-                            placeholder="Autor"
-                            value={authorInput}
-                            onChange={(e) => setAuthorInput(e.target.value)} />
-
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido'>
-                            <>
-                                {partidos
-                                    .filter(partido => !partido.DataExtincao)
-                                    .map((partido, index) => (
-                                        <option key={index} value={partido.Sigla}>
-                                            {partido.Sigla}
+                            {descubraSelect === "Projetos/Matérias" ? (
+                                <>
+                                    {temas.map((tema, index) => (
+                                        <option key={index} value={tema.nome}>
+                                            {tema.nome}
                                         </option>
                                     ))}
-                            </>
+                                </>
+                            ) : descubraSelect === "Comissões" ? (
+                                <>
+                                    {temas.map((tipo, index) => (
+                                            <option key={index} value={tipo.Sigla}>
+                                                {tipo.Sigla}
+                                            </option>
+                                        ))}
+                                </>
+                            ) : (
+                                <option value="Selecionar">Selecione algum descubra</option>
+                            )}
+
                         </Select>
                     </ContainerInput>
 
@@ -126,7 +114,7 @@ function AgoraSens() {
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
-                        <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                        <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} nome={nomeSelected} />
 
                     ) : (
                         <Carregando loading={false} />
