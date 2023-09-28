@@ -27,71 +27,40 @@ function ResultadosDeps(props) {
         if (tipo === "Proposições") {
             setLoading(true)
             onClose()
+
+            let url = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?"
+
+            if (autor) {
+                url += `&autor=${autor}`
+            }
+
+            if (tema) {
+                url += `&codTema=${tema}`
+            }
+
+            if (partido) {
+                url += `siglaPartidoAutor=${partido}`
+            }
+
+            url += `&ordem=ASC&ordenarPor=id`
+
             axios
                 .get(
-                    "https://legis.senado.leg.br/dadosabertos/materia/atualizadas?numdias=30"
+                    url
                 )
                 .then((response) => {
-                    const projetos = response.data.ListaMateriasAtualizadas.Materias.Materia.map((materia) => {
-                        const projeto = {
-                            id: materia.IdentificacaoMateria.CodigoMateria,
-                            nome: materia.IdentificacaoMateria.DescricaoIdentificacaoMateria,
-                            ano: materia.IdentificacaoMateria.AnoMateria,
-                            casa: materia.IdentificacaoMateria.SiglaCasaIdentificacaoMateria,
-                        };
-
-                        if (materia.Classificacoes && materia.Classificacoes.Classificacao && materia.Classificacoes.Classificacao[0]) {
-                            projeto.classificacao = materia.Classificacoes.Classificacao[0].DescricaoClasseHierarquica;
-                        }
-
-                        if (materia.AtualizacoesRecentes) {
-                            const data = new Date(materia.AtualizacoesRecentes.Atualizacao[0].DataUltimaAtualizacao)
-
-                            const dia = data.getDate();
-                            const mes = data.getMonth() + 1;
-                            const ano = data.getFullYear();
-
-                            projeto.data = `${dia}/${mes}/${ano}`
-                        }
-
-                        return projeto;
-                    });
-
-                    const filteredResultados = projetos.filter((projeto) => (
-                        (!nome || projeto.nome.includes(nome)) &&
-                        (!tema || (projeto.classificacao && projeto.classificacao.includes(tema))) &&
-                        (projeto.casa === "SF")
-                    ));
+                    const projetos = response.data.dados
 
                     if (ordem === "ordem alfabetica") {
                         // Ordenar por nome em ordem alfabética crescente
-                        filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
+                        projetos.sort((a, b) => a.siglaTipo.localeCompare(b.siglaTipo));
                     } else if (ordem === "mais recente") {
-                        filteredResultados.sort((a, b) => {
-                            const parseDate = (dateStr) => {
-                                const [day, month, year] = dateStr.split('/').map(Number);
-                                return new Date(year, month - 1, day);
-                            };
-
-                            const dataA = parseDate(a.data);
-                            const dataB = parseDate(b.data);
-
-                            return dataB - dataA;
-                        });
+                        projetos.sort((a, b) => b.ano - a.ano);
                     } else if (ordem === "mais antigo") {
-                        filteredResultados.sort((a, b) => {
-                            const parseDate = (dateStr) => {
-                                const [day, month, year] = dateStr.split('/').map(Number);
-                                return new Date(year, month - 1, day);
-                            };
-
-                            const dataA = parseDate(a.data);
-                            const dataB = parseDate(b.data);
-
-                            return dataA - dataB;
-                        });
+                        projetos.sort((a, b) => a.ano - b.ano);
                     }
-                    setResultados(filteredResultados);
+
+                    setResultados(projetos);
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -101,13 +70,46 @@ function ResultadosDeps(props) {
         } else if (tipo === "Eventos") {
             setLoading(true)
             onClose()
+
+            let url = "https://dadosabertos.camara.leg.br/api/v2/eventos?"
+
+
+            if (tema) {
+                url += `&codTipoEvento=${tema}`
+            }
+
+            url += `&ordem=ASC&ordenarPor=id`
+
+            axios
+                .get(
+                    url
+                )
+                .then((response) => {
+                    const projetos = response.data.dados
+                    console.log(projetos)
+                    if (ordem === "ordem alfabetica") {
+                        // Ordenar por nome em ordem alfabética crescente
+                        projetos.sort((a, b) => a.siglaTipo.localeCompare(b.siglaTipo));
+                    } else if (ordem === "mais recente") {
+                        projetos.sort((a, b) => b.ano - a.ano);
+                    } else if (ordem === "mais antigo") {
+                        projetos.sort((a, b) => a.ano - b.ano);
+                    }
+
+                    setResultados(projetos);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.log("Erro na API:", error);
+                    setLoading(false);
+                });
         } else if (tipo === "Frentes") {
             setLoading(true)
             onClose()
         } else {
             onOpen()
         }
-    },[tipo, onClose, ordem, nome, tema, onOpen])
+    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido])
 
     return (
         <>
@@ -134,14 +136,15 @@ function ResultadosDeps(props) {
                     ) : (
                         <>
                             <Titulo>
-                                {resultados.length} Resultados
+                                {resultados.length}
+                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias' : ' Atualizações nos Últimos 30 Dias'}
                             </Titulo>
                             {resultados.map((resultado, index) => (
                                 <CardConteudos
                                     key={index}
                                     ir='votacoes'
-                                    titulo={resultado.nome}
-                                    partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
+                                    titulo={`${resultado.siglaTipo} ${resultado.numero}/${resultado.ano} `}
+                                    partido={`Ano de criação: ${resultado.ano}`} />
                             ))}
                         </>
                     )

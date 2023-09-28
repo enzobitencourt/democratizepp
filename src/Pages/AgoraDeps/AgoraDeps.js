@@ -43,36 +43,49 @@ function AgoraDeps() {
     const [partidos, setPartidos] = useState([])
     const [temas, setTemas] = useState([])
 
-    const Database = () => {
-        axios
-            .get(
-                "https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla"
-            )
-            .then((response) => {
-                setPartidos(response.data.dados);
-            })
-            .catch((error) => {
-                console.log("error");
-            });
-    };
-
-    const DatabaseTemas = () => {
-        axios
-            .get(
-                "https://dadosabertos.camara.leg.br/api/v2/referencias/proposicoes/codTema"
-            )
-            .then((response) => {
-                setTemas(response.data.dados);
-            })
-            .catch((error) => {
-                console.log("error");
-            });
-    };
-
     useEffect(() => {
+        const Database = () => {
+            axios
+                .get(
+                    "https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla"
+                )
+                .then((response) => {
+                    setPartidos(response.data.dados);
+                })
+                .catch((error) => {
+                    console.log("error");
+                });
+        };
+
+        const DatabaseTemas = () => {
+            if (descubraSelect === "Proposições") {
+                axios
+                    .get(
+                        "https://dadosabertos.camara.leg.br/api/v2/referencias/proposicoes/codTema"
+                    )
+                    .then((response) => {
+                        setTemas(response.data.dados);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            } else if (descubraSelect === "Eventos") {
+                axios
+                    .get(
+                        "https://dadosabertos.camara.leg.br/api/v2/referencias/tiposEvento"
+                    )
+                    .then((response) => {
+                        setTemas(response.data.dados);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            }
+        };
+
         Database();
-        DatabaseTemas()
-    }, []);
+        DatabaseTemas();
+    }, [descubraSelect]);
 
 
     return (
@@ -125,7 +138,7 @@ function AgoraDeps() {
                     {pesquisa ? (
                         <ResultadosDeps loading={true} ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
-                        <Carregando loading={false}/>
+                        <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />
