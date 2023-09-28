@@ -68,7 +68,7 @@ function AgoraSens() {
     return (
         <>
             <Container>
-                <HeaderEspaco titulo='Senado Federal' subtitulo='Últimos 30 Dias no Senado' />
+                <HeaderEspaco titulo='Senado Federal' subtitulo='Agora no Senado' />
                 <ContainerFilter>
                     <ContainerInput>
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={descubraSelect} onChange={(e) => setDescubraSelect(e.target.value)} placeholder='Descubra'>

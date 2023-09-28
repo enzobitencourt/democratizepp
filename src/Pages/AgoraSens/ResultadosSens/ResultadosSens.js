@@ -56,14 +56,19 @@ function ResultadosSens(props) {
                         (projeto.casa === "SF")
                     ));
 
-
                     if (ordem === "ordem alfabetica") {
                         // Ordenar por nome em ordem alfabética crescente
                         filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
                     } else if (ordem === "mais recente") {
                         filteredResultados.sort((a, b) => {
-                            const dataA = new Date(a.atualizacao.split('/').reverse().join('/'));
-                            const dataB = new Date(b.atualizacao.split('/').reverse().join('/'));
+                            const parseDate = (dateStr) => {
+                                const [day, month, year] = dateStr.split('/').map(Number);
+                                return new Date(year, month - 1, day);
+                            };
+
+                            const dataA = parseDate(a.data);
+                            const dataB = parseDate(b.data);
+
                             return dataB - dataA;
                         });
                     } else if (ordem === "mais antigo") {
@@ -73,19 +78,12 @@ function ResultadosSens(props) {
                                 return new Date(year, month - 1, day);
                             };
 
-                            const dataA = parseDate(a.atualizacao);
-                            const dataB = parseDate(b.atualizacao);
+                            const dataA = parseDate(a.data);
+                            const dataB = parseDate(b.data);
 
-                            if (dataA < dataB) {
-                                return -1;
-                            } else if (dataA > dataB) {
-                                return 1;
-                            } else {
-                                return 0;
-                            }
+                            return dataA - dataB;
                         });
                     }
-
                     setResultados(filteredResultados);
                     setLoading(false);
                 })
@@ -110,15 +108,42 @@ function ResultadosSens(props) {
                         };
 
                         if (colegio.DataInicio) {
-                            const data = new Date(colegio.DataInicio)
+                            const dateComponents = colegio.DataInicio.split('-').map(Number);
+                            const year = dateComponents[0];
+                            const month = dateComponents[1];
+                            const day = dateComponents[2];
+
+                            // Determine if the year is a two-digit year
+                            const isTwoDigitYear = year >= 0 && year <= 99;
+
+                            // Convert two-digit years to four-digit years
+                            let fullYear;
+                            if (isTwoDigitYear) {
+                                // Get the current year to determine the century
+                                const currentYear = new Date().getFullYear();
+
+                                // Extract the last two digits of the current year
+                                const currentYearLastTwoDigits = currentYear % 100;
+
+                                // Determine the full year based on the current year's last two digits
+                                if (year <= currentYearLastTwoDigits) {
+                                    fullYear = currentYear - currentYearLastTwoDigits + year;
+                                } else {
+                                    fullYear = currentYear - currentYearLastTwoDigits - 100 + year;
+                                }
+                            } else {
+                                // If it's already a four-digit year, use it as is
+                                fullYear = year;
+                            }
+
+                            const data = new Date(fullYear, month - 1, day); // Subtract 1 from month because it's 0-based
 
                             const dia = data.getDate();
                             const mes = data.getMonth() + 1;
-                            const ano = data.getFullYear() % 100;
+                            const ano = data.getFullYear(); // Full four-digit year
 
-                            colegios.data = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano.toString().padStart(2, '0')}`;
+                            colegios.data = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano.toString()}`;
                         }
-
                         return colegios;
                     });
 
@@ -127,95 +152,106 @@ function ResultadosSens(props) {
                         (!tema || (colegio.classificacao && colegio.classificacao.includes(tema)))
                     ));
 
-
+                    console.log(filteredResultados)
 
                     if (ordem === "ordem alfabética") {
                         // Ordenar por nome em ordem alfabética crescente
                         filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
                     } else if (ordem === "mais recente") {
                         filteredResultados.sort((a, b) => {
-                            const dataA = a.data ? new Date(a.data.split('/').reverse().join('/')) : null;
-                            const dataB = b.data ? new Date(b.data.split('/').reverse().join('/')) : null;
+                            const parseDate = (dateStr) => {
+                                const [day, month, year] = dateStr.split('/').map(Number);
+                                // Assuming 'year' is in 2-digit format, convert it to 4-digit
+                                const fullYear = year < 50 ? 2000 + year : 1900 + year;
+                                return new Date(fullYear, month - 1, day); // Subtract 1 from month because it's 0-based
+                            };
+
+                            const dataA = a.data ? parseDate(a.data) : null;
+                            const dataB = b.data ? parseDate(b.data) : null;
 
                             if (dataA && dataB) {
                                 return dataB - dataA;
                             } else if (dataA) {
-                                return -1; // Coloque objetos sem data no início
+                                return -1;
                             } else if (dataB) {
-                                return 1; // Coloque objetos sem data no início
+                                return 1;
                             } else {
                                 return 0;
                             }
-                        });} else if (ordem === "mais antigo") {
-                    filteredResultados.sort((a, b) => {
-                        const parseDate = (dateStr) => {
-                            const [day, month, year] = (dateStr || '0/0/0').split('/').map(Number);
-                            return new Date(year, month - 1, day);
-                        };
+                        });
+                    } else if (ordem === "mais antigo") {
+                        filteredResultados.sort((a, b) => {
+                            const parseDate = (dateStr) => {
+                                const [day, month, year] = (dateStr || '0/0/0').split('/').map(Number);
+                                return new Date(year, month - 1, day);
+                            };
 
-                        const dataA = parseDate(a.data);
-                        const dataB = parseDate(b.data);
+                            const dataA = parseDate(a.data);
+                            const dataB = parseDate(b.data);
 
-                        if (dataA < dataB) {
-                            return -1;
-                        } else if (dataA > dataB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    });
-                }
+                            if (dataA < dataB) {
+                                return -1;
+                            } else if (dataA > dataB) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
+                    }
 
-            setResultados(filteredResultados);
-            setLoading(false);
-        })
-        .catch((error) => {
-            console.log("Erro na API:", error);
-            setLoading(false);
-        });
-} else {
-    onOpen();
-}
+                    setResultados(filteredResultados);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.log("Erro na API:", error);
+                    setLoading(false);
+                });
+        } else {
+            onOpen();
+        }
     }, [nome, onClose, onOpen, partido, setLoading, tipo, tema, ordem]);
 
-return (
-    <>
-        {isVisible ? (
-            <Alert borderRadius='20px' status='error'>
-                <AlertIcon />
-                <Box paddingRight='1vw'>
-                    <AlertTitle>Erro!</AlertTitle>
-                    <AlertDescription>
-                        Efetue a pesquisa novamente e escolha uma opção válida no campo "Descubra" dos filtros acima...
-                    </AlertDescription>
-                </Box>
-            </Alert>
-        ) : (
-            loading ? (
-                <Carregando loading={loading} />
+    return (
+        <>
+            {isVisible ? (
+                <Alert borderRadius='20px' status='error'>
+                    <AlertIcon />
+                    <Box paddingRight='1vw'>
+                        <AlertTitle>Erro!</AlertTitle>
+                        <AlertDescription>
+                            Efetue a pesquisa novamente e escolha uma opção válida no campo "Descubra" dos filtros acima...
+                        </AlertDescription>
+                    </Box>
+                </Alert>
             ) : (
-                resultados.length === 0 ? (
-                    <Container>
-                        <Conteudo>
-                            <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
-                        </Conteudo>
-                    </Container>
+                loading ? (
+                    <Carregando loading={loading} />
                 ) : (
-                    <>
-                        <Titulo>{resultados.length} resultados</Titulo>
-                        {resultados.map((resultado, index) => (
-                            <CardConteudos
-                                key={index}
-                                ir='votacoes'
-                                titulo={resultado.nome}
-                                partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
-                        ))}
-                    </>
+                    resultados.length === 0 ? (
+                        <Container>
+                            <Conteudo>
+                                <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
+                            </Conteudo>
+                        </Container>
+                    ) : (
+                        <>
+                            <Titulo>
+                                {resultados.length}
+                                {tipo === 'Comissões' ? ' Colegiado(s) em Atividade' : ' Atualizações nos Últimos 30 Dias'}
+                            </Titulo>
+                            {resultados.map((resultado, index) => (
+                                <CardConteudos
+                                    key={index}
+                                    ir='votacoes'
+                                    titulo={resultado.nome}
+                                    partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
+                            ))}
+                        </>
+                    )
                 )
-            )
-        )}
-    </>
-)
+            )}
+        </>
+    )
 }
 
 export default ResultadosSens;

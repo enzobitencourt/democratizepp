@@ -89,7 +89,7 @@ function AgoraDeps() {
 
                         <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
                             {temas.map((tema, index) => (
-                                <option key={index} value={tema.nome}>
+                                <option key={index} value={tema.cod}>
                                     {tema.nome}
                                 </option>
                             ))}
@@ -123,7 +123,7 @@ function AgoraDeps() {
                 <ContainerResultados>
                     <Ordenar ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
-                        <ResultadosDeps ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
+                        <ResultadosDeps loading={true} ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
                         <Carregando loading={false}/>
                     )}
