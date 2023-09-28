@@ -21,7 +21,7 @@ export const Conteudo = styled.div`
 
 export const Infos = styled.div`
     display: flex;
-    width: 75vw;
+    width: 76vw;
     flex-direction: column;
     gap: 2vw;
     margin-left: 5vw;

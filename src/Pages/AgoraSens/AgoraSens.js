@@ -34,36 +34,35 @@ function AgoraSens() {
         setSelectedTema('')
     };
 
-    const Database = () => {
-        axios
-            .get(
-                'https://legis.senado.leg.br/dadosabertos/comissao/lista/tiposColegiado'
-            )
-            .then((response) => {
-                setTemas(response.data.ListaTiposColegiado.TiposColegiado.TipoColegiado);
-            })
-            .catch((error) => {
-                console.log("error");
-            });
-    };
-
-    const DatabaseTemas = () => {
-        axios
-            .get(
-                "https://legis.senado.leg.br/dadosabertos/materia/classes"
-            )
-            .then((response) => {
-                setTemas(response.data.ListaClassificacoesMateria.ArvoreClassificacao.Classes.Classe);
-            })
-            .catch((error) => {
-                console.log("error");
-            });
-    };
-
     useEffect(() => {
-        Database();
-        DatabaseTemas();
-    }, []);
+        const Database = () => {
+            if (descubraSelect === "Projetos/Matérias") {
+                axios
+                    .get(
+                        "https://legis.senado.leg.br/dadosabertos/materia/classes"
+                    )
+                    .then((response) => {
+                        setTemas(response.data.ListaClassificacoesMateria.ArvoreClassificacao.Classes.Classe);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            } else if (descubraSelect === "Comissões") {
+                axios
+                    .get(
+                        'https://legis.senado.leg.br/dadosabertos/comissao/lista/tiposColegiado'
+                    )
+                    .then((response) => {
+                        setTemas(response.data.ListaTiposColegiado.TiposColegiado.TipoColegiado);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            }
+        };
+
+        Database(); 
+    }, [descubraSelect]);
 
 
     return (
@@ -90,10 +89,10 @@ function AgoraSens() {
                             ) : descubraSelect === "Comissões" ? (
                                 <>
                                     {temas.map((tipo, index) => (
-                                            <option key={index} value={tipo.Sigla}>
-                                                {tipo.Sigla}
-                                            </option>
-                                        ))}
+                                        <option key={index} value={tipo.Sigla}>
+                                            {tipo.Sigla}
+                                        </option>
+                                    ))}
                                 </>
                             ) : (
                                 <option value="Selecionar">Selecione algum descubra</option>
