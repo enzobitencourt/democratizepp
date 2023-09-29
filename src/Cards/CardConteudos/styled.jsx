@@ -12,7 +12,7 @@ export const Botao = styled.button`
   padding: 2vh 0;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* Adicione esta linha */
+  position: relative; 
 `;
 
 export const Conteudo = styled.div`
