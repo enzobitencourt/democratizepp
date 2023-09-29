@@ -16,12 +16,9 @@ function ResultadosDeps(props) {
     const [loading, setLoading] = useState(props.loading)
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false })
 
-    console.log(tipo)
-    console.log(tema)
-    console.log(partido)
-    console.log(nome)
-    console.log(autor)
-    console.log(ordem)
+    function construirNome(projeto) {
+        return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
+    }
 
     const formatData = (dataN) => {
         const data = new Date(dataN);
@@ -33,34 +30,39 @@ function ResultadosDeps(props) {
 
     useEffect(() => {
         if (tipo === "Proposições") {
-            setLoading(true)
-            onClose()
+            setLoading(true);
+            onClose();
 
-            let url = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?"
+            let url = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?";
 
             if (autor) {
-                url += `&autor=${autor}`
+                url += `&autor=${autor}`;
             }
 
             if (tema) {
-                url += `&codTema=${tema}`
+                url += `&codTema=${tema}`;
             }
 
             if (partido) {
-                url += `siglaPartidoAutor=${partido}`
+                url += `siglaPartidoAutor=${partido}`;
             }
 
-            url += `&ordem=ASC&ordenarPor=id`
+            url += `&ordem=ASC&ordenarPor=id`;
 
             axios
-                .get(
-                    url
-                )
+                .get(url)
                 .then((response) => {
-                    const projetos = response.data.dados
+                    let projetos = response.data.dados;
 
-                    if (ordem === "ordem alfabetica") {
-                        // Ordenar por nome em ordem alfabética crescente
+                    if (nome) {
+                        const nomeLowerCase = nome.toLowerCase();
+                        projetos = projetos.filter((projeto) => {
+                            const nomeProjeto = construirNome(projeto);
+                            return nomeProjeto.toLowerCase().includes(nomeLowerCase);
+                        });
+                    }
+
+                    if (ordem === "ordem alfabética") {
                         projetos.sort((a, b) => a.siglaTipo.localeCompare(b.siglaTipo));
                     } else if (ordem === "mais recente") {
                         projetos.sort((a, b) => b.ano - a.ano);
@@ -76,36 +78,51 @@ function ResultadosDeps(props) {
                     setLoading(false);
                 });
         } else if (tipo === "Eventos") {
-            setLoading(true)
-            onClose()
+            setLoading(true);
+            onClose();
 
-            let url = "https://dadosabertos.camara.leg.br/api/v2/eventos?"
-
+            let url = "https://dadosabertos.camara.leg.br/api/v2/eventos?";
 
             if (tema) {
-                url += `&codTipoEvento=${tema}`
+                url += `&codTipoEvento=${tema}`;
             }
 
             if (partido) {
-                url += `&codSituacao=${partido}`
+                url += `&codSituacao=${partido}`;
             }
 
-            url += `&ordem=ASC&ordenarPor=id`
+            url += `&ordem=ASC&ordenarPor=id`;
 
             axios
-                .get(
-                    url
-                )
+                .get(url)
                 .then((response) => {
-                    const projetos = response.data.dados
-                    console.log(projetos)
-                    if (ordem === "ordem alfabetica") {
-                        // Ordenar por nome em ordem alfabética crescente
-                        projetos.sort((a, b) => a.orgaos.orgao.nomePublicacao.localeCompare(b.orgaos[0].nomePublicacao));
+                    let projetos = response.data.dados;
+
+                    if (nome) {
+                        const nomeLowerCase = nome.toLowerCase();
+                        projetos = projetos.filter((projeto) => {
+                            return (
+                                projeto.orgaos[0] &&
+                                projeto.orgaos[0].nomePublicacao &&
+                                projeto.orgaos[0].nomePublicacao.toLowerCase().includes(nomeLowerCase)
+                            );
+                        });
+                    }
+
+                    if (ordem === "ordem alfabética") {
+                        projetos.sort((a, b) => {
+                            const nomeA = a.orgaos[0]?.nomePublicacao || "";
+                            const nomeB = b.orgaos[0]?.nomePublicacao || "";
+                            return nomeA.localeCompare(nomeB);
+                        });
                     } else if (ordem === "mais recente") {
-                        projetos.sort((a, b) => b.ano - a.ano);
+                        projetos.sort((a, b) =>
+                            new Date(b.dataHoraInicio) - new Date(a.dataHoraInicio)
+                        );
                     } else if (ordem === "mais antigo") {
-                        projetos.sort((a, b) => a.ano - b.ano);
+                        projetos.sort((a, b) =>
+                            new Date(a.dataHoraInicio) - new Date(b.dataHoraInicio)
+                        );
                     }
 
                     setResultados(projetos);
@@ -116,12 +133,45 @@ function ResultadosDeps(props) {
                     setLoading(false);
                 });
         } else if (tipo === "Frentes") {
-            setLoading(true)
-            onClose()
+            setLoading(true);
+            onClose();
+
+            axios
+                .get(
+                    "https://dadosabertos.camara.leg.br/api/v2/frentes"
+                )
+                .then((response) => {
+                    let frentes = response.data.dados;
+
+                    if (nome) {
+                        const nomeLowerCase = nome.toLowerCase();
+                        frentes = frentes.filter((frente) => {
+                            return (
+                                frente.titulo.toLowerCase().includes(nomeLowerCase)
+                            );
+                        });
+                    }
+
+                    if (ordem === "ordem alfabética") {
+                        frentes.sort((a, b) => a.titulo.localeCompare(b.titulo));
+                    } else if (ordem === "mais recente") {
+                        frentes.sort((a, b) => b.idLegislatura - a.idLegislatura);
+                    } else if (ordem === "mais antigo") {
+                        frentes.sort((a, b) => a.idLegislatura - b.idLegislatura);
+                    }
+
+                    setResultados(frentes)
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.log("error");
+                });
+
         } else {
-            onOpen()
+            onOpen();
         }
-    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido])
+    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido]);
+
 
     return (
         <>
@@ -149,10 +199,10 @@ function ResultadosDeps(props) {
                         <>
                             <Titulo>
                                 {resultados.length}
-                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias' 
-                                : tipo === "Eventos"
-                                ? ' Eventos Recentes'
-                                : "Texto para outros tipos"}
+                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias'
+                                    : tipo === "Eventos"
+                                        ? ' Eventos Recentes'
+                                        : " Frentes"}
                             </Titulo>
                             {resultados.map((resultado, index) => (
                                 <CardConteudos
@@ -161,18 +211,22 @@ function ResultadosDeps(props) {
                                     titulo={
                                         tipo === "Proposições"
                                             ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
-                                            : tipo === "Eventos"
-                                                ? `${resultado.orgaos[0].nomePublicacao}`
-                                                : "Texto para outros tipos"
+                                            : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
+                                                ? resultado.orgaos[0].nomePublicacao
+                                                : resultado.titulo
                                     }
                                     partido={
                                         tipo === "Proposições"
                                             ? `Ano de criação: ${resultado.ano}`
                                             : tipo === "Eventos"
-                                                ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
-                                                : "Texto para outros tipos"
-                                    } />
+                                                ? resultado.dataHoraInicio && resultado.situacao
+                                                    ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
+                                                    : ""
+                                                : `ID Legislatura: ${resultado.idLegislatura}`
+                                    }
+                                />
                             ))}
+
                         </>
                     )
                 )

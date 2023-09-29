@@ -4,7 +4,7 @@ import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
 function CardConteudos(props) {
     const navigate = useNavigate()
 
-    const goToConteudo= ()=>{
+    const goToConteudo = () => {
         navigate(`/${props.ir}`)
     }
 
@@ -16,8 +16,8 @@ function CardConteudos(props) {
                         <Titulo>{props.titulo}</Titulo>
                         <Partido>{props.partido}</Partido>
                     </Infos>
+                    <Gray />
                 </Conteudo>
-                <Gray />
             </Botao>
         </>
     )
