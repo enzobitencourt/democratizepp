@@ -45,16 +45,29 @@ function AgoraDeps() {
 
     useEffect(() => {
         const Database = () => {
-            axios
-                .get(
-                    "https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla"
-                )
-                .then((response) => {
-                    setPartidos(response.data.dados);
-                })
-                .catch((error) => {
-                    console.log("error");
-                });
+            if (descubraSelect === "Eventos") {
+                axios
+                    .get(
+                        "https://dadosabertos.camara.leg.br/api/v2/referencias/eventos/codSituacaoEvento"
+                    )
+                    .then((response) => {
+                        setPartidos(response.data.dados);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            } else {
+                axios
+                    .get(
+                        "https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla"
+                    )
+                    .then((response) => {
+                        setPartidos(response.data.dados);
+                    })
+                    .catch((error) => {
+                        console.log("error");
+                    });
+            }
         };
 
         const DatabaseTemas = () => {
@@ -115,12 +128,25 @@ function AgoraDeps() {
                             value={authorInput}
                             onChange={(e) => setAuthorInput(e.target.value)} />
 
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedPartido} onChange={(e) => setSelectedPartido(e.target.value)} placeholder='Partido' maxH="50px" overflowY="" >
-                            {partidos.map((partido, index) => (
-                                <option key={index} value={partido.sigla}>
-                                    {partido.sigla}
-                                </option>
-                            ))}
+                        <Select bg="white" w="45vw" h="5vh" borderRadius="28.6px" value={selectedPartido}
+                            onChange={(e) => setSelectedPartido(e.target.value)}
+                            placeholder={descubraSelect === "Eventos" ? "Situação" : "Partidos"}
+                            maxH="50px"
+                            overflowY=""
+                        >
+                            {descubraSelect === "Eventos" ? (
+                                partidos.map((partido, index) => (
+                                    <option key={index} value={partido.cod}>
+                                        {partido.nome}
+                                    </option>
+                                ))
+                            ) : (
+                                partidos.map((partido, index) => (
+                                    <option key={index} value={partido.sigla}>
+                                        {partido.sigla}
+                                    </option>
+                                ))
+                            )}
                         </Select>
                     </ContainerInput>
 

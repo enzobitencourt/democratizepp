@@ -23,6 +23,14 @@ function ResultadosDeps(props) {
     console.log(autor)
     console.log(ordem)
 
+    const formatData = (dataN) => {
+        const data = new Date(dataN);
+        const dia = data.getDate().toString().padStart(2, '0');
+        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+        const ano = data.getFullYear().toString().slice(-2); // Pegar os últimos 2 dígitos do ano
+        return `${dia}/${mes}/${ano}`;
+    }
+
     useEffect(() => {
         if (tipo === "Proposições") {
             setLoading(true)
@@ -78,6 +86,10 @@ function ResultadosDeps(props) {
                 url += `&codTipoEvento=${tema}`
             }
 
+            if (partido) {
+                url += `&codSituacao=${partido}`
+            }
+
             url += `&ordem=ASC&ordenarPor=id`
 
             axios
@@ -89,7 +101,7 @@ function ResultadosDeps(props) {
                     console.log(projetos)
                     if (ordem === "ordem alfabetica") {
                         // Ordenar por nome em ordem alfabética crescente
-                        projetos.sort((a, b) => a.siglaTipo.localeCompare(b.siglaTipo));
+                        projetos.sort((a, b) => a.orgaos.orgao.nomePublicacao.localeCompare(b.orgaos[0].nomePublicacao));
                     } else if (ordem === "mais recente") {
                         projetos.sort((a, b) => b.ano - a.ano);
                     } else if (ordem === "mais antigo") {
@@ -137,14 +149,29 @@ function ResultadosDeps(props) {
                         <>
                             <Titulo>
                                 {resultados.length}
-                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias' : ' Atualizações nos Últimos 30 Dias'}
+                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias' 
+                                : tipo === "Eventos"
+                                ? ' Eventos Recentes'
+                                : "Texto para outros tipos"}
                             </Titulo>
                             {resultados.map((resultado, index) => (
                                 <CardConteudos
                                     key={index}
                                     ir='votacoes'
-                                    titulo={`${resultado.siglaTipo} ${resultado.numero}/${resultado.ano} `}
-                                    partido={`Ano de criação: ${resultado.ano}`} />
+                                    titulo={
+                                        tipo === "Proposições"
+                                            ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
+                                            : tipo === "Eventos"
+                                                ? `${resultado.orgaos[0].nomePublicacao}`
+                                                : "Texto para outros tipos"
+                                    }
+                                    partido={
+                                        tipo === "Proposições"
+                                            ? `Ano de criação: ${resultado.ano}`
+                                            : tipo === "Eventos"
+                                                ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
+                                                : "Texto para outros tipos"
+                                    } />
                             ))}
                         </>
                     )
