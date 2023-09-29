@@ -230,7 +230,7 @@ function ResultadosSens(props) {
                     resultados.length === 0 ? (
                         <Container>
                             <Conteudo>
-                                <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
+                                <Texto>Nenhum resultado encontrado. Pesquise novamente!</Texto>
                             </Conteudo>
                         </Container>
                     ) : (
