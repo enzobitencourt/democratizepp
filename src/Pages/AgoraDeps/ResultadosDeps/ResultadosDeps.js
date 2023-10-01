@@ -138,7 +138,7 @@ function ResultadosDeps(props) {
 
             axios
                 .get(
-                    "https://dadosabertos.camara.leg.br/api/v2/frentes"
+                    "https://dadosabertos.camara.leg.br/api/v2/frentes?idLegislatura=57"
                 )
                 .then((response) => {
                     let frentes = response.data.dados;
@@ -201,8 +201,8 @@ function ResultadosDeps(props) {
                                 {resultados.length}
                                 {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias'
                                     : tipo === "Eventos"
-                                        ? ' Eventos Recentes'
-                                        : " Frentes"}
+                                        ? ' Evento(s) Recente(s)'
+                                        : " Frentes Atuais"}
                             </Titulo>
                             {resultados.map((resultado, index) => (
                                 <CardConteudos

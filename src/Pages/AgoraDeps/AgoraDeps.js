@@ -22,6 +22,10 @@ function AgoraDeps() {
     const [autorSelected, setAutorSelected] = useState('')
     const [nomeSelected, setNomeSelected] = useState('')
     const [pesquisa, setPesquisa] = useState(false)
+    const [disableTemaSelect, setDisableTemaSelect] = useState(false);
+    const [disablePartidoSelect, setDisablePartidoSelect] = useState(false);
+    const [disableAuthorInput, setDisableAuthorInput] = useState(false);
+
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -42,6 +46,26 @@ function AgoraDeps() {
 
     const [partidos, setPartidos] = useState([])
     const [temas, setTemas] = useState([])
+
+    useEffect(() => {
+        if (descubraSelect === "Proposições") {
+            setDisableTemaSelect(false);
+            setDisablePartidoSelect(false);
+            setDisableAuthorInput(false);
+        } else if (descubraSelect === "Eventos") {
+            setDisableTemaSelect(false);
+            setDisablePartidoSelect(false);
+            setDisableAuthorInput(true);
+        } else if (descubraSelect === "Frentes") {
+            setDisableTemaSelect(true);
+            setDisablePartidoSelect(true);
+            setDisableAuthorInput(true);
+        } else {
+            setDisableTemaSelect(false);
+            setDisablePartidoSelect(false);
+            setDisableAuthorInput(false);
+        }
+    }, [descubraSelect]);
 
     useEffect(() => {
         const Database = () => {
@@ -112,8 +136,7 @@ function AgoraDeps() {
                             <option value='Eventos'>Eventos</option>
                             <option value='Frentes'>Frentes</option>
                         </Select>
-
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Tema'>
+                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Classificação' disabled={disableTemaSelect}>
                             {temas.map((tema, index) => (
                                 <option key={index} value={tema.cod}>
                                     {tema.nome}
@@ -126,13 +149,15 @@ function AgoraDeps() {
                         <InputAutor
                             placeholder="Autor"
                             value={authorInput}
-                            onChange={(e) => setAuthorInput(e.target.value)} />
+                            onChange={(e) => setAuthorInput(e.target.value)}
+                            disabled={disableAuthorInput} />
 
                         <Select bg="white" w="45vw" h="5vh" borderRadius="28.6px" value={selectedPartido}
                             onChange={(e) => setSelectedPartido(e.target.value)}
                             placeholder={descubraSelect === "Eventos" ? "Situação" : "Partidos"}
                             maxH="50px"
                             overflowY=""
+                            disabled={disablePartidoSelect}
                         >
                             {descubraSelect === "Eventos" ? (
                                 partidos.map((partido, index) => (
