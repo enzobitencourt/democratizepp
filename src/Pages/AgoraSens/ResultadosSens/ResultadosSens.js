@@ -18,7 +18,8 @@ function ResultadosSens(props) {
 
     useEffect(() => {
         if (tipo === "Projetos/Matérias") {
-            setLoading(true); // Define como true enquanto busca os dados
+            setLoading(true); 
+            setResultados([])
             onClose();
             axios
                 .get(
@@ -57,7 +58,6 @@ function ResultadosSens(props) {
                     ));
 
                     if (ordem === "ordem alfabetica") {
-                        // Ordenar por nome em ordem alfabética crescente
                         filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
                     } else if (ordem === "mais recente") {
                         filteredResultados.sort((a, b) => {
@@ -92,7 +92,8 @@ function ResultadosSens(props) {
                     setLoading(false);
                 });
         } else if (tipo === "Comissões") {
-            setLoading(true); // Define como true enquanto busca os dados
+            setLoading(true); 
+            setResultados([])
             onClose();
             axios
                 .get(
