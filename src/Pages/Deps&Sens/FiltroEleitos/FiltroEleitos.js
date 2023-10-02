@@ -105,7 +105,7 @@ function FiltroEleitos(props) {
                         </Container>
                     ) : (
                         <>
-                            <Titulo>{representantes.length} resultados</Titulo>
+                            <Titulo>{representantes.length} Resultados</Titulo>
                             {representantes.map((representante, index) => (
                                 <CardEleito
                                     nome={representante.nome}

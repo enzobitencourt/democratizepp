@@ -202,7 +202,7 @@ function ResultadosDeps(props) {
                         <>
                             <Titulo>
                                 {resultados.length}
-                                {tipo === 'Proposições' ? ' Atualizações nos Últimos 30 Dias'
+                                {tipo === 'Proposições' ? ' Atualizações Encontradas'
                                     : tipo === "Eventos"
                                         ? ' Evento(s) Recente(s)'
                                         : " Frentes Atuais"}
