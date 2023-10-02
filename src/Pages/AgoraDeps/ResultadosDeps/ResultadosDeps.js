@@ -31,6 +31,7 @@ function ResultadosDeps(props) {
     useEffect(() => {
         if (tipo === "Proposições") {
             setLoading(true);
+            setResultados([])
             onClose();
 
             let url = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?";
@@ -79,6 +80,7 @@ function ResultadosDeps(props) {
                 });
         } else if (tipo === "Eventos") {
             setLoading(true);
+            setResultados([])
             onClose();
 
             let url = "https://dadosabertos.camara.leg.br/api/v2/eventos?";
@@ -134,6 +136,7 @@ function ResultadosDeps(props) {
                 });
         } else if (tipo === "Frentes") {
             setLoading(true);
+            setResultados([])
             onClose();
 
             axios
