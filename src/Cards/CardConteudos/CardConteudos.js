@@ -1,15 +1,20 @@
-import { Link, useNavigate} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
+import { useTipo } from "../../Contexts/TipoContext"
 
 function CardConteudos(props) {
-    const navigate = useNavigate()
     const id = props.id
+    const tipo = props.tipo
+    const { setTipo } = useTipo(); // Use o contexto
 
+    const handleClick = () => {
+        setTipo(tipo);
+    };
 
     return (
         <>
             <Link to={`/materia/${id}`}>
-                <Botao>
+                <Botao onClick={handleClick}>
                     <Conteudo>
                         <Infos>
                             <Titulo>{props.titulo}</Titulo>

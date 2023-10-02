@@ -1,6 +1,7 @@
-import { React } from "react";
+import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Rotas from "./Rotas/Rotas";
+import { TipoProvider } from "./Contexts/TipoContext"; // Importe o TipoProvider
 
 function App() {
   const styles = {
@@ -13,15 +14,18 @@ function App() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
-      }})}
+      }
+    })
+  };
 
-  const theme = extendTheme({styles})
+  const theme = extendTheme({ styles });
+
   return (
-    <>
     <ChakraProvider theme={theme}>
-      <Rotas/>
+      <TipoProvider>
+        <Rotas />
+      </TipoProvider>
     </ChakraProvider>
-    </>
   );
 }
 

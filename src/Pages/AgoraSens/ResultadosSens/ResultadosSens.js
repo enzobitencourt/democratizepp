@@ -153,8 +153,6 @@ function ResultadosSens(props) {
                         (!tema || (colegio.classificacao && colegio.classificacao.includes(tema)))
                     ));
 
-                    console.log(filteredResultados)
-
                     if (ordem === "ordem alfabética") {
                         // Ordenar por nome em ordem alfabética crescente
                         filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
@@ -243,6 +241,7 @@ function ResultadosSens(props) {
                                 <CardConteudos
                                     key={index}
                                     ir='votacoes'
+                                    tipo={tipo}
                                     id={resultado.id}
                                     titulo={resultado.nome}
                                     partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
