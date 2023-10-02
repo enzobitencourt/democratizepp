@@ -55,6 +55,7 @@ function Rotas() {
                 <Route path="agoranosenado" element={<AgoraSens />} />
                 <Route path="frentes" element={<FrenteComs />} />
                 <Route path="votacoes" element={<ProjetoeVotac />} />
+                <Route path="materia/:id" element={<ProjetoeVotac />} />
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="entrada" element={<Entrada />} />
                 <Route path="excluirconta" element={<ExcluirConta />} />

@@ -7,10 +7,13 @@ import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos, Cont
 import senador from "../../Assets/senador.jpg"
 import { Select } from "@chakra-ui/react"
 import { useState } from "react"
+import { useParams } from "react-router-dom"
 
 function ProjetoeVotac() {
     const [keyword, setKeyword] = useState([])
     const [nome, setNome] = useState('')
+    const params = useParams()
+    console.log(params.id)
 
     const keywords = (checkboxes) => {
         setKeyword(checkboxes)

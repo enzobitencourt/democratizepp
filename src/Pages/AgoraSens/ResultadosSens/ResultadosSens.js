@@ -162,7 +162,6 @@ function ResultadosSens(props) {
                         filteredResultados.sort((a, b) => {
                             const parseDate = (dateStr) => {
                                 const [day, month, year] = dateStr.split('/').map(Number);
-                                // Assuming 'year' is in 2-digit format, convert it to 4-digit
                                 const fullYear = year < 50 ? 2000 + year : 1900 + year;
                                 return new Date(fullYear, month - 1, day); // Subtract 1 from month because it's 0-based
                             };
@@ -244,6 +243,7 @@ function ResultadosSens(props) {
                                 <CardConteudos
                                     key={index}
                                     ir='votacoes'
+                                    id={resultado.id}
                                     titulo={resultado.nome}
                                     partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
                             ))}

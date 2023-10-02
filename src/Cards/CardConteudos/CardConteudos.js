@@ -1,24 +1,24 @@
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
 
 function CardConteudos(props) {
     const navigate = useNavigate()
+    const id = props.id
 
-    const goToConteudo = () => {
-        navigate(`/${props.ir}`)
-    }
 
     return (
         <>
-            <Botao onClick={goToConteudo}>
-                <Conteudo>
-                    <Infos>
-                        <Titulo>{props.titulo}</Titulo>
-                        <Partido>{props.partido}</Partido>
-                    </Infos>
-                    <Gray />
-                </Conteudo>
-            </Botao>
+            <Link to={`/materia/${id}`}>
+                <Botao>
+                    <Conteudo>
+                        <Infos>
+                            <Titulo>{props.titulo}</Titulo>
+                            <Partido>{props.partido}</Partido>
+                        </Infos>
+                        <Gray />
+                    </Conteudo>
+                </Botao>
+            </Link>
         </>
     )
 }
