@@ -1,57 +1,113 @@
-import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoConteudo"
-import HeadersConteud from "../../components/HeadersConteud/HeadersConteud"
-import InputComponent from "../../components/InputComponent/InputComponent"
-import Menu from "../../components/Menu/Menu"
-import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, TextInfos } from "./styled"
-import dep from "../../Assets/foto_dep_fav.jpeg"
-import { useState } from "react"
-import { useParams } from "react-router-dom"
-import { useTipo } from "../../Contexts/TipoContext"
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoConteudo";
+import HeadersConteud from "../../components/HeadersConteud/HeadersConteud";
+import InputComponent from "../../components/InputComponent/InputComponent";
+import Menu from "../../components/Menu/Menu";
+import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos } from "./styled";
+import dep from "../../Assets/foto_dep_fav.jpeg";
+import { useParams } from "react-router-dom";
+import { useTipo } from "../../Contexts/TipoContext";
 
 function FrenteComs() {
-    const [keyword, setKeyword] = useState([])
-    const [nome, setNome] = useState('')
-    const params = useParams()
-    const { tipo } = useTipo()
-    
-    console.log(params)
-    console.log(tipo)
+    const [keyword, setKeyword] = useState([]);
+    const [nome, setNome] = useState('');
+    const params = useParams();
+    const { tipo } = useTipo();
+    const [colegiado, setColegiado] = useState();
+    const [espaco, setEspaco] = useState()
+
+    function formatarData(data) {
+        const dataObj = new Date(data);
+
+        const dia = String(dataObj.getDate()).padStart(2, '0');
+        const mes = String(dataObj.getMonth() + 1).padStart(2, '0'); // Os meses são baseados em zero
+        const ano = dataObj.getFullYear();
+
+        return `${dia}/${mes}/${ano}`;
+    }
+
+    useEffect(() => {
+        if (tipo === 'Comissões') {
+            setEspaco('Agora no Senado')
+            axios.get('https://legis.senado.leg.br/dadosabertos/comissao/lista/colegiados')
+                .then((response) => {
+                    const colegiadosData = response.data.ListaColegiados.Colegiados.Colegiado;
+                    const colegiadoFiltrado = colegiadosData.find((colegio) => colegio.Codigo === params.id);
+
+                    if (colegiadoFiltrado) {
+                        if (colegiadoFiltrado.SiglaCasa === 'SF') {
+                            colegiadoFiltrado.SiglaCasa = 'Senado Federal';
+                        } else if (colegiadoFiltrado.SiglaCasa === 'CN') {
+                            colegiadoFiltrado.SiglaCasa = 'Congresso Nacional';
+                        } else if (colegiadoFiltrado.SiglaCasa === 'CD') {
+                            colegiadoFiltrado.SiglaCasa = 'Câmara dos Deputados';
+                        }
+
+                        const colegiadoData = {
+                            id: colegiadoFiltrado.Codigo,
+                            nome: colegiadoFiltrado.Nome,
+                            finalidade: colegiadoFiltrado.Finalidade,
+                            data: formatarData(colegiadoFiltrado.DataInicio),
+                            casa: colegiadoFiltrado.SiglaCasa,
+                            classificacao: colegiadoFiltrado.SiglaTipoColegiado,
+                            descricaoTipo: colegiadoFiltrado.DescricaoTipoColegiado,
+                        };
+
+                        setColegiado(colegiadoData);
+
+                    } else {
+                        setColegiado(null);
+                    }
+                })
+                .catch((error) => {
+                    console.log('Erro na API:', error);
+                });
+        }
+    }, [tipo, params.id, colegiado]);
 
     const keywords = (checkboxes) => {
-        setKeyword(checkboxes)
-        console.log('Keywords:', checkboxes)
-        console.log(keyword)
-    }
+        setKeyword(checkboxes);
+        console.log('Keywords:', checkboxes);
+        console.log(keyword);
+    };
 
     const nomeCandidato = (nomes) => {
-        setNome(nomes)
-        console.log('Nome do candidato:', nomes)
-        console.log(nome)
-    }
+        setNome(nomes);
+        console.log('Nome do candidato:', nomes);
+        console.log(nome);
+    };
+
 
     return (
         <>
-            <Container>
-                <HeadersConteud
-                    titulo="Frente Parlamentar em defesa dos direitos da mulher"
-                    subtitulo="Agora na Câmara" />
+            {colegiado ? (
+                <Container>
+                    <HeadersConteud
+                        titulo={colegiado.nome}
+                        subtitulo={espaco} />
 
-                <DivConteudo>
-                    <Infos>
-                        <TextInfos><b>Criação: </b> 18/03/2019</TextInfos>
-                        <TextInfos><b>Partido: </b> PP</TextInfos>
-                        <TextInfos><b>Autor: </b> <LinkAutor>Margarete Coelho (PI)</LinkAutor> </TextInfos>
-                    </Infos>
-                </DivConteudo>
-                <Pesquisa>
-                    <Participantes>Quem participa dessa frente?</Participantes>
-                    <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
-                    <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro' />
-                </Pesquisa>
-                <Menu barra='1' />
-            </Container>
+                    <DivConteudo>
+                        <Infos>
+                            <TextInfos><b>Criação: </b> {colegiado.data}</TextInfos>
+                            <TextInfos><b>Tipo: </b> {colegiado.descricaoTipo} </TextInfos>
+                            <TextInfos><b>Casa: </b> {colegiado.casa} </TextInfos>
+                            <TextInfos><b>Finalidade: </b> {colegiado.finalidade} </TextInfos>
+                        </Infos>
+                    </DivConteudo>
+                    <Pesquisa>
+                        <Participantes>Quem participa dessa frente?</Participantes>
+                        <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
+                        <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro' />
+                    </Pesquisa>
+                    <Menu barra='1' />
+                </Container>
+            ) :
+                (<>
+                </>
+                )}
         </>
     )
 }
 
-export default FrenteComs
+export default FrenteComs;

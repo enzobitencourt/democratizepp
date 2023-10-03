@@ -1,4 +1,4 @@
-import {styled} from "styled-components"
+import { styled } from "styled-components"
 
 export const Container = styled.div`
     margin-top: 1vh;
@@ -28,14 +28,14 @@ export const Infos = styled.div`
 
 export const TextInfos = styled.p`
     color: #000;
+    font-family: Poppins;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin: 0;
-    display: flex;
-    flex-direction: row;
-    gap: 1vw;
+    text-align: justify;
+    width: 94%;
 `
 
 export const LinkAutor = styled.a`
@@ -62,4 +62,5 @@ export const Pesquisa = styled.div`
     flex-direction: column;
     gap: 2vh;
     margin-top:2vh;
+    margin-bottom: 13vh;
 `

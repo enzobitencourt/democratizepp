@@ -3,7 +3,8 @@ import {styled} from "styled-components"
 export const BigContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1vh;
+    gap: 3vh;
+    margin-top: 1vh;
 `
 
 export const Container = styled.div`
@@ -24,6 +25,7 @@ export const TituloContainer = styled.div`
     justify-content: center;
     display: flex;
     flex-direction: column;
+    gap: 0.2vh;
 `
 
 export const Titulo = styled.p`
@@ -32,6 +34,7 @@ export const Titulo = styled.p`
     font-size: 19px;
     font-style: normal;
     font-weight: 500;
+    width: 95%;
     line-height: 24px;
 `
 

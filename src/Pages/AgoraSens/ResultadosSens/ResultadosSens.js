@@ -114,34 +114,26 @@ function ResultadosSens(props) {
                             const month = dateComponents[1];
                             const day = dateComponents[2];
 
-                            // Determine if the year is a two-digit year
                             const isTwoDigitYear = year >= 0 && year <= 99;
 
-                            // Convert two-digit years to four-digit years
                             let fullYear;
                             if (isTwoDigitYear) {
-                                // Get the current year to determine the century
                                 const currentYear = new Date().getFullYear();
-
-                                // Extract the last two digits of the current year
                                 const currentYearLastTwoDigits = currentYear % 100;
-
-                                // Determine the full year based on the current year's last two digits
                                 if (year <= currentYearLastTwoDigits) {
                                     fullYear = currentYear - currentYearLastTwoDigits + year;
                                 } else {
                                     fullYear = currentYear - currentYearLastTwoDigits - 100 + year;
                                 }
                             } else {
-                                // If it's already a four-digit year, use it as is
                                 fullYear = year;
                             }
 
-                            const data = new Date(fullYear, month - 1, day); // Subtract 1 from month because it's 0-based
+                            const data = new Date(fullYear, month - 1, day); 
 
                             const dia = data.getDate();
                             const mes = data.getMonth() + 1;
-                            const ano = data.getFullYear(); // Full four-digit year
+                            const ano = data.getFullYear(); 
 
                             colegios.data = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano.toString()}`;
                         }
