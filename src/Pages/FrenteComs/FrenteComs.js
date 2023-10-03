@@ -5,10 +5,17 @@ import Menu from "../../components/Menu/Menu"
 import { Container, DivConteudo, Infos, LinkAutor, Participantes, Pesquisa, TextInfos } from "./styled"
 import dep from "../../Assets/foto_dep_fav.jpeg"
 import { useState } from "react"
+import { useParams } from "react-router-dom"
+import { useTipo } from "../../Contexts/TipoContext"
 
 function FrenteComs() {
     const [keyword, setKeyword] = useState([])
     const [nome, setNome] = useState('')
+    const params = useParams()
+    const { tipo } = useTipo()
+    
+    console.log(params)
+    console.log(tipo)
 
     const keywords = (checkboxes) => {
         setKeyword(checkboxes)
