@@ -242,6 +242,7 @@ function ResultadosSens(props) {
                                     key={index}
                                     ir='votacoes'
                                     tipo={tipo}
+                                    pagina={tipo === 'Comissões' ? `comissao` : `materia`} 
                                     id={resultado.id}
                                     titulo={resultado.nome}
                                     partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />

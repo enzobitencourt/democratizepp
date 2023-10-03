@@ -53,8 +53,10 @@ function Rotas() {
                 <Route path="cadastro" element={<Cadastro />} />
                 <Route path="agoranacamara" element={<AgoraDeps />} />
                 <Route path="agoranosenado" element={<AgoraSens />} />
-                <Route path="frentes" element={<FrenteComs />} />
-                <Route path="votacoes" element={<ProjetoeVotac />} />
+                <Route path="frente/:id" element={<FrenteComs />} />
+                <Route path="comissao/:id" element={<FrenteComs />} />
+                <Route path="evento/:id" element={<FrenteComs />} />
+                <Route path="proposicao/:id" element={<ProjetoeVotac />} />
                 <Route path="materia/:id" element={<ProjetoeVotac />} />
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="entrada" element={<Entrada />} />

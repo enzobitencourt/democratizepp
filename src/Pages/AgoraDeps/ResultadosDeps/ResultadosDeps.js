@@ -211,6 +211,14 @@ function ResultadosDeps(props) {
                                 <CardConteudos
                                     key={index}
                                     ir='votacoes'
+                                    id={resultado.id}
+                                    pagina={
+                                        tipo === "Proposições"
+                                            ? `proposicao`
+                                            : tipo === "Eventos"
+                                                ? 'evento'
+                                                : 'frente'
+                                    }
                                     titulo={
                                         tipo === "Proposições"
                                             ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`

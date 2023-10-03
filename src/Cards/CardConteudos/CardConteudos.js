@@ -5,6 +5,7 @@ import { useTipo } from "../../Contexts/TipoContext"
 function CardConteudos(props) {
     const id = props.id
     const tipo = props.tipo
+    const pagina = props.pagina
     const { setTipo } = useTipo(); // Use o contexto
 
     const handleClick = () => {
@@ -13,7 +14,7 @@ function CardConteudos(props) {
 
     return (
         <>
-            <Link to={`/materia/${id}`}>
+            <Link to={`/${pagina}/${id}`}>
                 <Botao onClick={handleClick}>
                     <Conteudo>
                         <Infos>
