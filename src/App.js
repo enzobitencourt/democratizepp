@@ -1,7 +1,7 @@
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Rotas from "./Rotas/Rotas";
-import { TipoProvider } from "./Contexts/TipoContext"; // Importe o TipoProvider
+import { TipoProvider } from "./Contexts/TipoContext"; 
 
 function App() {
   const styles = {

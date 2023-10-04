@@ -14,8 +14,11 @@ function FrenteComs() {
     const [nome, setNome] = useState('');
     const params = useParams();
     const { tipo } = useTipo();
-    const [colegiado, setColegiado] = useState();
+    const [resultado, setResultado] = useState();
     const [espaco, setEspaco] = useState()
+
+    console.log(params)
+    console.log(tipo)
 
     function formatarData(data) {
         const dataObj = new Date(data);
@@ -54,17 +57,29 @@ function FrenteComs() {
                             descricaoTipo: colegiadoFiltrado.DescricaoTipoColegiado,
                         };
 
-                        setColegiado(colegiadoData);
+                        setResultado(colegiadoData);
 
                     } else {
-                        setColegiado(null);
+                        setResultado(null);
                     }
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
                 });
+        } else if (tipo === "Frentes") {
+            setEspaco("Agora na Câmara");
+            axios
+                .get(`https://dadosabertos.camara.leg.br/api/v2/frentes/${params.id}`)
+                .then((response) => {
+                    const frente = response.data;
+                    setResultado(frente);
+                    console.log(resultado)
+                })
+                .catch((error) => {
+                    console.log('Erro na API:', error);
+                });
         }
-    }, [tipo, params.id, colegiado]);
+    }, [tipo, params.id, resultado]);
 
     const keywords = (checkboxes) => {
         setKeyword(checkboxes);
@@ -81,18 +96,18 @@ function FrenteComs() {
 
     return (
         <>
-            {colegiado ? (
+            {resultado ? (
                 <Container>
                     <HeadersConteud
-                        titulo={colegiado.nome}
+                        titulo={resultado.nome}
                         subtitulo={espaco} />
 
                     <DivConteudo>
                         <Infos>
-                            <TextInfos><b>Criação: </b> {colegiado.data}</TextInfos>
-                            <TextInfos><b>Tipo: </b> {colegiado.descricaoTipo} </TextInfos>
-                            <TextInfos><b>Casa: </b> {colegiado.casa} </TextInfos>
-                            <TextInfos><b>Finalidade: </b> {colegiado.finalidade} </TextInfos>
+                            <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
+                            <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
+                            <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
+                            <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
                         </Infos>
                     </DivConteudo>
                     <Pesquisa>

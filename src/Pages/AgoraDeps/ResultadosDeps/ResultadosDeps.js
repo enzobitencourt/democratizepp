@@ -212,6 +212,7 @@ function ResultadosDeps(props) {
                                     key={index}
                                     ir='votacoes'
                                     id={resultado.id}
+                                    tipo={tipo}
                                     pagina={
                                         tipo === "Proposições"
                                             ? `proposicao`
