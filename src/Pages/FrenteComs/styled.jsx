@@ -64,3 +64,7 @@ export const Pesquisa = styled.div`
     margin-top:2vh;
     margin-bottom: 13vh;
 `
+
+export const Linkar = styled.a`
+    text-decoration: underline;
+`

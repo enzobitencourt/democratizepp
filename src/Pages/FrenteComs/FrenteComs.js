@@ -4,7 +4,7 @@ import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoC
 import HeadersConteud from "../../components/HeadersConteud/HeadersConteud";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import Menu from "../../components/Menu/Menu";
-import { Container, DivConteudo, Infos, Participantes, Pesquisa, TextInfos } from "./styled";
+import { Container, DivConteudo, Infos, Linkar, Participantes, Pesquisa, TextInfos } from "./styled";
 import dep from "../../Assets/foto_dep_fav.jpeg";
 import { useParams } from "react-router-dom";
 import { useTipo } from "../../Contexts/TipoContext";
@@ -16,9 +16,6 @@ function FrenteComs() {
     const { tipo } = useTipo();
     const [resultado, setResultado] = useState();
     const [espaco, setEspaco] = useState()
-
-    console.log(params)
-    console.log(tipo)
 
     function formatarData(data) {
         const dataObj = new Date(data);
@@ -71,9 +68,8 @@ function FrenteComs() {
             axios
                 .get(`https://dadosabertos.camara.leg.br/api/v2/frentes/${params.id}`)
                 .then((response) => {
-                    const frente = response.data;
+                    const frente = response.data.dados;
                     setResultado(frente);
-                    console.log(resultado)
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
@@ -98,16 +94,44 @@ function FrenteComs() {
         <>
             {resultado ? (
                 <Container>
-                    <HeadersConteud
+                    {tipo === "Comissões" ? (
+                        <HeadersConteud
                         titulo={resultado.nome}
                         subtitulo={espaco} />
+                    ): tipo === "Frentes" ? (
+                        <HeadersConteud
+                        titulo={resultado.titulo}
+                        subtitulo={espaco} />
+                    ):(
+                        <HeadersConteud
+                        titulo={resultado.nome}
+                        subtitulo={espaco} />
+                    )}
 
                     <DivConteudo>
                         <Infos>
-                            <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
-                            <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
-                            <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
-                            <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
+                            {tipo === 'Comissões' ? (
+                                <>
+                                    <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
+                                    <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
+                                    <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
+                                    <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
+                                </>
+                            ) : tipo === 'Frentes' ? (
+                                <>
+                                    <TextInfos><b>Autor: </b> <Linkar  target="_blank" rel="noreferrer" href={`https://www.camara.leg.br/deputados/${resultado.coordenador.id}`}>{resultado.coordenador.nome}</Linkar></TextInfos>
+                                    <TextInfos><b>Partido: </b> {resultado.coordenador.siglaPartido} - {resultado.coordenador.siglaUf} </TextInfos>
+                                    <TextInfos><b>Email: </b> {resultado.email} </TextInfos>
+                                    <TextInfos><b>Situação: </b> {resultado.situacao} </TextInfos>
+                                </>
+                            ) : (
+                                <>
+                                    <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
+                                    <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
+                                    <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
+                                    <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
+                                </>
+                            )}
                         </Infos>
                     </DivConteudo>
                     <Pesquisa>
