@@ -7,7 +7,7 @@ export const Container = styled.div`
     flex-direction: column;
     height: auto;
     align-items: center;
-    gap: 3.5vh;
+    gap: 3vh;
 `
 export const DivConteudo = styled.div`
     display: flex;
@@ -28,14 +28,14 @@ export const Infos = styled.div`
 
 export const TextInfos = styled.p`
     color: #000;
+    font-family: Poppins;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin: 0;
     text-align: justify;
-    width: 90vw;
-    gap: 1vw;
+    width: 94%;
 `
 
 export const LinkAutor = styled.a`

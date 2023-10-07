@@ -28,10 +28,7 @@ function FrenteComs() {
     }
 
     function formatarDataHora2(dataHoraAPI) {
-        // Converter a string da API em um objeto Date
         const dataHoraObjeto = new Date(dataHoraAPI);
-
-        // Formatar a data e hora no formato desejado (dd/mm/yy HH:mm)
         const dataHoraFormatada = dataHoraObjeto.toLocaleDateString('pt-BR', {
             year: '2-digit',
             month: '2-digit',
@@ -96,7 +93,6 @@ function FrenteComs() {
                 .get(`https://dadosabertos.camara.leg.br/api/v2/eventos/${params.id}`)
                 .then((response) => {
                     const evento = response.data.dados;
-                    console.log(evento)
                     setResultado(evento);
                 })
                 .catch((error) => {
