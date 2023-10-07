@@ -12,7 +12,7 @@ function HeadersConteud(props) {
                         <Subtitulo>{props.subtitulo}</Subtitulo>
                     </TituloContainer>
                 </Container>
-                <Situacao>Tramitando</Situacao>
+                <Situacao>{props.situacao}</Situacao>
             </BigContainer>
         </>
     )

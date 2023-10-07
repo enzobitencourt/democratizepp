@@ -27,6 +27,22 @@ function FrenteComs() {
         return `${dia}/${mes}/${ano}`;
     }
 
+    function formatarDataHora2(dataHoraAPI) {
+        // Converter a string da API em um objeto Date
+        const dataHoraObjeto = new Date(dataHoraAPI);
+
+        // Formatar a data e hora no formato desejado (dd/mm/yy HH:mm)
+        const dataHoraFormatada = dataHoraObjeto.toLocaleDateString('pt-BR', {
+            year: '2-digit',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+
+        return dataHoraFormatada;
+    }
+
     useEffect(() => {
         if (tipo === 'Comissões') {
             setEspaco('Agora no Senado')
@@ -74,6 +90,18 @@ function FrenteComs() {
                 .catch((error) => {
                     console.log('Erro na API:', error);
                 });
+        } else if (tipo === "Eventos") {
+            setEspaco("Agora na Câmara");
+            axios
+                .get(`https://dadosabertos.camara.leg.br/api/v2/eventos/${params.id}`)
+                .then((response) => {
+                    const evento = response.data.dados;
+                    console.log(evento)
+                    setResultado(evento);
+                })
+                .catch((error) => {
+                    console.log('Erro na API:', error);
+                });
         }
     }, [tipo, params.id, resultado]);
 
@@ -96,16 +124,19 @@ function FrenteComs() {
                 <Container>
                     {tipo === "Comissões" ? (
                         <HeadersConteud
-                        titulo={resultado.nome}
-                        subtitulo={espaco} />
-                    ): tipo === "Frentes" ? (
+                            titulo={resultado.nome}
+                            subtitulo={espaco}
+                            situacao="Tramitando" />
+                    ) : tipo === "Frentes" ? (
                         <HeadersConteud
-                        titulo={resultado.titulo}
-                        subtitulo={espaco} />
-                    ):(
+                            titulo={resultado.titulo}
+                            subtitulo={espaco}
+                            situacao="Tramitando" />
+                    ) : (
                         <HeadersConteud
-                        titulo={resultado.nome}
-                        subtitulo={espaco} />
+                            titulo={resultado.orgaos[0].nome}
+                            subtitulo={espaco}
+                            situacao={resultado.situacao} />
                     )}
 
                     <DivConteudo>
@@ -119,17 +150,16 @@ function FrenteComs() {
                                 </>
                             ) : tipo === 'Frentes' ? (
                                 <>
-                                    <TextInfos><b>Autor: </b> <Linkar  target="_blank" rel="noreferrer" href={`https://www.camara.leg.br/deputados/${resultado.coordenador.id}`}>{resultado.coordenador.nome}</Linkar></TextInfos>
+                                    <TextInfos><b>Autor: </b> <Linkar target="_blank" rel="noreferrer" href={`https://www.camara.leg.br/deputados/${resultado.coordenador.id}`}>{resultado.coordenador.nome}</Linkar></TextInfos>
                                     <TextInfos><b>Partido: </b> {resultado.coordenador.siglaPartido} - {resultado.coordenador.siglaUf} </TextInfos>
                                     <TextInfos><b>Email: </b> {resultado.email} </TextInfos>
                                     <TextInfos><b>Situação: </b> {resultado.situacao} </TextInfos>
                                 </>
                             ) : (
                                 <>
-                                    <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
-                                    <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
-                                    <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
-                                    <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
+                                    <TextInfos><b>Data: </b> {formatarDataHora2(resultado.dataHoraInicio)}</TextInfos>
+                                    <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} - {resultado.orgaos[0].tipoOrgao}</TextInfos>
+                                    <TextInfos><b>Descrição: </b> {resultado.descricao}</TextInfos>
                                 </>
                             )}
                         </Infos>
