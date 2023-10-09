@@ -19,6 +19,7 @@ function ProjetoeVotac() {
     const [resultado, setResultado] = useState()
     const [espaco, setEspaco] = useState()
     const [autores, setAutores] = useState([]);
+    const [atualizacao, setAtualizacao] = useState()
 
 
     const keywords = (checkboxes) => {
@@ -33,12 +34,43 @@ function ProjetoeVotac() {
         console.log(nome)
     }
 
+    function converterData(dataString) {
+        const data = new Date(dataString);
+        const dia = data.getDate().toString().padStart(2, '0');
+        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+        const ano = data.getFullYear().toString().slice(-2);
+        const hora = data.getHours().toString().padStart(2, '0');
+        const minutos = data.getMinutes().toString().padStart(2, '0');
+        const segundos = data.getSeconds().toString().padStart(2, '0');
+      
+        return `${dia}/${mes}/${ano} ${hora}:${minutos}:${segundos}`;
+      }
+
+      function converterData2(dataString) {
+        const data = new Date(dataString);
+        const dia = data.getDate().toString().padStart(2, '0');
+        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
+        const ano = data.getFullYear();
+      
+        return `${dia}/${mes}/${ano}`;
+      }
+      
+
     useEffect(() => {
         if (tipo === 'Projetos/Matérias') {
             setEspaco('Agora no Senado')
-            axios.get(`https://dadosabertos.camara.leg.br/api/v2/proposicoes/${params.id}`)
+            axios.get(`https://legis.senado.leg.br/dadosabertos/materia/${params.id}`)
                 .then((response) => {
-                    setResultado(response.data)
+                    axios.get(`https://legis.senado.leg.br/dadosabertos/materia/atualizacoes/${params.id}?v=5`)
+                    .then((response) =>{
+                        const informacao = response.data.AtualizacaoMateria.Materia.AtualizacoesRecentes.Atualizacao[0].InformacaoAtualizada
+                        const data = converterData(response.data.AtualizacaoMateria.Materia.AtualizacoesRecentes.Atualizacao[0].DataUltimaAtualizacao)
+                        setAtualizacao(`${informacao} - ${data}`);
+                    })
+                    .catch((error) =>{
+                        console.log('Erro ao localizar autor:', error)
+                    })
+                    setResultado(response.data.DetalheMateria.Materia)
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
@@ -72,9 +104,9 @@ function ProjetoeVotac() {
                 <Container>
                     {tipo === "Projetos/Matérias" ? (
                         <HeadersConteud
-                            titulo={`${resultado.siglaTipo} - ${resultado.numero}/${resultado.ano}`}
+                            titulo={resultado.IdentificacaoMateria.DescricaoIdentificacaoMateria}
                             subtitulo={espaco}
-                            situacao="Tramitando" />
+                            situacao={resultado.DecisaoEDestino.Decisao.Descricao} />
                     ) : (
                         <HeadersConteud
                             titulo={`${resultado.siglaTipo} - ${resultado.numero}/${resultado.ano}`}
@@ -85,10 +117,10 @@ function ProjetoeVotac() {
                         <Infos>
                         {tipo === 'Projetos/Matérias' ? (
                                 <>
-                                    <TextInfos><b>Criação: </b> {resultado.data}</TextInfos>
-                                    <TextInfos><b>Tipo: </b> {resultado.descricaoTipo} </TextInfos>
-                                    <TextInfos><b>Casa: </b> {resultado.casa} </TextInfos>
-                                    <TextInfos><b>Finalidade: </b> {resultado.finalidade} </TextInfos>
+                                    <TextInfos><b>Criação: </b> {converterData2(resultado.DadosBasicosMateria.DataApresentacao)}</TextInfos>
+                                    <TextInfos><b>Atualicação: </b> {atualizacao} </TextInfos>
+                                    <TextInfos><b>Apelido: </b> {resultado.DadosBasicosMateria.ApelidoMateria} </TextInfos>
+                                    <TextInfos><b>Ementa: </b> {resultado.DadosBasicosMateria.EmentaMateria}  </TextInfos>
                                 </>
                             ) : (
                                 <>

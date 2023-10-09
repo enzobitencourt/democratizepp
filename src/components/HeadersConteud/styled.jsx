@@ -49,16 +49,17 @@ export const Subtitulo = styled.p`
 
 export const Situacao = styled.div`
     border-radius: 28.4px;
-    width: 70vw;
+    min-width: 70vw;
+    width: auto;
+    max-width: 85vw;
     background: #1B676B;
     color: #F5F5F5;
     text-align: center;
-    padding: 1vh 0;
+    padding: 1.5vh 1vh;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     margin:0;
-    padding: 0 0 0 -1vh;
 `
 
