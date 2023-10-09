@@ -1,7 +1,9 @@
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import Rotas from "./Rotas/Rotas";
-import { TipoProvider } from "./Contexts/TipoContext"; 
+import { TipoProvider } from "./Contexts/TipoContext/TipoContext";
+import { ResultadosDepsProvider } from "./Contexts/ResultadosDeps/ResultadosDepsContext";
+import { ResultadosSensProvider } from "./Contexts/ResultadosSens/ResultadosSensContext";
 
 function App() {
   const styles = {
@@ -23,7 +25,11 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <TipoProvider>
-        <Rotas />
+        <ResultadosDepsProvider>
+          <ResultadosSensProvider>
+            <Rotas />
+          </ResultadosSensProvider>
+        </ResultadosDepsProvider>
       </TipoProvider>
     </ChakraProvider>
   );

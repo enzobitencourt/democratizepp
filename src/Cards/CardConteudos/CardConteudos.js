@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { Botao, Conteudo, Gray, Infos, Partido, Titulo } from "./styled"
-import { useTipo } from "../../Contexts/TipoContext"
+import { useTipo } from "../../Contexts/TipoContext/TipoContext"
 
 function CardConteudos(props) {
     const id = props.id

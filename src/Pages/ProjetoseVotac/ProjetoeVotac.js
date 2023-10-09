@@ -9,7 +9,7 @@ import { Select } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
-import { useTipo } from "../../Contexts/TipoContext"
+import { useTipo } from "../../Contexts/TipoContext/TipoContext"
 
 function ProjetoeVotac() {
     const [keyword, setKeyword] = useState([])

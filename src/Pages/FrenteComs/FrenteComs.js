@@ -7,7 +7,7 @@ import Menu from "../../components/Menu/Menu";
 import { Container, DivConteudo, Infos, Linkar, Participantes, Pesquisa, TextInfos } from "./styled";
 import dep from "../../Assets/foto_dep_fav.jpeg";
 import { useParams } from "react-router-dom";
-import { useTipo } from "../../Contexts/TipoContext";
+import { useTipo } from "../../Contexts/TipoContext/TipoContext";
 
 function FrenteComs() {
     const [keyword, setKeyword] = useState([]);
