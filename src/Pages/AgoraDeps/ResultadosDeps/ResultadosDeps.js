@@ -1,20 +1,31 @@
-import { useEffect, useState } from "react"
-import CardConteudos from "../../../Cards/CardConteudos/CardConteudos"
-import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } from '@chakra-ui/react'
-import Carregando from "../../../components/Carregando/Carregando"
-import { Container, Conteudo, Texto, Titulo } from "./styled"
-import axios from "axios"
+import React, { useEffect, useState } from "react";
+import CardConteudos from "../../../Cards/CardConteudos/CardConteudos";
+import {
+    Alert,
+    AlertIcon,
+    AlertTitle,
+    AlertDescription,
+    Box,
+    useDisclosure,
+} from "@chakra-ui/react";
+import Carregando from "../../../components/Carregando/Carregando";
+import { Container, Conteudo, Texto, Titulo } from "./styled";
+import axios from "axios";
+import { useResultadosDeps } from "../../../Contexts/ResultadosDeps/ResultadosDepsContext";
 
 function ResultadosDeps(props) {
-    const tipo = props.tipo
-    const tema = props.tema
-    const partido = props.partido
-    const nome = props.nome
-    const autor = props.autor
-    const ordem = props.ordenar
+    const tipo = props.tipo;
+    const tema = props.tema;
+    const partido = props.partido;
+    const nome = props.nome;
+    const autor = props.autor;
+    const ordem = props.ordenar;
+    const { isOpen: isVisible, onClose, onOpen } = useDisclosure({
+        defaultIsOpen: false,
+    });
+
+    const [loading, setLoading] = useState(props.loading);
     const [resultados, setResultados] = useState([])
-    const [loading, setLoading] = useState(props.loading)
-    const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false })
 
     function construirNome(projeto) {
         return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
@@ -22,16 +33,16 @@ function ResultadosDeps(props) {
 
     const formatData = (dataN) => {
         const data = new Date(dataN);
-        const dia = data.getDate().toString().padStart(2, '0');
-        const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-        const ano = data.getFullYear().toString().slice(-2); // Pegar os últimos 2 dígitos do ano
+        const dia = data.getDate().toString().padStart(2, "0");
+        const mes = (data.getMonth() + 1).toString().padStart(2, "0");
+        const ano = data.getFullYear().toString().slice(-2);
         return `${dia}/${mes}/${ano}`;
     }
 
     useEffect(() => {
         if (tipo === "Proposições") {
             setLoading(true);
-            setResultados([])
+            setResultados([]);
             onClose();
 
             let url = "https://dadosabertos.camara.leg.br/api/v2/proposicoes?";
@@ -80,7 +91,7 @@ function ResultadosDeps(props) {
                 });
         } else if (tipo === "Eventos") {
             setLoading(true);
-            setResultados([])
+            setResultados([]);
             onClose();
 
             let url = "https://dadosabertos.camara.leg.br/api/v2/eventos?";
@@ -136,7 +147,7 @@ function ResultadosDeps(props) {
                 });
         } else if (tipo === "Frentes") {
             setLoading(true);
-            setResultados([])
+            setResultados([]);
             onClose();
 
             axios
@@ -149,9 +160,7 @@ function ResultadosDeps(props) {
                     if (nome) {
                         const nomeLowerCase = nome.toLowerCase();
                         frentes = frentes.filter((frente) => {
-                            return (
-                                frente.titulo.toLowerCase().includes(nomeLowerCase)
-                            );
+                            return frente.titulo.toLowerCase().includes(nomeLowerCase);
                         });
                     }
 
@@ -163,7 +172,7 @@ function ResultadosDeps(props) {
                         frentes.sort((a, b) => a.idLegislatura - b.idLegislatura);
                     }
 
-                    setResultados(frentes)
+                    setResultados(frentes);
                     setLoading(false);
                 })
                 .catch((error) => {
@@ -173,15 +182,71 @@ function ResultadosDeps(props) {
         } else {
             onOpen();
         }
-    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido]);
+    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido, setResultados]);
 
+    const [resultadosRenderizados, setResultadosRenderizados] = useResultadosDeps();
+
+    if (loading) {
+        setResultadosRenderizados(<Carregando loading={loading} />)
+    } else if (resultados.length === 0) {
+        setResultadosRenderizados(
+            <Container>
+                <Conteudo>
+                    <Texto>Nenhum resultado encontrado. Pesquise novamente!</Texto>
+                </Conteudo>
+            </Container>
+        );
+    } else {
+        setResultadosRenderizados(
+            <>
+                <Titulo>
+                    {resultados.length}
+                    {tipo === 'Proposições' ? ' Atualizações Encontradas'
+                        : tipo === "Eventos"
+                            ? ' Evento(s) Recente(s)'
+                            : " Frentes Atuais"}
+                </Titulo>
+                {resultados.map((resultado, index) => (
+                    <CardConteudos
+                        key={index}
+                        ir='votacoes'
+                        id={resultado.id}
+                        tipo={tipo}
+                        pagina={
+                            tipo === "Proposições"
+                                ? `proposicao`
+                                : tipo === "Eventos"
+                                    ? 'evento'
+                                    : 'frente'
+                        }
+                        titulo={
+                            tipo === "Proposições"
+                                ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
+                                : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
+                                    ? resultado.orgaos[0].nomePublicacao
+                                    : resultado.titulo
+                        }
+                        partido={
+                            tipo === "Proposições"
+                                ? `Ano de criação: ${resultado.ano}`
+                                : tipo === "Eventos"
+                                    ? resultado.dataHoraInicio && resultado.situacao
+                                        ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
+                                        : ""
+                                    : `ID Legislatura: ${resultado.idLegislatura}`
+                        }
+                    />
+                ))}
+            </>
+        );
+    }
 
     return (
         <>
             {isVisible ? (
-                <Alert borderRadius='20px' status='error'>
+                <Alert borderRadius="20px" status="error">
                     <AlertIcon />
-                    <Box paddingRight='1vw'>
+                    <Box paddingRight="1vw">
                         <AlertTitle>Erro!</AlertTitle>
                         <AlertDescription>
                             Efetue a pesquisa novamente e escolha uma opção válida no campo "Descubra" dos filtros acima...
@@ -189,62 +254,10 @@ function ResultadosDeps(props) {
                     </Box>
                 </Alert>
             ) : (
-                loading ? (
-                    <Carregando loading={loading} />
-                ) : (
-                    resultados.length === 0 ? (
-                        <Container>
-                            <Conteudo>
-                                <Texto>Nenhum resultado encontrado. Pesquise novamente!</Texto>
-                            </Conteudo>
-                        </Container>
-                    ) : (
-                        <>
-                            <Titulo>
-                                {resultados.length}
-                                {tipo === 'Proposições' ? ' Atualizações Encontradas'
-                                    : tipo === "Eventos"
-                                        ? ' Evento(s) Recente(s)'
-                                        : " Frentes Atuais"}
-                            </Titulo>
-                            {resultados.map((resultado, index) => (
-                                <CardConteudos
-                                    key={index}
-                                    ir='votacoes'
-                                    id={resultado.id}
-                                    tipo={tipo}
-                                    pagina={
-                                        tipo === "Proposições"
-                                            ? `proposicao`
-                                            : tipo === "Eventos"
-                                                ? 'evento'
-                                                : 'frente'
-                                    }
-                                    titulo={
-                                        tipo === "Proposições"
-                                            ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
-                                            : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
-                                                ? resultado.orgaos[0].nomePublicacao
-                                                : resultado.titulo
-                                    }
-                                    partido={
-                                        tipo === "Proposições"
-                                            ? `Ano de criação: ${resultado.ano}`
-                                            : tipo === "Eventos"
-                                                ? resultado.dataHoraInicio && resultado.situacao
-                                                    ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
-                                                    : ""
-                                                : `ID Legislatura: ${resultado.idLegislatura}`
-                                    }
-                                />
-                            ))}
-
-                        </>
-                    )
-                )
+                resultadosRenderizados
             )}
         </>
-    )
+    );
 }
 
-export default ResultadosDeps
+export default ResultadosDeps;

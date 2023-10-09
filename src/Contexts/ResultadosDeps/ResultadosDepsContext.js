@@ -1,25 +1,13 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 const ResultadosDepsContext = createContext();
 
 export const ResultadosDepsProvider = ({ children }) => {
-  const [resultadosDeps, setResultadosDeps] = useState([]);
-  const [loadingDeps, setLoadingDeps] = useState(true);
-  const [isVisibleDeps, setIsVisibleDeps] = useState(false);
-
-  // Função para atualizar os resultados
-  const atualizarResultadosDeps = (novosResultados) => {
-    setResultadosDeps(novosResultados);
-  };
+  const [resultados, setResultados] = useState([]);
 
   const value = {
-    resultadosDeps,
-    setResultadosDeps,
-    loadingDeps,
-    setLoadingDeps,
-    isVisibleDeps,
-    setIsVisibleDeps,
-    atualizarResultadosDeps, // Adicione esta função ao contexto
+    resultados,
+    setResultados,
   };
 
   return (
@@ -30,5 +18,9 @@ export const ResultadosDepsProvider = ({ children }) => {
 };
 
 export const useResultadosDeps = () => {
-  return useContext(ResultadosDepsContext);
+  const context = useContext(ResultadosDepsContext);
+  if (!context) {
+    throw new Error("useResultadosDeps deve ser usado dentro de um ResultadosDepsProvider");
+  }
+  return context;
 };

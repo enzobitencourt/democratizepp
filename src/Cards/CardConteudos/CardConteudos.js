@@ -6,7 +6,7 @@ function CardConteudos(props) {
     const id = props.id
     const tipo = props.tipo
     const pagina = props.pagina
-    const { setTipo } = useTipo(); // Use o contexto
+    const { setTipo } = useTipo(); 
 
     const handleClick = () => {
         setTipo(tipo);
