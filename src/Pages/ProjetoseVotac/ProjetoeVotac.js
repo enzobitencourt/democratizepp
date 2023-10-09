@@ -106,12 +106,12 @@ function ProjetoeVotac() {
                         <HeadersConteud
                             titulo={resultado.IdentificacaoMateria.DescricaoIdentificacaoMateria}
                             subtitulo={espaco}
-                            situacao={resultado.DecisaoEDestino.Decisao.Descricao} />
+                            situacao={resultado.DecisaoEDestino ? resultado.DecisaoEDestino.Decisao.Descricao : "Tramitando" } />
                     ) : (
                         <HeadersConteud
                             titulo={`${resultado.siglaTipo} - ${resultado.numero}/${resultado.ano}`}
                             subtitulo={espaco}
-                            situacao={resultado.statusProposicao.descricaoSituacao}/>
+                            situacao={resultado.statusProposicao.descricaoSituacao ? resultado.statusProposicao.descricaoSituacao : "Tramitando"}/>
                     )}
                     <DivConteudo>
                         <Infos>
