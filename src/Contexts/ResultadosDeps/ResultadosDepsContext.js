@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState } from "react";
 const ResultadosDepsContext = createContext();
 
 export const ResultadosDepsProvider = ({ children }) => {
-  const [resultados, setResultados] = useState([]);
+  const [resultado, setResultado] = useState([]);
 
   const value = {
-    resultados,
-    setResultados,
+    resultado,
+    setResultado,
   };
 
   return (

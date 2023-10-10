@@ -8,7 +8,6 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Carregando from "../../components/Carregando/Carregando"
 import ResultadosDeps from "./ResultadosDeps/ResultadosDeps"
-import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext"
 
 function AgoraDeps() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -26,7 +25,6 @@ function AgoraDeps() {
     const [disableTemaSelect, setDisableTemaSelect] = useState(false);
     const [disablePartidoSelect, setDisablePartidoSelect] = useState(false);
     const [disableAuthorInput, setDisableAuthorInput] = useState(false);
-    const [resultados] = useResultadosDeps()
 
 
     const handleSearchClick = () => {
@@ -191,8 +189,7 @@ function AgoraDeps() {
                     {pesquisa ? (
                         <ResultadosDeps loading={true} ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
-                        resultados.length === 90 ? (resultados) : (
-                        <Carregando loading={false} />)
+                        <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />
