@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
-import CardConteudos from "../../../Cards/CardConteudos/CardConteudos"
-import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } from '@chakra-ui/react'
-import Carregando from "../../../components/Carregando/Carregando"
-import { Container, Conteudo, Texto, Titulo } from "./styled"
-import axios from "axios"
+import React, { useEffect, useState } from "react";
+import CardConteudos from "../../../Cards/CardConteudos/CardConteudos";
+import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } from '@chakra-ui/react';
+import Carregando from "../../../components/Carregando/Carregando";
+import { Container, Conteudo, Texto, Titulo } from "./styled";
+import axios from "axios";
 
 function ResultadosDeps(props) {
-    const tipo = props.tipo
-    const tema = props.tema
-    const partido = props.partido
-    const nome = props.nome
-    const autor = props.autor
-    const ordem = props.ordenar
-    const [resultados, setResultados] = useState([])
-    const [loading, setLoading] = useState(props.loading)
-    const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false })
+    const tipo = props.tipo;
+    const tema = props.tema;
+    const partido = props.partido;
+    const nome = props.nome;
+    const autor = props.autor;
+    const ordem = props.ordenar;
+    const [resultados, setResultados] = useState([]);
+    const [loading, setLoading] = useState(props.loading);
+    const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
 
     function construirNome(projeto) {
         return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
@@ -176,6 +176,38 @@ function ResultadosDeps(props) {
     }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido]);
 
 
+    const resultadosRenderizados = resultados.map((resultado, index) => (
+        <CardConteudos
+            key={index}
+            ir='votacoes'
+            id={resultado.id}
+            tipo={tipo}
+            pagina={
+                tipo === "Proposições"
+                    ? `proposicao`
+                    : tipo === "Eventos"
+                        ? 'evento'
+                        : 'frente'
+            }
+            titulo={
+                tipo === "Proposições"
+                    ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
+                    : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
+                        ? resultado.orgaos[0].nomePublicacao
+                        : resultado.titulo
+            }
+            partido={
+                tipo === "Proposições"
+                    ? `Ano de criação: ${resultado.ano}`
+                    : tipo === "Eventos"
+                        ? resultado.dataHoraInicio && resultado.situacao
+                            ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
+                            : ""
+                        : `ID Legislatura: ${resultado.idLegislatura}`
+            }
+        />
+    ));
+
     return (
         <>
             {isVisible ? (
@@ -207,38 +239,7 @@ function ResultadosDeps(props) {
                                         ? ' Evento(s) Recente(s)'
                                         : " Frentes Atuais"}
                             </Titulo>
-                            {resultados.map((resultado, index) => (
-                                <CardConteudos
-                                    key={index}
-                                    ir='votacoes'
-                                    id={resultado.id}
-                                    tipo={tipo}
-                                    pagina={
-                                        tipo === "Proposições"
-                                            ? `proposicao`
-                                            : tipo === "Eventos"
-                                                ? 'evento'
-                                                : 'frente'
-                                    }
-                                    titulo={
-                                        tipo === "Proposições"
-                                            ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
-                                            : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
-                                                ? resultado.orgaos[0].nomePublicacao
-                                                : resultado.titulo
-                                    }
-                                    partido={
-                                        tipo === "Proposições"
-                                            ? `Ano de criação: ${resultado.ano}`
-                                            : tipo === "Eventos"
-                                                ? resultado.dataHoraInicio && resultado.situacao
-                                                    ? `${formatData(resultado.dataHoraInicio)} - ${resultado.situacao}`
-                                                    : ""
-                                                : `ID Legislatura: ${resultado.idLegislatura}`
-                                    }
-                                />
-                            ))}
-
+                            {resultadosRenderizados} 
                         </>
                     )
                 )
@@ -247,4 +248,4 @@ function ResultadosDeps(props) {
     )
 }
 
-export default ResultadosDeps
+export default ResultadosDeps;
