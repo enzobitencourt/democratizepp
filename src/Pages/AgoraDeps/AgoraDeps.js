@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Carregando from "../../components/Carregando/Carregando"
 import ResultadosDeps from "./ResultadosDeps/ResultadosDeps"
+import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext"
 
 function AgoraDeps() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -25,7 +26,7 @@ function AgoraDeps() {
     const [disableTemaSelect, setDisableTemaSelect] = useState(false);
     const [disablePartidoSelect, setDisablePartidoSelect] = useState(false);
     const [disableAuthorInput, setDisableAuthorInput] = useState(false);
-
+    const {resultadosDeps} = useResultadosDeps()
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)

@@ -4,6 +4,7 @@ import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } fr
 import Carregando from "../../../components/Carregando/Carregando";
 import { Container, Conteudo, Texto, Titulo } from "./styled";
 import axios from "axios";
+import { useResultadosDeps } from "../../../Contexts/ResultadosDeps/ResultadosDepsContext";
 
 function ResultadosDeps(props) {
     const tipo = props.tipo;
@@ -15,6 +16,7 @@ function ResultadosDeps(props) {
     const [resultados, setResultados] = useState([]);
     const [loading, setLoading] = useState(props.loading);
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
+    const {setResultadosDeps} = useResultadosDeps()
 
     function construirNome(projeto) {
         return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
@@ -28,6 +30,7 @@ function ResultadosDeps(props) {
         return `${dia}/${mes}/${ano}`;
     }
 
+    
     useEffect(() => {
         if (tipo === "Proposições") {
             setLoading(true);
@@ -173,8 +176,8 @@ function ResultadosDeps(props) {
         } else {
             onOpen();
         }
-    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido]);
 
+    }, [tipo, onClose, ordem, nome, tema, onOpen, autor, partido]);
 
     const resultadosRenderizados = resultados.map((resultado, index) => (
         <CardConteudos
@@ -207,6 +210,10 @@ function ResultadosDeps(props) {
             }
         />
     ));
+
+    useEffect(()=>{
+        setResultadosDeps(resultadosRenderizados)
+    })
 
     return (
         <>
