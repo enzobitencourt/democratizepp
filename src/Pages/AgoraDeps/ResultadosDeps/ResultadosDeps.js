@@ -16,7 +16,8 @@ function ResultadosDeps(props) {
     const [resultados, setResultados] = useState([]);
     const [loading, setLoading] = useState(props.loading);
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
-    const {setResultadosDeps} = useResultadosDeps()
+    const { setResultadosDeps } = useResultadosDeps()
+    const { resultadosDeps } = useResultadosDeps()
 
     function construirNome(projeto) {
         return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
@@ -30,7 +31,7 @@ function ResultadosDeps(props) {
         return `${dia}/${mes}/${ano}`;
     }
 
-    
+
     useEffect(() => {
         if (tipo === "Proposições") {
             setLoading(true);
@@ -211,9 +212,13 @@ function ResultadosDeps(props) {
         />
     ));
 
-    useEffect(()=>{
-        setResultadosDeps(resultadosRenderizados)
-    })
+    useEffect(() => {
+        if (resultadosRenderizados !== resultadosDeps) {
+            setResultadosDeps(resultadosRenderizados);
+        }
+    }, [resultadosRenderizados, resultadosDeps, setResultadosDeps]);
+
+
 
     return (
         <>
@@ -246,7 +251,7 @@ function ResultadosDeps(props) {
                                         ? ' Evento(s) Recente(s)'
                                         : " Frentes Atuais"}
                             </Titulo>
-                            {resultadosRenderizados} 
+                            {resultadosRenderizados}
                         </>
                     )
                 )

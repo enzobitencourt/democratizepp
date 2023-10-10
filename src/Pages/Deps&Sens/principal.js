@@ -11,13 +11,16 @@ import CustomCarouselDep from "../../components/CarouselDep/CarouselDep";
 import FilterDepsSens from "../../components/FilterDeps&Sens/FilterDeps&Sens";
 import axios from "axios";
 import FiltroEleitos from "./FiltroEleitos/FiltroEleitos";
+import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext";
 
 function PrincipalDeps() {
     const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const {setResultadosDeps} = useResultadosDeps()
 
     const goToDeps = () => {
         navigate("/agoranacamara");
+        setResultadosDeps()
     };
 
     const goToSens = () => {

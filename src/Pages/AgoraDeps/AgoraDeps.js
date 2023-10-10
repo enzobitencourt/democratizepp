@@ -190,7 +190,7 @@ function AgoraDeps() {
                     {pesquisa ? (
                         <ResultadosDeps loading={true} ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
-                        <Carregando loading={false} />
+                        resultadosDeps ? resultadosDeps : <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />

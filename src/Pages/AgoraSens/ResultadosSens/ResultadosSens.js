@@ -4,6 +4,7 @@ import { Alert, AlertIcon, AlertTitle, AlertDescription, Box, useDisclosure } fr
 import Carregando from "../../../components/Carregando/Carregando";
 import { Conteudo, Container, Texto, Titulo } from "./styled";
 import axios from "axios";
+import { useResultadosSens } from "../../../Contexts/ResultadosSens/ResultadosSensContext";
 
 function ResultadosSens(props) {
     const tipo = props.tipo;
@@ -15,6 +16,7 @@ function ResultadosSens(props) {
     const setLoading = props.setLoading;
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
     const [resultados, setResultados] = useState([]);
+    const {setResultadosSens} = useResultadosSens()
 
     useEffect(() => {
         if (tipo === "Projetos/Matérias") {
@@ -201,6 +203,22 @@ function ResultadosSens(props) {
         }
     }, [nome, onClose, onOpen, partido, setLoading, tipo, tema, ordem]);
 
+    const cards = resultados.map((resultado, index) => (
+        <CardConteudos
+            key={index}
+            ir='votacoes'
+            tipo={tipo}
+            pagina={tipo === 'Comissões' ? `comissao` : `materia`} 
+            id={resultado.id}
+            titulo={resultado.nome}
+            partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} 
+        />
+    ));
+
+    useEffect(() => {
+        setResultadosSens(cards);
+    }, [cards, setResultadosSens]);
+
     return (
         <>
             {isVisible ? (
@@ -229,16 +247,7 @@ function ResultadosSens(props) {
                                 {resultados.length}
                                 {tipo === 'Comissões' ? ' Colegiado(s) em Atividade' : ' Atualizações nos Últimos 30 Dias'}
                             </Titulo>
-                            {resultados.map((resultado, index) => (
-                                <CardConteudos
-                                    key={index}
-                                    ir='votacoes'
-                                    tipo={tipo}
-                                    pagina={tipo === 'Comissões' ? `comissao` : `materia`} 
-                                    id={resultado.id}
-                                    titulo={resultado.nome}
-                                    partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} />
-                            ))}
+                            {cards}
                         </>
                     )
                 )

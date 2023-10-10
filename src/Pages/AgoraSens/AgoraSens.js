@@ -8,6 +8,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import ResultadosSens from "./ResultadosSens/ResultadosSens"
 import Carregando from "../../components/Carregando/Carregando"
+import { useResultadosSens } from "../../Contexts/ResultadosSens/ResultadosSensContext"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -20,6 +21,7 @@ function AgoraSens() {
     const [nomeSelected, setNomeSelected] = useState('')
     const [pesquisa, setPesquisa] = useState(false)
     const [loading, setLoading] = useState(false)
+    const {resultadosSens} = useResultadosSens()
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -116,7 +118,7 @@ function AgoraSens() {
                         <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} nome={nomeSelected} />
 
                     ) : (
-                        <Carregando loading={false} />
+                        resultadosSens ? resultadosSens : <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />
