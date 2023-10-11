@@ -148,7 +148,6 @@ function ResultadosSens(props) {
                     ));
 
                     if (ordem === "ordem alfabética") {
-                        // Ordenar por nome em ordem alfabética crescente
                         filteredResultados.sort((a, b) => a.nome.localeCompare(b.nome));
                     } else if (ordem === "mais recente") {
                         filteredResultados.sort((a, b) => {

@@ -164,7 +164,7 @@ function FrenteComs() {
                             : "Quem participa desse evento?"
                             }
                         </Participantes>
-                        <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
+                        <InputComponent tipo={tipo} submitKeywords={keywords} submitNome={nomeCandidato} />
                     </Pesquisa>
                     <ContainerResultados>
                         <ResultadoPartic tipo={tipo} id={params.id} nome={nome} ufs={keyword} />

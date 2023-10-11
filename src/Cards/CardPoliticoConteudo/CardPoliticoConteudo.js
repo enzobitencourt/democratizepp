@@ -12,7 +12,7 @@ function CardPoliticoConteudo(props){
                 <ImgPolitico imagem={props.imagem}/>
                 <Infos>
                     <Nome>{props.nome}</Nome>
-                    <Partido><b>Partido: </b>{props.partido}</Partido>
+                    <Partido><b>{props.texto} </b>{props.partido}</Partido>
                     <Status cor={props.cor}>{props.status}</Status>
                 </Infos>
             </Conteudo>

@@ -33,7 +33,6 @@ export const Titulo = styled.p`
     margin: 0;
     font-size: 19px;
     font-style: normal;
-    text-align: justify;
     font-weight: 500;
     width: 95%;
     line-height: 24px;

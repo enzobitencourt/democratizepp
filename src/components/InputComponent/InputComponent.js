@@ -1,4 +1,4 @@
-import { ContainerInput, InputNome, DivPesquisa, FilterButton, Img, SearchButton, Img1 } from "./styled"
+import { ContainerInput, InputNome, DivPesquisa, FilterButton, Img, SearchButton, Img1, InputNome1 } from "./styled"
 import Filter from "../../Assets/IconFilter.svg"
 import Search from "../../Assets/IconSearch.svg"
 import {
@@ -10,6 +10,7 @@ import { useState } from 'react'; // Importe o useRef do React
 
 function InputComponent(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const tipo = props.tipo
 
     const [nome, setNome] = useState('')
     const [keywords, setKeywords] = useState([])
@@ -29,23 +30,39 @@ function InputComponent(props) {
 
     return (
         <>
-            <ContainerInput>
-                <InputNome
-                    placeholder="Nome"
-                    onChange={(e) => setNome(e.target.value)}
-                    value={nome}/>
-                <DivPesquisa>
-                    <FilterButton onClick={onOpen}>
-                        <Img src={Filter} />
-                    </FilterButton>
-                    <Modal isOpen={isOpen} onClose={onClose}>
-                        <FilterDepsSens onSubmitKeywords={handleKeywordsSubmit} />
-                    </Modal>
+            {tipo === "Comissões" ?
+                <ContainerInput>
+                    <InputNome1
+                        placeholder="Nome"
+                        onChange={(e) => setNome(e.target.value)}
+                        value={nome} />
+
                     <SearchButton onClick={handleSearchClick}> {/* Adicione o evento de clique */}
                         <Img1 src={Search} />
                     </SearchButton>
-                </DivPesquisa>
-            </ContainerInput>
+
+                </ContainerInput>
+
+                :
+
+                <ContainerInput>
+                    <InputNome
+                        placeholder="Nome"
+                        onChange={(e) => setNome(e.target.value)}
+                        value={nome} />
+                    <DivPesquisa>
+                        <FilterButton onClick={onOpen}>
+                            <Img src={Filter} />
+                        </FilterButton>
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <FilterDepsSens onSubmitKeywords={handleKeywordsSubmit} />
+                        </Modal>
+                        <SearchButton onClick={handleSearchClick}> {/* Adicione o evento de clique */}
+                            <Img1 src={Search} />
+                        </SearchButton>
+                    </DivPesquisa>
+                </ContainerInput>
+            }
         </>
     )
 }

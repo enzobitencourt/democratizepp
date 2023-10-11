@@ -17,6 +17,15 @@ export const InputNome = styled.input`
     padding-left: 3vw;
     outline: none;
 `
+export const InputNome1 = styled.input`
+    width: 73vw;
+    height: 5vh;
+    border-radius: 28.6px;
+    background: white;
+    color: black;
+    padding-left: 3vw;
+    outline: none;
+`
 
 export const DivPesquisa = styled.div`
     width: 28vw;
@@ -43,6 +52,7 @@ export const SearchButton = styled.button`
     height: 5vh;
     border-radius: 28.6px;
     border: 1px solid black;
+    background-color: #1B676B;
     display: flex;
     align-items: center;
     justify-content: center;
