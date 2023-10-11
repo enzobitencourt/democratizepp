@@ -1,14 +1,18 @@
 import { Botao, Conteudo, Gray, ImgPolitico, Infos, Nome, Partido, Status } from "./styled"
 
 function CardPoliticoConteudo(props){
+    const handleClick = () => {
+        window.open(props.url, '_blank');
+      };
+
     return(
         <>
-        <Botao>
+        <Botao onClick={handleClick}>
             <Conteudo>
                 <ImgPolitico imagem={props.imagem}/>
                 <Infos>
                     <Nome>{props.nome}</Nome>
-                    <Partido><b>Partido: </b>PDT-RS</Partido>
+                    <Partido><b>Partido: </b>{props.partido}</Partido>
                     <Status cor={props.cor}>{props.status}</Status>
                 </Infos>
             </Conteudo>

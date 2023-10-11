@@ -15,13 +15,13 @@ export const Conteudo = styled.div`
     display: flex;
     flex-direction: row;
     width: auto;
-    height: 12vh;
+    height: 15vh;
     gap: 4vw;
 `
 
 export const ImgPolitico = styled.div`
     border-radius: 18.4px 0px 0px 18.4px;
-    height: 12vh;
+    height: 15vh;
     width: 25vw;
     border: 1px solid #000;
     background: url(${(props) => props.imagem});
@@ -40,7 +40,7 @@ export const Infos = styled.div`
 export const Gray = styled.div`
     border-radius: 0px 18.4px 18.4px 0px;
     background: #5B5858;
-    height: 12vh;
+    height: 15vh;
     width: 7vw;
 `
 

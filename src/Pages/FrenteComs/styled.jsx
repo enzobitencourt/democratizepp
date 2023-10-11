@@ -62,9 +62,17 @@ export const Pesquisa = styled.div`
     flex-direction: column;
     gap: 2vh;
     margin-top:2vh;
-    margin-bottom: 13vh;
 `
 
 export const Linkar = styled.a`
     text-decoration: underline;
+`
+
+export const ContainerResultados = styled.div`
+    width: 93vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    margin-bottom: 13vh;
 `

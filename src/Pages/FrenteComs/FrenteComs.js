@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import CardPoliticoConteudo from "../../Cards/CardPoliticoConteudo/CardPoliticoConteudo";
 import HeadersConteud from "../../components/HeadersConteud/HeadersConteud";
 import InputComponent from "../../components/InputComponent/InputComponent";
 import Menu from "../../components/Menu/Menu";
-import { Container, DivConteudo, Infos, Linkar, Participantes, Pesquisa, TextInfos } from "./styled";
-import dep from "../../Assets/foto_dep_fav.jpeg";
+import { Container, ContainerResultados, DivConteudo, Infos, Linkar, Participantes, Pesquisa, TextInfos } from "./styled";
 import { useParams } from "react-router-dom";
 import { useTipo } from "../../Contexts/TipoContext/TipoContext";
+import ResultadoPartic from './ResultadoPartic/ResultadoPartic';
 
 function FrenteComs() {
     const [keyword, setKeyword] = useState([]);
@@ -103,14 +102,10 @@ function FrenteComs() {
 
     const keywords = (checkboxes) => {
         setKeyword(checkboxes);
-        console.log('Keywords:', checkboxes);
-        console.log(keyword);
     };
 
     const nomeCandidato = (nomes) => {
         setNome(nomes);
-        console.log('Nome do candidato:', nomes);
-        console.log(nome);
     };
 
 
@@ -161,10 +156,19 @@ function FrenteComs() {
                         </Infos>
                     </DivConteudo>
                     <Pesquisa>
-                        <Participantes>Quem participa dessa frente?</Participantes>
+                        <Participantes>
+                            {tipo === "Frentes" ? 
+                            "Quem participa dessa frente?" 
+                            : tipo === "Comissões" ?
+                            "Quem participa dessa comissão?"
+                            : "Quem participa desse evento?"
+                            }
+                        </Participantes>
                         <InputComponent submitKeywords={keywords} submitNome={nomeCandidato} />
-                        <CardPoliticoConteudo nome='Afonso Motta' cor='black' imagem={dep} status='Membro' />
                     </Pesquisa>
+                    <ContainerResultados>
+                        <ResultadoPartic tipo={tipo} id={params.id} nome={nome} ufs={keyword} />
+                    </ContainerResultados>
                     <Menu barra='1' />
                 </Container>
             ) :
