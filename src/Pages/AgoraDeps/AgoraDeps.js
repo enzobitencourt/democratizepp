@@ -177,7 +177,7 @@ function AgoraDeps() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputNome placeholder="Nome" value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
+                        <InputNome placeholder={descubraSelect === "Proposições" ? "Nome (ex: PL 512/2023)": "Nome"} value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                         <DivPesquisa>
                             <SearchButton onClick={handleSearchClick}>
                                 <Img1 src={Search} />

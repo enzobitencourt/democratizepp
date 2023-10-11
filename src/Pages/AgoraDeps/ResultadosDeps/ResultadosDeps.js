@@ -19,10 +19,6 @@ function ResultadosDeps(props) {
     const { setResultadosDeps } = useResultadosDeps()
     const { resultadosDeps } = useResultadosDeps()
 
-    function construirNome(projeto) {
-        return `${projeto.siglaTipo} ${projeto.numero}/${projeto.ano}`;
-    }
-
     const formatData = (dataN) => {
         const data = new Date(dataN);
         const dia = data.getDate().toString().padStart(2, '0');
@@ -49,7 +45,24 @@ function ResultadosDeps(props) {
             }
 
             if (partido) {
-                url += `siglaPartidoAutor=${partido}`;
+                url += `&siglaPartidoAutor=${partido}`;
+            }
+
+            if (nome) {
+                const partes = nome.split(" ");
+                const segundaparte = partes[1].split("/")
+                
+                console.log(partes[0], segundaparte[0], segundaparte[1])
+
+                if (partes[0]) {
+                    url += `&siglaTipo=${partes[0]}`
+                }
+                if (segundaparte[0]) {
+                    url += `&numero=${segundaparte[0]}`
+                }
+                if (segundaparte[1]) {
+                    url += `&ano=${segundaparte[1]}`
+                }
             }
 
             url += `&ordem=ASC&ordenarPor=id`;
@@ -58,14 +71,6 @@ function ResultadosDeps(props) {
                 .get(url)
                 .then((response) => {
                     let projetos = response.data.dados;
-
-                    if (nome) {
-                        const nomeLowerCase = nome.toLowerCase();
-                        projetos = projetos.filter((projeto) => {
-                            const nomeProjeto = construirNome(projeto);
-                            return nomeProjeto.toLowerCase().includes(nomeLowerCase);
-                        });
-                    }
 
                     if (ordem === "ordem alfabética") {
                         projetos.sort((a, b) => a.siglaTipo.localeCompare(b.siglaTipo));
@@ -195,7 +200,7 @@ function ResultadosDeps(props) {
             }
             titulo={
                 tipo === "Proposições"
-                    ? `${resultado.siglaTipo} ${resultado.numero}/${resultado.ano}`
+                    ? `${resultado.siglaTipo} - ${resultado.numero}/${resultado.ano}`
                     : tipo === "Eventos" && resultado.orgaos && resultado.orgaos[0]
                         ? resultado.orgaos[0].nomePublicacao
                         : resultado.titulo
