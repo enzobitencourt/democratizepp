@@ -12,11 +12,13 @@ import FilterDepsSens from "../../components/FilterDeps&Sens/FilterDeps&Sens";
 import axios from "axios";
 import FiltroEleitos from "./FiltroEleitos/FiltroEleitos";
 import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext";
+import { useResultadosSens } from "../../Contexts/ResultadosSens/ResultadosSensContext";
 
 function PrincipalDeps() {
     const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {setResultadosDeps} = useResultadosDeps()
+    const {setResultadosSens} = useResultadosSens()
 
     const goToDeps = () => {
         navigate("/agoranacamara");
@@ -25,6 +27,7 @@ function PrincipalDeps() {
 
     const goToSens = () => {
         navigate("/agoranosenado");
+        setResultadosSens()
     };
 
     const [partidos, setPartidos] = useState([])
