@@ -1,13 +1,14 @@
-import { VotacaoDiv, Votacao, TiposdeVotDiv, TiposdeVot, Quant } from "./styled"
+import { VotacaoDiv, Votacao, TiposdeVotDiv, TiposdeVot, ImgCarregando } from "./styled"
+import carregando from '../../Assets/carregandofundo.gif'
 
-function VotacaoDivs(props) {
+function VotacaoDivCarregando(props) {
     return (
         <>
             <VotacaoDiv>
                 <Votacao>Última Votação</Votacao>
                 <TiposdeVotDiv>
                     <TiposdeVot>
-                        <Quant><b>{props.data}</b> - {props.descricao}</Quant>
+                        <ImgCarregando src={carregando} />
                     </TiposdeVot>
                 </TiposdeVotDiv>
             </VotacaoDiv>
@@ -15,4 +16,4 @@ function VotacaoDivs(props) {
     )
 }
 
-export default VotacaoDivs
+export default VotacaoDivCarregando

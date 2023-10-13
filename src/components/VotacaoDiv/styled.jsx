@@ -20,6 +20,9 @@ export const Votacao = styled.div`
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
+    height: 4.5vh;
+    display: flex;
+    align-items:center;
     line-height: normal;
 `
 
@@ -30,33 +33,29 @@ export const TiposdeVotDiv = styled.div`
 `
 
 export const TiposdeVot = styled.div`
-    width: 29vw;
-    height: 23vw;
+    width: 100%;
+    height: auto;
+    padding: 2vh 3vh;
     border-radius: 28.4px;
     border: 1px solid #000;
     display: flex;
+    align-items: center;
     flex-direction: column;
     background: none;
     justify-content: center;
-    gap: 1vw;
+    gap: 2vw;
 `
 
 export const Quant = styled.p`
     color: #000;
     text-align: center;
     margin: 0;
-    font-size: 35px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 35px;
 `
 
-export const StatusdeVot = styled.p`
-    color: #000;
-    text-align: center;
-    margin: 0;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 18px;
+export const ImgCarregando = styled.img`
+    width: 12vw;
+    height: 12vw;
 `

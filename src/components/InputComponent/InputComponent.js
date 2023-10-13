@@ -11,6 +11,8 @@ import { useState } from 'react'; // Importe o useRef do React
 function InputComponent(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const tipo = props.tipo
+    const voto = props.voto
+    const partido = props.partido
 
     const [nome, setNome] = useState('')
     const [keywords, setKeywords] = useState([])
@@ -22,7 +24,7 @@ function InputComponent(props) {
     };
 
     const handleSearchClick = () => {
-        props.submitKeywords(keywords)
+        props.submitKeywords(keywords, voto, partido)
         props.submitNome(nome)
         setKeywords([])
         setNome('')
@@ -37,7 +39,7 @@ function InputComponent(props) {
                         onChange={(e) => setNome(e.target.value)}
                         value={nome} />
 
-                    <SearchButton onClick={handleSearchClick}> {/* Adicione o evento de clique */}
+                    <SearchButton onClick={handleSearchClick}> 
                         <Img1 src={Search} />
                     </SearchButton>
 
@@ -57,7 +59,7 @@ function InputComponent(props) {
                         <Modal isOpen={isOpen} onClose={onClose}>
                             <FilterDepsSens onSubmitKeywords={handleKeywordsSubmit} />
                         </Modal>
-                        <SearchButton onClick={handleSearchClick}> {/* Adicione o evento de clique */}
+                        <SearchButton onClick={handleSearchClick}> 
                             <Img1 src={Search} />
                         </SearchButton>
                     </DivPesquisa>
