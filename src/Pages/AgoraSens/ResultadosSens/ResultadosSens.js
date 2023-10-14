@@ -16,11 +16,12 @@ function ResultadosSens(props) {
     const setLoading = props.setLoading;
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
     const [resultados, setResultados] = useState([]);
-    const {setResultadosSens} = useResultadosSens()
+    const { resultadosSens } = useResultadosSens()
+    const { setResultadosSens } = useResultadosSens()
 
     useEffect(() => {
         if (tipo === "Projetos/Matérias") {
-            setLoading(true); 
+            setLoading(true);
             setResultados([])
             onClose();
             axios
@@ -94,7 +95,7 @@ function ResultadosSens(props) {
                     setLoading(false);
                 });
         } else if (tipo === "Comissões") {
-            setLoading(true); 
+            setLoading(true);
             setResultados([])
             onClose();
             axios
@@ -131,11 +132,11 @@ function ResultadosSens(props) {
                                 fullYear = year;
                             }
 
-                            const data = new Date(fullYear, month - 1, day); 
+                            const data = new Date(fullYear, month - 1, day);
 
                             const dia = data.getDate();
                             const mes = data.getMonth() + 1;
-                            const ano = data.getFullYear(); 
+                            const ano = data.getFullYear();
 
                             colegios.data = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${ano.toString()}`;
                         }
@@ -207,16 +208,19 @@ function ResultadosSens(props) {
             key={index}
             ir='votacoes'
             tipo={tipo}
-            pagina={tipo === 'Comissões' ? `comissao` : `materia`} 
+            pagina={tipo === 'Comissões' ? `comissao` : `materia`}
             id={resultado.id}
             titulo={resultado.nome}
-            partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`} 
+            partido={tipo === 'Comissões' ? `Data de Início: ${resultado.data}` : `Data da Última Atualização: ${resultado.data}`}
         />
     ));
 
     useEffect(() => {
-        setResultadosSens(cards);
-    }, [cards, setResultadosSens]);
+        if (cards.length !== resultadosSens.length) {
+            setResultadosSens(cards);
+        }
+    }, [cards, setResultadosSens, resultadosSens]);
+
 
     return (
         <>

@@ -19,7 +19,7 @@ import { useState, useEffect } from "react"
 
 function Rotas() {
     const [news, setNews] = useState([]);
-    const [loading, setLoading] = useState(true); // Estado de carregamento
+    const [loading, setLoading] = useState(true); 
 
     const Database = () => {
         axios
@@ -28,7 +28,7 @@ function Rotas() {
             )
             .then((response) => {
                 setNews(response.data.articles);
-                setLoading(false); // Define o carregamento como concluído quando os dados são obtidos
+                setLoading(false); 
             })
             .catch((error) => {
                 console.log("error");
@@ -53,11 +53,8 @@ function Rotas() {
                 <Route path="cadastro" element={<Cadastro />} />
                 <Route path="agoranacamara" element={<AgoraDeps />} />
                 <Route path="agoranosenado" element={<AgoraSens />} />
-                <Route path="frente/:id" element={<FrenteComs />} />
-                <Route path="comissao/:id" element={<FrenteComs />} />
-                <Route path="evento/:id" element={<FrenteComs />} />
-                <Route path="proposicao/:id" element={<ProjetoeVotac />} />
-                <Route path="materia/:id" element={<ProjetoeVotac />} />
+                <Route path="descubra/:tipo/:id" element={<FrenteComs />} />
+                <Route path=":tipo/:id" element={<ProjetoeVotac />} />
                 <Route path="perfil" element={<Perfil />} />
                 <Route path="entrada" element={<Entrada />} />
                 <Route path="excluirconta" element={<ExcluirConta />} />

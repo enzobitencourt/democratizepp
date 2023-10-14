@@ -80,9 +80,9 @@ export const Resultados = styled.div`
 
 export const Container1 = styled.div`
     width: 100%;
-    height: 20vh;
+    height: 25vh;
+    margin-bottom:10vh;
     display: flex;
-    margin-bottom: 10vh;
     align-items: center;
     justify-content: center;
 `

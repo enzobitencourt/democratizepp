@@ -5,16 +5,26 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import Menu from "../../components/Menu/Menu";
 import { Container, ContainerResultados, DivConteudo, Infos, Linkar, Participantes, Pesquisa, TextInfos } from "./styled";
 import { useParams } from "react-router-dom";
-import { useTipo } from "../../Contexts/TipoContext/TipoContext";
 import ResultadoPartic from './ResultadoPartic/ResultadoPartic';
 
 function FrenteComs() {
     const [keyword, setKeyword] = useState([]);
     const [nome, setNome] = useState('');
     const params = useParams();
-    const { tipo } = useTipo();
+    const tipoCaminho = params.tipo
+    const [tipo, setTipo] = useState()
     const [resultado, setResultado] = useState();
     const [espaco, setEspaco] = useState()
+
+    useEffect(()=>{
+        if(tipoCaminho === "evento"){
+            setTipo("Eventos")
+        } else if(tipoCaminho === "frente"){
+            setTipo("Frentes")
+        } else{
+            setTipo("Comissões")
+        }
+    }, [setTipo, tipoCaminho])
 
     function formatarData(data) {
         const dataObj = new Date(data);

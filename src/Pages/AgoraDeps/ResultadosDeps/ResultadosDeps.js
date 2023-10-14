@@ -218,12 +218,10 @@ function ResultadosDeps(props) {
     ));
 
     useEffect(() => {
-        if (resultadosRenderizados !== resultadosDeps) {
-            setResultadosDeps(resultadosRenderizados);
+        if (JSON.stringify(resultados) !== JSON.stringify(resultadosDeps)) {
+            setResultadosDeps(resultados);
         }
-    }, [resultadosRenderizados, resultadosDeps, setResultadosDeps]);
-
-
+    }, [resultados, resultadosDeps, setResultadosDeps]);
 
     return (
         <>

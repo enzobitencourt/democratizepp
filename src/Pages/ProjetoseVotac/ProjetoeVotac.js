@@ -4,16 +4,24 @@ import { Container, DivConteudo, Infos, TextInfos } from "./styled"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
-import { useTipo } from "../../Contexts/TipoContext/TipoContext"
 import ResultadoVotac from "./ResultadoVotac/ResultadoVotac"
 
 function ProjetoeVotac() {
     const params = useParams()
-    const { tipo } = useTipo();
+    const tipoCaminho = params.tipo
+    const [tipo, setTipo] = useState()
     const [resultado, setResultado] = useState()
     const [espaco, setEspaco] = useState()
     const [autores, setAutores] = useState([]);
     const [atualizacao, setAtualizacao] = useState()
+
+    useEffect(()=>{
+        if(tipoCaminho === "proposicao"){
+            setTipo("Proposições")
+        } else {
+            setTipo("Projetos/Matérias")
+        } 
+    }, [setTipo, tipoCaminho])
 
     function converterData(dataString) {
         const data = new Date(dataString);

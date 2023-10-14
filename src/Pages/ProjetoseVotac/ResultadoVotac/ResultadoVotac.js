@@ -25,11 +25,12 @@ function ResultadoVotac(props) {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState()
     const [idVotacao, setIdVotacao] = useState()
+    const [votos, setVotos] = useState()
 
     function formatarData(dataString) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dataString).toLocaleDateString('pt-BR', options);
-      }
+    }
 
     const Database = (url, tipo) => {
         axios
@@ -39,7 +40,7 @@ function ResultadoVotac(props) {
             .then((response) => {
                 if (tipo === "Proposições") {
                     setPartidos(response.data.dados);
-                } else if (tipo === "Projeto/Matéria") {
+                } else if (tipo === "Projetos/Matérias") {
                     setPartidos(response.data.ListaPartidos.Partidos.Partido);
                 }
 
@@ -53,29 +54,48 @@ function ResultadoVotac(props) {
         if (tipo === "Proposições") {
             const url = 'https://dadosabertos.camara.leg.br/api/v2/partidos?ordem=ASC&ordenarPor=sigla'
             Database(url, tipo)
-        } else if (tipo === "Projeto/Matéria") {
+        } else if (tipo === "Projetos/Matérias") {
             const url = 'https://legis.senado.leg.br/dadosabertos/senador/partidos'
             Database(url, tipo)
         }
     }, [tipo])
 
     useEffect(() => {
-        axios
-            .get(`https://dadosabertos.camara.leg.br/api/v2/proposicoes/${id}/votacoes?ordem=DESC&ordenarPor=dataHoraRegistro`)
-            .then((response) => {
-                setResultado(true)
-                setIdVotacao(response.data.dados[0].id)
-                setData(`${formatarData(response.data.dados[0].data)}`)
-                setDescricao(response.data.dados[0].descricao)
-                
-                setLoading(false)
-            })
-            .catch((error) => {
-                setResultado(false)
-                setDescricao("Nenhuma votação encontrada")
-                setLoading(false)
-            })
-    })
+        if (tipo === "Proposições") {
+            axios
+                .get(`https://dadosabertos.camara.leg.br/api/v2/proposicoes/${id}/votacoes?ordem=DESC&ordenarPor=dataHoraRegistro`)
+                .then((response) => {
+                    setResultado(true)
+                    setIdVotacao(response.data.dados[0].id)
+                    setData(`${formatarData(response.data.dados[0].data)}`)
+                    setDescricao(response.data.dados[0].descricao)
+                    
+                    setLoading(false)
+                })
+                .catch((error) => {
+                    setResultado(false)
+                    setDescricao("Nenhuma votação encontrada")
+                    setLoading(false)
+                })
+        } else if(tipo === "Projetos/Matérias"){
+            axios
+                .get(`https://legis.senado.leg.br/dadosabertos/materia/votacoes/${id}`)
+                .then((response) => {
+                    setResultado(true)
+                    const dados = response.data.VotacaoMateria.Materia.Votacoes.Votacao[0]
+                    setDescricao(`${dados.DescricaoResultado}: ${dados.DescricaoVotacao}`)
+                    setData(`${formatarData(dados.SessaoPlenaria.DataSessao)}`)
+                    setVotos(dados.Votos.VotoParlamentar)
+
+                    setLoading(false)
+                })
+                .catch((error) => {
+                    setResultado(false)
+                    setDescricao("Nenhuma votação encontrada")
+                    setLoading(false)
+                })
+        }
+    }, [id, tipo])
 
     const keywords = (checkboxes, voto, partido) => {
         setKeyword(checkboxes)
@@ -83,6 +103,8 @@ function ResultadoVotac(props) {
         setPartidoSelected(partido)
         setVotoValue('')
         setPartidoValue('')
+        setVoto()
+        setPartido()
     }
 
     const nomeCandidato = (nomes) => {
@@ -92,7 +114,7 @@ function ResultadoVotac(props) {
     return (
         <>
             {loading === true ?
-                <VotacaoDivCarregando/>
+                <VotacaoDivCarregando />
                 : <VotacaoDivs data={data} descricao={descricao} />}
             <Pesquisa>
                 <Participantes>Descubra o voto do seu representante</Participantes>
@@ -130,10 +152,10 @@ function ResultadoVotac(props) {
                 <InputComponent voto={voto} partido={partido} submitKeywords={keywords} submitNome={nomeCandidato} />
             </Pesquisa>
             {loading === true ?
-                <Resultados/>
+                <Resultados />
                 : resultado ?
                     <Resultados>
-                        <Votos id={idVotacao} voto={votoSelected} partido={partidoSelected} ufs={keyword} nome={nome}/>
+                        <Votos votos={votos} tipo={tipo} id={idVotacao} voto={votoSelected} partido={partidoSelected} ufs={keyword} nome={nome} />
                     </Resultados>
                     :
                     <Container1>

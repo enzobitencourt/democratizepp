@@ -22,12 +22,12 @@ function PrincipalDeps() {
 
     const goToDeps = () => {
         navigate("/agoranacamara");
-        setResultadosDeps()
+        setResultadosDeps([])
     };
 
     const goToSens = () => {
         navigate("/agoranosenado");
-        setResultadosSens()
+        setResultadosSens([])
     };
 
     const [partidos, setPartidos] = useState([])

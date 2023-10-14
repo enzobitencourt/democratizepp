@@ -46,7 +46,7 @@ export const Gray = styled.div`
 
 export const Nome = styled.p`
     color: #000;
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 26px;

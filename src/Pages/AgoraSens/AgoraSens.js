@@ -118,7 +118,7 @@ function AgoraSens() {
                         <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} nome={nomeSelected} />
 
                     ) : (
-                        resultadosSens ? resultadosSens : <Carregando loading={false} />
+                        resultadosSens.length ? resultadosSens : <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />
