@@ -18,12 +18,13 @@ function ResultadosDeps(props) {
     const { isOpen: isVisible, onClose, onOpen } = useDisclosure({ defaultIsOpen: false });
     const { setResultadosDeps } = useResultadosDeps()
     const { resultadosDeps } = useResultadosDeps()
+    const {setTipos} = useResultadosDeps()
 
     const formatData = (dataN) => {
         const data = new Date(dataN);
         const dia = data.getDate().toString().padStart(2, '0');
         const mes = (data.getMonth() + 1).toString().padStart(2, '0');
-        const ano = data.getFullYear().toString().slice(-2); // Pegar os últimos 2 dígitos do ano
+        const ano = data.getFullYear().toString().slice(-2); 
         return `${dia}/${mes}/${ano}`;
     }
 
@@ -191,6 +192,9 @@ function ResultadosDeps(props) {
             ir='votacoes'
             id={resultado.id}
             tipo={tipo}
+            data={tipo === "Proposições"
+            ? `${resultado.ano}` : tipo === "Eventos" ?
+            `${formatData(resultado.dataHoraInicio)}` : `${resultado.idLegislatura}`}
             pagina={
                 tipo === "Proposições"
                     ? `proposicao`
@@ -220,9 +224,11 @@ function ResultadosDeps(props) {
     
     useEffect(() => {
         if (resultadosRenderizados.length !== resultadosDeps.length) {
-            setResultadosDeps(resultadosRenderizados);
+            setResultadosDeps(resultadosRenderizados)
+            setTipos(tipo)
+            console.log(resultadosRenderizados)
         }
-    }, [resultadosDeps, setResultadosDeps, resultadosRenderizados]);
+    }, [resultadosDeps, setResultadosDeps, resultadosRenderizados, setTipos, tipo]);
     
 
     return (

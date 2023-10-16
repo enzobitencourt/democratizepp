@@ -18,6 +18,7 @@ function ResultadosSens(props) {
     const [resultados, setResultados] = useState([]);
     const { resultadosSens } = useResultadosSens()
     const { setResultadosSens } = useResultadosSens()
+    const {setTipos} = useResultadosSens()
 
     useEffect(() => {
         if (tipo === "Projetos/Matérias") {
@@ -218,8 +219,9 @@ function ResultadosSens(props) {
     useEffect(() => {
         if (cards.length !== resultadosSens.length) {
             setResultadosSens(cards);
+            setTipos(tipo)
         }
-    }, [cards, setResultadosSens, resultadosSens]);
+    }, [cards, setResultadosSens, resultadosSens, setTipos, tipo]);
 
 
     return (

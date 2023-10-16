@@ -4,10 +4,16 @@ const ResultadosSensContext = createContext();
 
 export const ResultadosSensProvider = ({ children }) => {
   const [resultadosSens, setResultadosSens] = useState([]);
+  const [tipos, setTipos] = useState([])
+  const [pesquisado, setPesquisado] = useState()
 
   const value = {
     resultadosSens,
     setResultadosSens,
+    tipos, 
+    setTipos,
+    pesquisado,
+    setPesquisado
   };
 
   return (

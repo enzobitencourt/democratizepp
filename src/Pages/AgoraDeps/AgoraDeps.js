@@ -9,6 +9,7 @@ import axios from "axios"
 import Carregando from "../../components/Carregando/Carregando"
 import ResultadosDeps from "./ResultadosDeps/ResultadosDeps"
 import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext"
+import { Titulo } from "./ResultadosDeps/styled"
 
 function AgoraDeps() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -22,11 +23,13 @@ function AgoraDeps() {
     const [partidoSelected, setPartidoSelected] = useState('')
     const [autorSelected, setAutorSelected] = useState('')
     const [nomeSelected, setNomeSelected] = useState('')
-    const [pesquisa, setPesquisa] = useState(false)
+    const [pesquisa, setPesquisa] = useState()
     const [disableTemaSelect, setDisableTemaSelect] = useState(false);
     const [disablePartidoSelect, setDisablePartidoSelect] = useState(false);
     const [disableAuthorInput, setDisableAuthorInput] = useState(false);
-    const {resultadosDeps} = useResultadosDeps()
+    const { resultadosDeps } = useResultadosDeps()
+    const { tipos } = useResultadosDeps()
+    const [ordena, setOrdena] = useState(true)
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -125,6 +128,11 @@ function AgoraDeps() {
         DatabaseTemas();
     }, [descubraSelect]);
 
+    useEffect(()=>{
+        if(pesquisa === false){
+            setOrdena(false)
+        }
+    }, [setOrdena, pesquisa])
 
     return (
         <>
@@ -177,7 +185,7 @@ function AgoraDeps() {
                     </ContainerInput>
 
                     <ContainerInput>
-                        <InputNome placeholder={descubraSelect === "Proposições" ? "Nome (ex: PL 512/2023)": "Nome"} value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
+                        <InputNome placeholder={descubraSelect === "Proposições" ? "Nome (ex: PL 512/2023)" : "Nome"} value={nameInput} onChange={(e) => setNameInput(e.target.value)} />
                         <DivPesquisa>
                             <SearchButton onClick={handleSearchClick}>
                                 <Img1 src={Search} />
@@ -186,11 +194,22 @@ function AgoraDeps() {
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar ordenar={setOrdem} ordem={ordem} />
+                    <Ordenar ordena={ordena} ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
                         <ResultadosDeps loading={true} ordenar={ordem} tipo={selectedTipo} tema={temaSelected} partido={partidoSelected} autor={autorSelected} nome={nomeSelected} />
                     ) : (
-                        resultadosDeps.length ? resultadosDeps : <Carregando loading={false} />
+                        resultadosDeps.length ?
+                            <>
+                                <Titulo>
+                                    {resultadosDeps.length}
+                                    {tipos === 'Proposições' ? ' Atualizações Encontradas'
+                                        : tipos === "Eventos"
+                                            ? ' Evento(s) Recente(s)'
+                                            : " Frentes Atuais"}
+                                </Titulo>
+                                {resultadosDeps}
+                            </>
+                            : <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />

@@ -9,6 +9,7 @@ import axios from "axios"
 import ResultadosSens from "./ResultadosSens/ResultadosSens"
 import Carregando from "../../components/Carregando/Carregando"
 import { useResultadosSens } from "../../Contexts/ResultadosSens/ResultadosSensContext"
+import { Titulo } from "./ResultadosSens/styled"
 
 function AgoraSens() {
     const [selectedTema, setSelectedTema] = useState("");
@@ -19,9 +20,12 @@ function AgoraSens() {
     const [selectedTipo, setSelectedTipo] = useState('')
     const [temaSelected, setTemaSelected] = useState('')
     const [nomeSelected, setNomeSelected] = useState('')
-    const [pesquisa, setPesquisa] = useState(false)
+    const [pesquisa, setPesquisa] = useState()
     const [loading, setLoading] = useState(false)
-    const {resultadosSens} = useResultadosSens()
+    const { resultadosSens } = useResultadosSens()
+    const {tipos} = useResultadosSens()
+    const [ordena, setOrdena] = useState(true)
+    const {pesquisado} = useResultadosSens()
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -63,9 +67,14 @@ function AgoraSens() {
             }
         };
 
-        Database(); 
+        Database();
     }, [descubraSelect]);
 
+    useEffect(()=>{
+        if(pesquisado === true){
+            setOrdena(false)
+        }
+    }, [setOrdena, pesquisa, pesquisado])
 
     return (
         <>
@@ -113,12 +122,18 @@ function AgoraSens() {
                     </ContainerInput>
                 </ContainerFilter>
                 <ContainerResultados>
-                    <Ordenar ordenar={setOrdem} ordem={ordem} />
+                    <Ordenar ordena={ordena} ordenar={setOrdem} ordem={ordem} />
                     {pesquisa ? (
                         <ResultadosSens setLoading={setLoading} ordenar={ordem} loading={loading} tipo={selectedTipo} tema={temaSelected} nome={nomeSelected} />
 
                     ) : (
-                        resultadosSens.length ? resultadosSens : <Carregando loading={false} />
+                        resultadosSens.length ?
+                            <Titulo>
+                                {resultadosSens.length} {tipos === 'Comissões' ? ' Colegiado(s) em Atividade' : ' Atualizações nos Últimos 30 Dias'}
+                                {resultadosSens}
+                            </Titulo>
+
+                            : <Carregando loading={false} />
                     )}
                 </ContainerResultados>
                 <Menu barra='1' />
