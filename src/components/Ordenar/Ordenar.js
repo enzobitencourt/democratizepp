@@ -13,7 +13,7 @@ function Ordenar(props) {
                 <TituloResults>Resultados</TituloResults>
                 <DivOrdenar>
                     {props.ordena === false ? (
-                        <></>
+                        <OrdenarPor>Ordenado conforme a <b>última pesquisa</b></OrdenarPor>
                     ) : (
                         <>
                             <OrdenarPor>Ordenar por</OrdenarPor>

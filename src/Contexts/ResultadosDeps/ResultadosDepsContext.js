@@ -5,12 +5,16 @@ const ResultadosDepsContext = createContext();
 export const ResultadosDepsProvider = ({ children }) => {
   const [resultadosDeps, setResultadosDeps] = useState([]);
   const [tipos, setTipos] = useState()
+  const [pesquisado1, setPesquisado1] = useState()
+
 
   const value = {
     resultadosDeps,
     setResultadosDeps,
     tipos,
-    setTipos
+    setTipos,
+    pesquisado1,
+    setPesquisado1
   };
 
   return (

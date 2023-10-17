@@ -220,6 +220,7 @@ function ResultadosSens(props) {
         if (cards.length !== resultadosSens.length) {
             setResultadosSens(cards);
             setTipos(tipo)
+            
         }
     }, [cards, setResultadosSens, resultadosSens, setTipos, tipo]);
 

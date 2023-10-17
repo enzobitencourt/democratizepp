@@ -52,8 +52,6 @@ function ResultadosDeps(props) {
             if (nome) {
                 const partes = nome.split(" ");
                 const segundaparte = partes[1].split("/")
-                
-                console.log(partes[0], segundaparte[0], segundaparte[1])
 
                 if (partes[0]) {
                     url += `&siglaTipo=${partes[0]}`
@@ -226,7 +224,6 @@ function ResultadosDeps(props) {
         if (resultadosRenderizados.length !== resultadosDeps.length) {
             setResultadosDeps(resultadosRenderizados)
             setTipos(tipo)
-            console.log(resultadosRenderizados)
         }
     }, [resultadosDeps, setResultadosDeps, resultadosRenderizados, setTipos, tipo]);
     

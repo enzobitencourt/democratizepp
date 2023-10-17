@@ -30,6 +30,8 @@ function AgoraDeps() {
     const { resultadosDeps } = useResultadosDeps()
     const { tipos } = useResultadosDeps()
     const [ordena, setOrdena] = useState(true)
+    const {pesquisado1} = useResultadosDeps()
+    const {setPesquisado1} = useResultadosDeps()
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -38,6 +40,7 @@ function AgoraDeps() {
         setAutorSelected(authorInput)
         setNomeSelected(nameInput)
 
+        setPesquisado1(false)
         setPesquisa(true)
 
         setNameInput('')
@@ -128,11 +131,13 @@ function AgoraDeps() {
         DatabaseTemas();
     }, [descubraSelect]);
 
-    useEffect(()=>{
-        if(pesquisa === false){
+    useEffect(() => {
+        if (pesquisado1 === true) {
             setOrdena(false)
+        } else if(pesquisado1 === false){
+            setOrdena(true)
         }
-    }, [setOrdena, pesquisa])
+    }, [setOrdena, pesquisa, pesquisado1])
 
     return (
         <>

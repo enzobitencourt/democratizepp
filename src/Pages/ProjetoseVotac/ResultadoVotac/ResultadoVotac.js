@@ -69,7 +69,7 @@ function ResultadoVotac(props) {
                     setIdVotacao(response.data.dados[0].id)
                     setData(`${formatarData(response.data.dados[0].data)}`)
                     setDescricao(response.data.dados[0].descricao)
-                    
+
                     setLoading(false)
                 })
                 .catch((error) => {
@@ -77,7 +77,7 @@ function ResultadoVotac(props) {
                     setDescricao("Nenhuma votação encontrada")
                     setLoading(false)
                 })
-        } else if(tipo === "Projetos/Matérias"){
+        } else if (tipo === "Projetos/Matérias") {
             axios
                 .get(`https://legis.senado.leg.br/dadosabertos/materia/votacoes/${id}`)
                 .then((response) => {
@@ -158,11 +158,13 @@ function ResultadoVotac(props) {
                         <Votos votos={votos} tipo={tipo} id={idVotacao} voto={votoSelected} partido={partidoSelected} ufs={keyword} nome={nome} />
                     </Resultados>
                     :
-                    <Container1>
-                        <Conteudo>
-                            <Texto>Nenhuma votação encontrada</Texto>
-                        </Conteudo>
-                    </Container1>
+                    <Resultados>
+                        <Container1>
+                            <Conteudo>
+                                <Texto>Nenhuma votação encontrada</Texto>
+                            </Conteudo>
+                        </Container1>
+                    </Resultados>
             }
         </>
     )

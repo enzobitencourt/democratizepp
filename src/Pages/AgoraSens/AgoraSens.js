@@ -23,9 +23,10 @@ function AgoraSens() {
     const [pesquisa, setPesquisa] = useState()
     const [loading, setLoading] = useState(false)
     const { resultadosSens } = useResultadosSens()
-    const {tipos} = useResultadosSens()
+    const { tipos } = useResultadosSens()
     const [ordena, setOrdena] = useState(true)
-    const {pesquisado} = useResultadosSens()
+    const { pesquisado } = useResultadosSens()
+    const {setPesquisado} = useResultadosSens()
 
     const handleSearchClick = () => {
         setSelectedTipo(descubraSelect)
@@ -33,8 +34,9 @@ function AgoraSens() {
         setNomeSelected(nameInput)
 
         setLoading(true)
+        setPesquisado(false)
         setPesquisa(true)
-
+       
         setNameInput('')
         setDescubraSelect('')
         setSelectedTema('')
@@ -70,11 +72,13 @@ function AgoraSens() {
         Database();
     }, [descubraSelect]);
 
-    useEffect(()=>{
-        if(pesquisado === true){
+    useEffect(() => {
+        if (pesquisado === true) {
             setOrdena(false)
+        } else if(pesquisado === false){
+            setOrdena(true)
         }
-    }, [setOrdena, pesquisa, pesquisado])
+    }, [setOrdena, pesquisado])
 
     return (
         <>
@@ -128,11 +132,12 @@ function AgoraSens() {
 
                     ) : (
                         resultadosSens.length ?
-                            <Titulo>
-                                {resultadosSens.length} {tipos === 'Comissões' ? ' Colegiado(s) em Atividade' : ' Atualizações nos Últimos 30 Dias'}
+                            <>
+                                <Titulo>
+                                    {resultadosSens.length} {tipos === 'Comissões' ? ' Colegiado(s) em Atividade' : ' Atualizações nos Últimos 30 Dias'}
+                                </Titulo>
                                 {resultadosSens}
-                            </Titulo>
-
+                            </>
                             : <Carregando loading={false} />
                     )}
                 </ContainerResultados>

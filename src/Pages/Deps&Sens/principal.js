@@ -19,15 +19,19 @@ function PrincipalDeps() {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const {setResultadosDeps} = useResultadosDeps()
     const {setResultadosSens} = useResultadosSens()
+    const {setPesquisado} = useResultadosSens()
+    const {setPesquisado1} = useResultadosDeps()
 
     const goToDeps = () => {
         navigate("/agoranacamara");
         setResultadosDeps([])
+        setPesquisado1(false)
     };
 
     const goToSens = () => {
         navigate("/agoranosenado");
         setResultadosSens([])
+        setPesquisado(false)
     };
 
     const [partidos, setPartidos] = useState([])

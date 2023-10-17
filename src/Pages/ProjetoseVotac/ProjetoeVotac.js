@@ -5,6 +5,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom"
 import ResultadoVotac from "./ResultadoVotac/ResultadoVotac"
+import { useResultadosSens } from "../../Contexts/ResultadosSens/ResultadosSensContext"
+import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext"
 
 function ProjetoeVotac() {
     const params = useParams()
@@ -14,14 +16,18 @@ function ProjetoeVotac() {
     const [espaco, setEspaco] = useState()
     const [autores, setAutores] = useState([]);
     const [atualizacao, setAtualizacao] = useState()
+    const {setPesquisado} = useResultadosSens()
+    const {setPesquisado1} = useResultadosDeps()
 
     useEffect(()=>{
         if(tipoCaminho === "proposicao"){
             setTipo("Proposições")
+            setPesquisado1(true)
         } else {
             setTipo("Projetos/Matérias")
+            setPesquisado(true)
         } 
-    }, [setTipo, tipoCaminho])
+    }, [setTipo, tipoCaminho, setPesquisado, setPesquisado1])
 
     function converterData(dataString) {
         const data = new Date(dataString);
