@@ -1,8 +1,10 @@
 // Importa as configurações do banco de dados na variável connection
 const connection = require('../config/db');
-
-// Pacote para criptografar a senha de usuario
 const bcrypt = require('bcrypt');
+const Busboy = require('busboy');
+const path = require('path');
+const os = require('os');
+const fs = require('fs');
 
 // Função que retorna todos usuários no banco de dados
 async function listUsers(request, response) {
@@ -38,22 +40,21 @@ async function listUsers(request, response) {
 
 // Função que cria um novo usuário 
 async function storeUser(request, response) {
-    const values = [
-        request.body.firstName,
-        request.body.sobrenome,
-        request.body.telefone,
-        request.body.email,
-        bcrypt.hashSync(request.body.senha, 10)
-    ];
+    const { nome, email, senha, imagem } = request.body;
+
+    // Nomeie a imagem usando a data atual, por exemplo:
+    const imagemFileName = `imagem_${Date.now()}.png`;
+
+    // O caminho para onde você deseja salvar a imagem (por exemplo, na pasta de upload)
+    const imagePath = path.join('/caminho/para/sua/pasta/upload', imagemFileName);
 
     // Use placeholders na consulta SQL
-    const query = "INSERT INTO usuarios (nome, sobrenome, telefone, email, senha) VALUES (?, ?, ?, ?, ?)";
+    const query = "INSERT INTO usuarios (nome, email, senha, imagem) VALUES (?, ?, ?, ?)";
 
-    // Execute a ação no banco de dados e valide os retornos para o cliente que realizou a solicitação
-    connection.query(query, values, (err, results) => {
+    connection.query(query, [nome, email, bcrypt.hashSync(senha, 10), imagePath], (err, results) => {
         try {
             if (err) {
-                if (err.code === 'ER_DUP_ENTRY') { // Verifica o código de erro para violação de chave única
+                if (err.code === 'ER_DUP_ENTRY') {
                     response.status(400).json({
                         success: false,
                         message: "O email já existe. Escolha outro email.",

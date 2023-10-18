@@ -10,11 +10,13 @@ export const Header = styled.div`
     gap: 3vw;
 `
 
-export const FotoLogin = styled.img`
+export const FotoLogin = styled.div`
     width: 12vh;
     height: 100%;
     border-radius: 50%;
+    background: url(${(props) => props.src});
     background-size: cover;
+    background-position: center;
 `
 
 export const NomeContainer = styled.div`

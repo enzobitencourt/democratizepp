@@ -21,8 +21,7 @@ async function findUser(request, response) {
                     id: results[0].id,
                     email: results[0].email,
                     nome: results[0].nome,
-                    sobrenome: results[0].sobrenome,
-                    telefone: results[0].telefone,
+                    imagem: results[0].imagem
                 };
 
                 const id = results[0].id;

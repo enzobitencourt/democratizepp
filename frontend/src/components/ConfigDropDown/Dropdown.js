@@ -35,6 +35,12 @@ function ConfigDrop() {
         navigate('/entrada')
     }
 
+    const handleLogout = () => {
+        localStorage.removeItem('id')
+        localStorage.removeItem('token')
+        goToEntrada()
+    }
+
     return (
         <>
             <Accordion
@@ -105,7 +111,7 @@ function ConfigDrop() {
                                     <Button variant='ghost' border='1px solid black' onClick={onClose}>
                                         Cancelar
                                     </Button>
-                                    <Button backgroundColor='#1B676B' mr={3} color='#EBEBEB' onClick={goToEntrada}>Sair</Button>
+                                    <Button backgroundColor='#1B676B' mr={3} color='#EBEBEB' onClick={handleLogout}>Sair</Button>
                                 </ModalFooter>
                             </ModalContent>
                         </Modal>

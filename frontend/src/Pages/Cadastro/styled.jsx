@@ -63,7 +63,7 @@ export const Main = styled.div`
     height: 90%;
 `
 
-export const Container = styled.div`
+export const Container = styled.form`
     background: rgba(255, 255, 255, 0.83);
     border-radius: 35px;
     border: 2px solid #000;

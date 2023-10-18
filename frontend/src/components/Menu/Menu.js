@@ -15,7 +15,12 @@ function Menu(props) {
     }
 
     const goToConfig = () => {
-        navigate('/config')
+        const token = localStorage.getItem('token')
+        if (!token) {
+            navigate('/login')
+        } else {
+            navigate('/config')
+        }
     }
 
     const goToProjeto = () => {

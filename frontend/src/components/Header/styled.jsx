@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import perfil from "../../Assets/perfil_semconta.png"
 
 export const Container = styled.div`
     width: 93vw;
@@ -7,11 +6,13 @@ export const Container = styled.div`
     margin-bottom: 1vh;
     margin-top: 1vh;
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
 `
 
 export const TituloContainer = styled.div`
-    width: 45vw;
+    width: auto;
+    max-width: 70vw;
     height: 10vh;
     font-family: 'Poppins';
     align-content: center;
@@ -40,7 +41,7 @@ export const Nome = styled.p`
     margin: 0;
 `
 export const PerfilContainer = styled.div`
-    width: 55vw;
+    width: auto;
     height: 10vh;
     display: flex;
     flex-direction: row-reverse;
@@ -52,8 +53,9 @@ export const Perfil = styled.div`
     width: 15vw;
     height: 15vw;
     border-radius: 50%;
-    background: url(${perfil});
+    background: url(${(props) => props.src});
     background-size: cover;
+    background-position: center;
 `
 
 
