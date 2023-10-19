@@ -19,8 +19,10 @@ function Cadastro() {
         nome: "",
         email: "",
         senha: "",
-        confirmSenha: ""
+        confirmSenha: "",
+        imagem: fotoLogin, // Defina a imagem padrão aqui
     });
+
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
@@ -45,9 +47,10 @@ function Cadastro() {
                 nome: formData.nome,
                 email: formData.email,
                 senha: formData.senha,
-                imagem: fotoLogin
+                imagem: formData.imagem, 
             }
 
+            console.log(formDataToSubmit)
             axios.post(`${baseUrl}/user/create`, formDataToSubmit)
                 .then(function (response) {
                     toast({
@@ -55,28 +58,30 @@ function Cadastro() {
                         title: 'Sucesso',
                         description: "Conta criada com sucesso.",
                         status: 'success',
-                        duration: 5000,
+                        duration: 3000,
                         isClosable: true,
                     });
                     goToLogin()
                 })
                 .catch(function (error) {
+                    console.log(error)
                     toast({
                         position: 'bottom-left',
                         title: 'Erro',
-                        description: `${error.response.data.message}`,
+                        description: `${error.response.message}`,
                         status: 'error',
                         duration: 5000,
                         isClosable: true,
                     });
                 });
 
-                setFormData({
-                    nome: "",
-                    email: "",
-                    senha: "",
-                    confirmSenha: ""
-                });
+            setFormData({
+                nome: "",
+                email: "",
+                senha: "",
+                confirmSenha: "",
+                imagem: fotoLogin, 
+            });
         }
     }
 
@@ -87,6 +92,7 @@ function Cadastro() {
             [name]: value
         });
     }
+
 
     return (
         <>

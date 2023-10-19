@@ -27,7 +27,7 @@ function Home(props) {
           setUser(response.data.data)
         })
         .catch(function (error) {
-          alert(error.response.data.msg)
+          console.log(error)
         });
     } 
   })

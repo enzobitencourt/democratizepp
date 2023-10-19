@@ -13,23 +13,40 @@ import {
     IconButton,
 } from '@chakra-ui/react'
 
-import { CheckIcon, CloseIcon, EditIcon, ViewIcon, ViewOffIcon} from "@chakra-ui/icons"
+import { CheckIcon, CloseIcon, EditIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import FotoLogin from "../../components/FotoLogin/FotoLogin"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
+import { baseUrl } from "../../services/api"
 
 function Perfil() {
     const [showPassword, setShowPassword] = useState(false);
-    const [password, setPassword] = useState('teste'); // Use um estado para armazenar a senha
     const [icon, setIcon] = useState(<ViewIcon />);
+    const id = localStorage.getItem("id")
+    const [user, setUser] = useState()
+    const formData = {
+        id: id
+    }
+
+    useEffect(() => {
+        if (id) {
+            axios.post(`${baseUrl}/find/findUser`, formData)
+                .then(function (response) {
+                    setUser(response.data.data)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                });
+        }
+    })
 
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
-        // Alterne o ícone do botão com base no estado showPassword
         setIcon(showPassword ? <ViewIcon /> : <ViewOffIcon />);
-      };
+    };
 
     const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
+        console.log("senha editada")
     };
 
     function EditableControls() {
@@ -54,97 +71,97 @@ function Perfil() {
 
     return (
         <>
-            <Container>
-                <Header>
-                    <VoltarBlack />
-                    <InfPerfil>
-                        <FotoLogin src={Foto} />
-                        <div>
-                            <Nome>Gisele Allencar</Nome>
-                            <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
-                        </div>
-                    </InfPerfil>
-                    <DivComplemento />
-                </Header>
-                <EditDiv>
-                    <EditTexto>Editar perfil</EditTexto>
-                    <Informacoes>
-                        <InfEspecific>
-                            <TipoInf>Nome de usuário</TipoInf>
-                            <Editable
-                                display='flex'
-                                flexDirection='row'
-                                alignItems='center'
-                                textAlign='left'
-                                width='70vw'
-                                defaultValue='Gisele Allencar'
-                                fontSize='1.5x2'
-                                gap='2vw'
-                                isPreviewFocusable={false}
-                            >
-                                <EditablePreview />
-                                {/* Here is the custom input */}
-                                <Input h='auto' as={EditableInput} />
-                                <EditableControls />
-                            </Editable>
-                        </InfEspecific>
+            {user ? (
+                <Container>
+                    <Header>
+                        <VoltarBlack />
+                        <InfPerfil>
+                            <FotoLogin src={Foto} />
+                            <div>
+                                <Nome>{user.nome}</Nome>
+                                <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
+                            </div>
+                        </InfPerfil>
+                        <DivComplemento />
+                    </Header>
+                    <EditDiv>
+                        <EditTexto>Editar perfil</EditTexto>
+                        <Informacoes>
+                            <InfEspecific>
+                                <TipoInf>Nome de usuário</TipoInf>
+                                <Editable
+                                    display='flex'
+                                    flexDirection='row'
+                                    alignItems='center'
+                                    textAlign='left'
+                                    width='70vw'
+                                    defaultValue={user.nome}
+                                    fontSize='1.5x2'
+                                    gap='2vw'
+                                    isPreviewFocusable={false}
+                                >
+                                    <EditablePreview />
+                                    <Input h='auto' as={EditableInput} />
+                                    <EditableControls />
+                                </Editable>
+                            </InfEspecific>
 
-                        <InfEspecific>
-                            <TipoInf>Email</TipoInf>
-                            <Editable
-                                display='flex'
-                                flexDirection='row'
-                                alignItems='center'
-                                textAlign='left'
-                                width='70vw'
-                                defaultValue='galencar@teste.com'
-                                blur='2px'
-                                fontSize='1.5x2'
-                                gap='2vw'
-                                isPreviewFocusable={false}
-                            >
-                                <EditablePreview />
-                                {/* Here is the custom input */}
-                                <Input h='auto' as={EditableInput} />
-                                <EditableControls />
-                            </Editable>
-                        </InfEspecific>
+                            <InfEspecific>
+                                <TipoInf>Email</TipoInf>
+                                <Editable
+                                    display='flex'
+                                    flexDirection='row'
+                                    alignItems='center'
+                                    textAlign='left'
+                                    width='70vw'
+                                    defaultValue={user.email}
+                                    blur='2px'
+                                    fontSize='1.5x2'
+                                    gap='2vw'
+                                    isPreviewFocusable={false}
+                                >
+                                    <EditablePreview />
+                                    <Input h='auto' as={EditableInput} />
+                                    <EditableControls />
+                                </Editable>
+                            </InfEspecific>
 
-
-                        {/* Seção de edição de senha */}
-                        <InfEspecific>
-                            <TipoInf>Senha</TipoInf>
-                            <Editable
-                                display='flex'
-                                flexDirection='row'
-                                alignItems='center'
-                                textAlign='left'
-                                width='70vw'
-                                defaultValue={password} // Use o estado para defaultValue
-                                fontSize='1.5x2'
-                                gap='2vw'
-                                isPreviewFocusable={false}
-                            >
-                                <EditablePreview
-                                    style={{ filter: showPassword ? 'none' : 'blur(5px)' }}
-                                />
-                                <Input
-                                    h='auto'
-                                    type={showPassword ? 'text' : 'password'}
-                                    as={EditableInput}
-                                    value='password'
-                                    onChange={handlePasswordChange}
-                                />
-                                <Botao onClick={handleShowPassword}>
-                                    {icon}
-                                </Botao>
-                                <EditableControls />
-                            </Editable>
-                        </InfEspecific>
-                    </Informacoes>
-                </EditDiv>
-                <Menu barra="4" />
-            </Container>
+                            <InfEspecific>
+                                <TipoInf>Senha</TipoInf>
+                                <Editable
+                                    display='flex'
+                                    flexDirection='row'
+                                    alignItems='center'
+                                    textAlign='left'
+                                    width='70vw'
+                                    defaultValue={user.senha}
+                                    fontSize='1.5x2'
+                                    gap='2vw'
+                                    isPreviewFocusable={false}
+                                >
+                                    <EditablePreview
+                                        style={{ filter: showPassword ? 'none' : 'blur(5px)' }}
+                                    />
+                                    <Input
+                                        h='auto'
+                                        type={showPassword ? 'text' : 'password'}
+                                        as={EditableInput}
+                                        value='password'
+                                        onChange={handlePasswordChange}
+                                    />
+                                    <Botao onClick={handleShowPassword}>
+                                        {icon}
+                                    </Botao>
+                                    <EditableControls />
+                                </Editable>
+                            </InfEspecific>
+                        </Informacoes>
+                    </EditDiv>
+                    <Menu barra="4" />
+                </Container>
+            ) : (
+                <></>
+            )}
         </>
     )
 }

@@ -1,23 +1,26 @@
 import { Botao, Conteudo, Gray, ImgPolitico, Infos, Nome, Partido, Status } from "./styled"
+import Like from "../../components/Like/Like"
 
-function CardPoliticoConteudo(props){
+function CardPoliticoConteudo(props) {
     const handleClick = () => {
         window.open(props.url, '_blank');
-      };
+    };
 
-    return(
+    return (
         <>
-        <Botao onClick={handleClick}>
-            <Conteudo>
-                <ImgPolitico imagem={props.imagem}/>
-                <Infos>
-                    <Nome>{props.nome}</Nome>
-                    <Partido><b>{props.texto} </b>{props.partido}</Partido>
-                    <Status cor={props.cor}>{props.status}</Status>
-                </Infos>
-            </Conteudo>
-            <Gray/>
-        </Botao>
+            <Botao>
+                <Conteudo>
+                    <ImgPolitico imagem={props.imagem}>
+                        <Like like={false} />
+                    </ImgPolitico>
+                    <Infos onClick={handleClick}>
+                        <Nome>{props.nome}</Nome>
+                        <Partido><b>{props.texto} </b>{props.partido}</Partido>
+                        <Status cor={props.cor}>{props.status}</Status>
+                    </Infos>
+                </Conteudo>
+                <Gray />
+            </Botao>
         </>
     )
 }

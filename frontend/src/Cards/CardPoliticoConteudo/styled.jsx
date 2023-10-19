@@ -20,12 +20,16 @@ export const Conteudo = styled.div`
 `
 
 export const ImgPolitico = styled.div`
+    background: url(${(props) => props.imagem});
+    background-size: cover;
     border-radius: 18.4px 0px 0px 18.4px;
     height: 15vh;
     width: 25vw;
     border: 1px solid #000;
-    background: url(${(props) => props.imagem});
-    background-size: cover;
+    align-items: flex-start;
+    display: flex;
+    justify-content: end;
+    padding: 1vw;
 `
 
 export const Infos = styled.div`

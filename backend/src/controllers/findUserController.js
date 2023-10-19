@@ -21,6 +21,7 @@ async function findUser(request, response) {
                     id: results[0].id,
                     email: results[0].email,
                     nome: results[0].nome,
+                    senha: results[0].senha,
                     imagem: results[0].imagem
                 };
 

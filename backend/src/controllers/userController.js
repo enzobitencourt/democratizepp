@@ -51,7 +51,7 @@ async function storeUser(request, response) {
     // Use placeholders na consulta SQL
     const query = "INSERT INTO usuarios (nome, email, senha, imagem) VALUES (?, ?, ?, ?)";
 
-    connection.query(query, [nome, email, bcrypt.hashSync(senha, 10), imagePath], (err, results) => {
+    connection.query(query, [nome, email, senha, imagePath], (err, results) => {
         try {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {

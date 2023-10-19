@@ -36,7 +36,6 @@ function Login() {
 
         axios.post(`${baseUrl}/auth/login`, formData)
             .then(function (response) {
-                console.log(response)
                 localStorage.setItem('id', response.data.data[0].id)
                 localStorage.setItem('token', response.data.data[0].token)
                 toast({
@@ -44,13 +43,21 @@ function Login() {
                     title: 'Sucesso',
                     description: "Conta logada",
                     status: 'success',
-                    duration: 5000,
+                    duration: 3000,
                     isClosable: true,
                 });
                 goToHome()
             })
             .catch(function (error) {
-                alert(error.response.data.msg)
+                console.log(error)
+                toast({
+                    position: 'bottom-left',
+                    title: 'Erro',
+                    description: `${error.response.data.message}`,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
             });
 
         setFormData({

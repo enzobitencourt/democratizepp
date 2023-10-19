@@ -42,7 +42,7 @@ export const Nome = styled.p`
 `
 export const PerfilContainer = styled.div`
     width: auto;
-    height: 10vh;
+    height: auto;
     display: flex;
     flex-direction: row-reverse;
     align-content: center;
@@ -53,7 +53,7 @@ export const Perfil = styled.div`
     width: 15vw;
     height: 15vw;
     border-radius: 50%;
-    background: url(${(props) => props.src});
+    background: url(${(props) => props.imagem});
     background-size: cover;
     background-position: center;
 `
