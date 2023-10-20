@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Container, Nome, TituloContainer, Texto, PerfilContainer, Perfil } from "./styled";
 import perfil from "../../Assets/perfil_semconta.png";
+import imagem from "../../Assets/login.png";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Header(props) {
         <Nome>{user ? user.nome : "Cidadã(o)"}</Nome>
       </TituloContainer>
       <PerfilContainer>
-        <Perfil imagem={perfil} onClick={goToOnde} />
+        <Perfil imagem={user !== undefined && user.imagem ? user.imagem : user !== undefined ? imagem : perfil} onClick={goToOnde} />
       </PerfilContainer>
     </Container>
   );

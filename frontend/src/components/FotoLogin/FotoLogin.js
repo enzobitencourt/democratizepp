@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Div, Esfumado } from './styled';
+import Foto from "../../Assets/login.png"
 
-function FotoLogin({ src }) {
-    const [selectedFile, setSelectedFile] = useState(null);
+function FotoLogin(props) {
+
+    const user = props.user
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Faça algo com o arquivo selecionado, como enviá-lo para o servidor ou exibi-lo na página
-            setSelectedFile(file);
+            props.sfile(file);
         }
     };
 
@@ -16,9 +17,9 @@ function FotoLogin({ src }) {
     return (
         <div>
             <label htmlFor="fileInput" style={{ cursor: 'pointer' }}>
-                {selectedFile ? (
+                {props.file ? (
                     <Div
-                        imagem={URL.createObjectURL(selectedFile)}
+                        imagem={URL.createObjectURL(props.file)}
                         alt="User's profile"
                     >
                         <Esfumado>
@@ -26,7 +27,7 @@ function FotoLogin({ src }) {
                         </Esfumado>
                     </Div>
                 ) : (
-                    <Div imagem={src}>
+                    <Div imagem={user.imagem ? user.imagem : Foto}>
                         <Esfumado>
                             EDITAR
                         </Esfumado>

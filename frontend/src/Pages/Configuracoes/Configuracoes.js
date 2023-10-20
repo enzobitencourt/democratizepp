@@ -1,6 +1,6 @@
 import Menu from "../../components/Menu/Menu"
 import { Cidadao, Container, FotoLogin, Header, Nome, NomeContainer } from "./styled"
-import Foto from "../../Assets/FotoLogin.png"
+import Foto from "../../Assets/login.png"
 import ConfigDrop from "../../components/ConfigDropDown/Dropdown"
 import axios from "axios"
 import { useEffect, useState } from "react"

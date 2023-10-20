@@ -40,18 +40,11 @@ async function listUsers(request, response) {
 
 // Função que cria um novo usuário 
 async function storeUser(request, response) {
-    const { nome, email, senha, imagem } = request.body;
+    const { nome, email, senha } = request.body;
 
-    // Nomeie a imagem usando a data atual, por exemplo:
-    const imagemFileName = `imagem_${Date.now()}.png`;
+    const query = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
 
-    // O caminho para onde você deseja salvar a imagem (por exemplo, na pasta de upload)
-    const imagePath = path.join('/caminho/para/sua/pasta/upload', imagemFileName);
-
-    // Use placeholders na consulta SQL
-    const query = "INSERT INTO usuarios (nome, email, senha, imagem) VALUES (?, ?, ?, ?)";
-
-    connection.query(query, [nome, email, senha, imagePath], (err, results) => {
+    connection.query(query, [nome, email, senha], (err, results) => {
         try {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {

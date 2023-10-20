@@ -6,7 +6,7 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import { baseUrl } from "../../services/api"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import fotoLogin from "../../Assets/FotoLogin.png"  
+import fotoLogin from "../../Assets/login.png"  
 
 function Cadastro() {
     const navigate = useNavigate()
@@ -46,11 +46,9 @@ function Cadastro() {
             const formDataToSubmit = {
                 nome: formData.nome,
                 email: formData.email,
-                senha: formData.senha,
-                imagem: formData.imagem, 
+                senha: formData.senha
             }
 
-            console.log(formDataToSubmit)
             axios.post(`${baseUrl}/user/create`, formDataToSubmit)
                 .then(function (response) {
                     toast({
