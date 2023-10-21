@@ -44,7 +44,7 @@ async function storeUser(request, response) {
 
     const query = "INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)";
 
-    connection.query(query, [nome, email, senha], (err, results) => {
+    connection.query(query, [nome, email, bcrypt.hashSync(senha, 10)], (err, results) => {
         try {
             if (err) {
                 if (err.code === 'ER_DUP_ENTRY') {
@@ -84,46 +84,34 @@ async function storeUser(request, response) {
 // Função que atualiza o usuário no banco
 async function updateUser(request, response) {
     // Preparar o comando de execução no banco
-    const query = "UPDATE usuarios SET `nome` = ?, `senha` = ? WHERE `id` = ?";
+    const query = "UPDATE usuarios SET `nome` = ?, `senha` = ?, `imagem` = ? WHERE `id` = ?";
 
-    // Recuperar os dados enviados na requisição respectivamente
-    const params = Array(
+    const params = [
         request.body.nome,
-        bcrypt.hashSync(request.body.senha, 10),        
-        request.params.id  // Recebimento de parametro da rota
-    );
+        bcrypt.hashSync(request.body.senha, 10),     
+        request.body.imagem,   
+        request.params.id  // Recebimento de parâmetro da rota
+    ];
 
-    // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
+    // Executa a ação no banco e valida os retornos para o cliente que realizou a solicitação
     connection.query(query, params, (err, results) => {
-        try {
-            if (results) {
-                response
-                    .status(200)
-                    .json({
-                        success: true,
-                        message: `Sucesso! Usuário atualizado.`,
-                        data: results
-                    });
-            } else {
-                response
-                    .status(400)
-                    .json({
-                        success: false,
-                        message: `Não foi possível realizar a atualização. Verifique os dados informados`,
-                        query: err.sql,
-                        sqlMessage: err.sqlMessage
-                    });
-            }
-        } catch (e) { // Caso aconteça algum erro na execução
+        if (err) {
             response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível atualizar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
-                });
+                success: false,
+                message: "Ocorreu um erro. Não foi possível atualizar o usuário!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            });
+        } else {
+            response.status(200).json({
+                success: true,
+                message: "Sucesso! Usuário atualizado.",
+                data: results
+            });
         }
     });
 }
+
 
 // Função que remove usuário no banco
 async function deleteUser(request, response) {
