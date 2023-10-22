@@ -19,7 +19,7 @@ import axios from "axios";
 import { baseUrl } from "../../services/api";
 
 function Perfil() {
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(true);
     const [icon, setIcon] = useState(<ViewIcon />);
     const [senha, setSenha] = useState();
     const [email, setEmail] = useState();
