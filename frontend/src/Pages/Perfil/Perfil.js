@@ -88,10 +88,30 @@ function Perfil() {
 
     const handleSave = (name, value) => {
         const updateUser = {
-            [name]: value
+            [name]: name === "imagem" ? ArrayBufferToBase64(value) : value
         }
 
-        console.log(updateUser)
+        axios.put(`${baseUrl}/user/${id}`, updateUser)
+            .then(function (response) {
+                toast({
+                    position: 'bottom-left',
+                    title: 'Sucesso',
+                    description: "Perfil alterado com sucesso",
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            })
+            .catch(function (error) {
+                toast({
+                    position: 'bottom-left',
+                    title: 'Erro',
+                    description: `Perfil não pode ser alterado`,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                });
+            });
     };
 
 
@@ -104,7 +124,7 @@ function Perfil() {
                         <InfPerfil>
                             <FotoLogin sfile={setSelectedFile} save={handleSave} file={selectedFile} user={user} />
                             <div>
-                                <Nome>{user.nome}</Nome>
+                                <Nome>{nome}</Nome>
                                 <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
                             </div>
                         </InfPerfil>

@@ -26,10 +26,8 @@ function Configuracoes() {
     })
 
     function conversor(byteArray) {
-        // Converte o array de bytes em um Uint8Array
         const uint8Array = new Uint8Array(byteArray);
 
-        // Converte o Uint8Array em uma string base64 usando btoa
         let base64String = '';
         for (let i = 0; i < uint8Array.length; i++) {
             base64String += String.fromCharCode(uint8Array[i]);
@@ -38,6 +36,7 @@ function Configuracoes() {
         return base64String;
 
     }
+    
 
     return (
         <>

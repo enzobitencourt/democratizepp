@@ -16,20 +16,19 @@ function Header(props) {
     }
   }
 
-  
+
   function conversor(byteArray) {
-    // Converte o array de bytes em um Uint8Array
     const uint8Array = new Uint8Array(byteArray);
 
-    // Converte o Uint8Array em uma string base64 usando btoa
     let base64String = '';
     for (let i = 0; i < uint8Array.length; i++) {
-        base64String += String.fromCharCode(uint8Array[i]);
+      base64String += String.fromCharCode(uint8Array[i]);
     }
 
     return base64String;
 
-}
+  }
+
 
   return (
     <Container>
@@ -38,7 +37,7 @@ function Header(props) {
         <Nome>{user ? user.nome : "Cidadã(o)"}</Nome>
       </TituloContainer>
       <PerfilContainer>
-        <Perfil imagem={user !== undefined && user.imagem ?  `data:image/jpeg;base64,${conversor(user.imagem.data)}` : user !== undefined ? imagem : perfil} onClick={goToOnde} />
+        <Perfil imagem={user !== undefined && user.imagem ? `data:image/jpeg;base64,${conversor(user.imagem.data)}` : user !== undefined ? imagem : perfil} onClick={goToOnde} />
       </PerfilContainer>
     </Container>
   );
