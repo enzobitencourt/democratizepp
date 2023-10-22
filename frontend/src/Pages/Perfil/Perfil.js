@@ -10,8 +10,8 @@ import {
     ButtonGroup,
     Flex,
     IconButton,
+    useToast,
 } from '@chakra-ui/react';
-
 import { CheckIcon, CloseIcon, EditIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import FotoLogin from "../../components/FotoLogin/FotoLogin";
 import { useState, useEffect } from "react";
@@ -27,13 +27,7 @@ function Perfil() {
     const id = localStorage.getItem("id");
     const [user, setUser] = useState();
     const [selectedFile, setSelectedFile] = useState(null);
-
-    const [formUser, setFormUser] = useState({
-        nome: "",
-        email: "",
-        senha: "",
-        imagem: ""
-    });
+    const toast = useToast()
 
     useEffect(() => {
         if (id) {
@@ -44,12 +38,6 @@ function Perfil() {
             axios.post(`${baseUrl}/find/findUser`, formData)
                 .then(function (response) {
                     setUser(response.data.data);
-                    setFormUser({
-                        nome: response.data.data.nome,
-                        email: response.data.data.email,
-                        senha: response.data.data.senha,
-                        imagem: response.data.data.imagem,
-                    });
                     setNome(response.data.data.nome);
                     setEmail(response.data.data.email);
                     setSenha(response.data.data.senha);
@@ -63,25 +51,6 @@ function Perfil() {
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
         setIcon(showPassword ? <ViewIcon /> : <ViewOffIcon />);
-    };
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormUser({
-            ...formUser,
-            [name]: value
-        });
-    };
-
-    const handleSave = () => {
-        const updatedFormData = {
-            id: id,
-            nome: formUser.nome,
-            email: formUser.email,
-            senha: formUser.senha,
-        };
-
-        console.log(updatedFormData);
     };
 
     function EditableControls(props) {
@@ -98,7 +67,9 @@ function Perfil() {
                     icon={<CheckIcon />}
                     name={props.tipo}
                     value={props.value}
-                    {...getSubmitButtonProps({ onClick: handleSave })}
+                    {...getSubmitButtonProps({
+                        onClick: () => handleSave(props.tipo, props.value)
+                    })}
                 />
                 <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
             </ButtonGroup>
@@ -109,6 +80,21 @@ function Perfil() {
         );
     }
 
+    function ArrayBufferToBase64(arrayBuffer) {
+        const uint8Array = new Uint8Array(arrayBuffer);
+        const binaryString = uint8Array.reduce((data, byte) => data + String.fromCharCode(byte), '');
+        return btoa(binaryString);
+    }
+
+    const handleSave = (name, value) => {
+        const updateUser = {
+            [name]: value
+        }
+
+        console.log(updateUser)
+    };
+
+
     return (
         <>
             {user ? (
@@ -116,7 +102,7 @@ function Perfil() {
                     <Header>
                         <VoltarBlack />
                         <InfPerfil>
-                            <FotoLogin sfile={setSelectedFile} file={selectedFile} user={user} />
+                            <FotoLogin sfile={setSelectedFile} save={handleSave} file={selectedFile} user={user} />
                             <div>
                                 <Nome>{user.nome}</Nome>
                                 <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
@@ -144,11 +130,11 @@ function Perfil() {
                                     <Input h='auto'
                                         as={EditableInput}
                                         name="nome"
-                                        value={formUser.nome}
-                                        onChange={handleChange}
+                                        value={nome}
+                                        onChange={(e) => setNome(e.target.value)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
-                                                handleSave();
+                                                handleSave("nome", nome);
                                             }
                                         }} />
                                     <EditableControls value={nome} tipo="nome" />
@@ -170,17 +156,6 @@ function Perfil() {
                                     isPreviewFocusable={false}
                                 >
                                     <EditablePreview />
-                                    <Input h='auto'
-                                        as={EditableInput}
-                                        name="email"
-                                        value={formUser.email}
-                                        onChange={handleChange}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
-                                                handleSave();
-                                            }
-                                        }} />
-                                    <EditableControls value={email} tipo="email" />
                                 </Editable>
                             </InfEspecific>
 
@@ -192,7 +167,7 @@ function Perfil() {
                                     alignItems='center'
                                     textAlign='left'
                                     width='70vw'
-                                    defaultValue={senha}
+                                    defaultValue="Sem visualização"
                                     fontSize='1.5x2'
                                     gap='2vw'
                                     isPreviewFocusable={false}
@@ -205,11 +180,11 @@ function Perfil() {
                                         type={showPassword ? 'text' : 'password'}
                                         as={EditableInput}
                                         name="senha"
-                                        value={formUser.senha}
-                                        onChange={handleChange}
+                                        value={senha}
+                                        onChange={(e) => setSenha(e.target.value)}
                                         onKeyDown={(e) => {
                                             if (e.key === 'Enter') {
-                                                handleSave();
+                                                handleSave("senha", senha);
                                             }
                                         }} />
                                     <Botao onClick={handleShowPassword}>

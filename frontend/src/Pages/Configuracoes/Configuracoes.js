@@ -25,12 +25,26 @@ function Configuracoes() {
         }
     })
 
+    function conversor(byteArray) {
+        // Converte o array de bytes em um Uint8Array
+        const uint8Array = new Uint8Array(byteArray);
+
+        // Converte o Uint8Array em uma string base64 usando btoa
+        let base64String = '';
+        for (let i = 0; i < uint8Array.length; i++) {
+            base64String += String.fromCharCode(uint8Array[i]);
+        }
+
+        return base64String;
+
+    }
+
     return (
         <>
             {user ? (
                 <Container>
                     <Header>
-                        <FotoLogin src={Foto} />
+                        <FotoLogin src={user.imagem ? `data:image/jpeg;base64,${conversor(user.imagem.data)}` : Foto} />
                         <NomeContainer>
                             <Nome>{user.nome}</Nome>
                             <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>

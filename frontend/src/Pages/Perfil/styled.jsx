@@ -67,6 +67,7 @@ export const Nome = styled.p`
     font-style: normal;
     font-weight: 600;
     line-height: 25px;
+    text-align: center;
     margin: 0;
 `
 export const Cidadao = styled.p`
