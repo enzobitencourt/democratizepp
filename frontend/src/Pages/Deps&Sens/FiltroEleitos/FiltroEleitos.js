@@ -108,6 +108,8 @@ function FiltroEleitos(props) {
                             <Titulo>{representantes.length} Resultados</Titulo>
                             {representantes.map((representante, index) => (
                                 <CardEleito
+                                    favoritos={props.favoritos}
+                                    id={representante.id}
                                     nome={representante.nome}
                                     cargo={tipo}
                                     uf={representante.uf}

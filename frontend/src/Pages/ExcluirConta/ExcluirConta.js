@@ -16,7 +16,7 @@ function ExcluirConta(){
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.delete(`${baseUrl}/user/${formData.id}`, formData)
+        axios.delete(`${baseUrl}/user/${formData.id}`)
             .then(function (response) {
                 localStorage.removeItem('id')
                 localStorage.removeItem('token')

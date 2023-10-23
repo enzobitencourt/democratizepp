@@ -19,7 +19,7 @@ import { useState, useEffect } from "react"
 
 function Rotas() {
     const [news, setNews] = useState([]);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     const Database = () => {
         axios
@@ -28,7 +28,7 @@ function Rotas() {
             )
             .then((response) => {
                 setNews(response.data.articles);
-                setLoading(false); 
+                setLoading(false);
             })
             .catch((error) => {
                 console.log("error");

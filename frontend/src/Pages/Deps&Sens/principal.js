@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Headers from "../../components/Headers/Headers";
 import Menu from "../../components/Menu/Menu";
 import { Area, Container, ContainerEnd, ContainerInput, InputNome, DivPesquisa, FilterButton, Img, SearchButton, Img1, Esfumado, Espacos, Resultados, Sens, Titulo, ContainerMid, Deps } from "./styled";
@@ -13,14 +13,17 @@ import axios from "axios";
 import FiltroEleitos from "./FiltroEleitos/FiltroEleitos";
 import { useResultadosDeps } from "../../Contexts/ResultadosDeps/ResultadosDepsContext";
 import { useResultadosSens } from "../../Contexts/ResultadosSens/ResultadosSensContext";
+import { baseUrl } from "../../services/api";
 
 function PrincipalDeps() {
     const navigate = useNavigate();
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const {setResultadosDeps} = useResultadosDeps()
-    const {setResultadosSens} = useResultadosSens()
-    const {setPesquisado} = useResultadosSens()
-    const {setPesquisado1} = useResultadosDeps()
+    const { setResultadosDeps } = useResultadosDeps()
+    const { setResultadosSens } = useResultadosSens()
+    const { setPesquisado } = useResultadosSens()
+    const { setPesquisado1 } = useResultadosDeps()
+    const id = localStorage.getItem("id")
+    const [favoritos, setFavoritos] = useState([])
 
     const goToDeps = () => {
         navigate("/agoranacamara");
@@ -35,6 +38,24 @@ function PrincipalDeps() {
     };
 
     const [partidos, setPartidos] = useState([])
+
+
+    const Favoritos = () => {
+        if (id) {
+            axios
+                .get(`${baseUrl}/favorites/find`)
+                .then((response) => {
+                    setFavoritos(response.data.data)
+                })
+                .catch((error) => {
+                    console.log("errinho");
+                });
+        }
+    }
+
+    useEffect(()=>{
+        Favoritos()
+    })
 
     const Database = (url, tipo) => {
         axios
@@ -189,7 +210,7 @@ function PrincipalDeps() {
                 </ContainerEnd>
                 <Resultados>
                     {pesquisa ? (
-                        <FiltroEleitos loading={loading} tipo={tipoEnviar} partido={partidoEnviar} nome={nomeEnviar} ufs={ufsEnviar} />
+                        <FiltroEleitos favoritos={favoritos} loading={loading} tipo={tipoEnviar} partido={partidoEnviar} nome={nomeEnviar} ufs={ufsEnviar} />
                     ) : (
                         <></>
                     )}

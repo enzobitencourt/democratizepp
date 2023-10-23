@@ -3,6 +3,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import Carregando from "../../../components/Carregando/Carregando"
 import { Container1, Conteudo, Texto, Titulo } from "../styled"
+import { baseUrl } from "../../../services/api"
 
 function Votos(props) {
     const id = props.id
@@ -13,6 +14,24 @@ function Votos(props) {
     const tipo = props.tipo
     const [votos, setVotos] = useState([])
     const [loading, setLoading] = useState()
+    const [favoritos, setFavoritos] = useState()
+
+    const Favoritos = () => {
+        if (id) {
+            axios
+                .get(`${baseUrl}/favorites/find`)
+                .then((response) => {
+                    setFavoritos(response.data.data)
+                })
+                .catch((error) => {
+                    console.log("errinho");
+                });
+        }
+    }
+
+    useEffect(()=>{
+        Favoritos()
+    })
 
     useEffect(() => {
         setLoading(true)
@@ -63,7 +82,10 @@ function Votos(props) {
                                             <CardPoliticoConteudo
                                                 url={`https://www.camara.leg.br/deputados/${voto.deputado_.id}`}
                                                 nome={voto.deputado_.nome}
+                                                id={voto.deputado_id}
+                                                cargo="Deputado Federal"
                                                 key={index}
+                                                favoritos={favoritos}
                                                 texto="Partido"
                                                 partido={`${voto.deputado_.siglaPartido} - ${voto.deputado_.siglaUf}`}
                                                 cor={voto.tipoVoto === "Sim" ? 'green' : 'red'}
@@ -74,9 +96,12 @@ function Votos(props) {
                                     <>
                                         {votos.map((voto, index) => (
                                             <CardPoliticoConteudo
+                                                cargo="Senador"
+                                                id={voto.IdentificacaoParlamentar.CodigoParlamentar}
                                                 url={voto.IdentificacaoParlamentar.UrlPaginaParlamentar}
                                                 nome={voto.IdentificacaoParlamentar.NomeCompletoParlamentar}
                                                 key={index}
+                                                favoritos={favoritos}
                                                 texto="Partido"
                                                 partido={`${voto.IdentificacaoParlamentar.SiglaPartidoParlamentar} - ${voto.IdentificacaoParlamentar.UfParlamentar}`}
                                                 cor={voto.SiglaVoto === "Sim" ? 'green' : 'red'}

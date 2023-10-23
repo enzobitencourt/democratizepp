@@ -20,6 +20,18 @@ function Home(props) {
     id: id
   }
 
+  const eleitosFavoritos = () => {
+    if (id) {
+        axios
+            .get(`${baseUrl}/favorites/find`)
+            .then((response) => {
+            })
+            .catch((error) => {
+
+            });
+    }
+}
+
   useEffect(() => {
     if (id) {
       axios.post(`${baseUrl}/find/findUser`, formData)

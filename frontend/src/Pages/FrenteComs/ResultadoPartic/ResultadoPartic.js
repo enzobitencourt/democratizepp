@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Container, Conteudo, Texto, Titulo } from "./styled";
 import Carregando from "../../../components/Carregando/Carregando";
+import { baseUrl } from "../../../services/api";
 
 function ResultadoPartic(props) {
     const tipo = props.tipo;
@@ -12,6 +13,24 @@ function ResultadoPartic(props) {
     const [resultados, setResultados] = useState([]);
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [favoritos, setFavoritos] = useState()
+
+    const Favoritos = () => {
+        if (id) {
+            axios
+                .get(`${baseUrl}/favorites/find`)
+                .then((response) => {
+                    setFavoritos(response.data.data)
+                })
+                .catch((error) => {
+                    console.log("errinho");
+                });
+        }
+    }
+
+    useEffect(() => {
+        Favoritos()
+    })
 
     useEffect(() => {
         setLoading(true);
@@ -85,6 +104,12 @@ function ResultadoPartic(props) {
                 <CardPoliticoConteudo
                     key={index}
 
+                    id={tipo === "Comissões" && resultado.NomeCasaMembro === "Senado" ?
+                        `${resultado.CodigoParlamentar}`
+                        : tipo === "Comissões" && resultado.NomeCasaMembro === "Câmara" ?
+                            `${resultado.CodigoDeputadoNaCamara}` :
+                            `${resultado.id}`}
+
                     url={tipo === "Comissões" && resultado.NomeCasaMembro === "Senado" ?
                         `https://www25.senado.leg.br/web/senadores/senador/-/perfil/${resultado.CodigoParlamentar}`
                         : tipo === "Comissões" && resultado.NomeCasaMembro === "Câmara" ?
@@ -105,7 +130,15 @@ function ResultadoPartic(props) {
                             `https://www.camara.leg.br/internet/deputado/bandep/${resultado.CodigoDeputadoNaCamara}.jpg` :
                             `${resultado.urlFoto}`}
 
+                    cargo={tipo === "Comissões" && resultado.NomeCasaMembro === "Senado" ?
+                        `Senador`
+                        : tipo === "Comissões" && resultado.NomeCasaMembro === "Câmara" ?
+                            `Deputado Federal` :
+                            `Deputado Federal`}
+
                     status={tipo === "Frentes" ? `${resultado.titulo}` : `Membro`}
+
+                    favoritos={favoritos}
                 />
             )))
         }

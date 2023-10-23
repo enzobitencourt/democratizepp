@@ -6,6 +6,8 @@ const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const findUserRouter = require('./routes/findUserRouter');
+const favoritosRouter = require('./routes/favoritosRouter');
+
 // Importar o pacote dotenv, gerenciador de variáveis de ambiente
 const dotenv = require('dotenv').config();
 
@@ -30,7 +32,8 @@ app.use(cors())
 app.use('/api', userRouter);
 app.use('/api/auth', loginRouter);
 app.use('/api/find', findUserRouter);
-// Setar a porta do servidor, a parir do arquivo .env
+app.use('/api/favorites', favoritosRouter);
+
 app.set('port', process.env.PORT || 3333);
 
 module.exports = app;
