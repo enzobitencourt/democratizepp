@@ -10,14 +10,14 @@ function Favoritos(props) {
     const [favorites, setFavorites] = useState([])
 
     const eleitosFavoritos = () => {
-      axios
-        .get(`${baseUrl}/favorites/list/${id}`)
-        .then((response) => {
-          setFavorites(response.data.data)
-        })
-        .catch((error) => {
-          console.log(error)
-        });
+        axios
+            .get(`${baseUrl}/favorites/list/${id}`)
+            .then((response) => {
+                setFavorites(response.data.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 
     const getFavoritos = () => {

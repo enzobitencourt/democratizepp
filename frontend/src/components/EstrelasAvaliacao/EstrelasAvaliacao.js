@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
 import { baseUrl } from '../../services/api';
+import { useToast } from '@chakra-ui/react';
 
 const StarContainer = styled.span`
   transition: color 0.2s;
@@ -36,23 +37,22 @@ const Texto = styled.p`
 
 const EstrelasAvaliacao = (props) => {
     const id = props.id
+    const toast = useToast()
+    const [rating, setRating] = useState(null);
+    const [existRating, setExistRating] = useState(null)
 
-    const firstNota =()=>{
+    useEffect(() => {
         axios
             .get(`${baseUrl}/avaliacoes/avaliacao/${id}`)
             .then((response) => {
-                console.log(response)
-                return response.data.data
+                setRating(response.data.data)
+                setExistRating(response.data.data)
             })
             .catch((error) => {
-                console.log(error);
-                return null
+                setRating(null)
+                setExistRating(null)
             });
-    }
-
-    const [rating, setRating] = useState(null);
-    const [existRating, setExisRating] = useState(null)
-
+    }, [id])
 
     const handleMouseOver = (index) => {
         setRating(index);
@@ -70,26 +70,53 @@ const EstrelasAvaliacao = (props) => {
 
             axios.post(`${baseUrl}/avaliacoes/avaliacao/create/${id}`, nota)
                 .then((response) => {
-                    console.log(response)
+                    toast({
+                        position: 'bottom-left',
+                        title: 'Sucesso',
+                        description: "Nota salva com sucesso!",
+                        status: 'success',
+                        duration: 2000,
+                        isClosable: true,
+                    });
                 })
                 .catch((error) => {
-                    console.log(error);
+                    toast({
+                        position: 'bottom-left',
+                        title: 'Erro',
+                        description: "Não foi possível salvar sua nota",
+                        status: 'error',
+                        duration: 2000,
+                        isClosable: true,
+                    });
                 });
         } else {
             const nota = {
                 nota: index
             }
-
             axios.put(`${baseUrl}/avaliacoes/avaliacao/${id}`, nota)
                 .then((response) => {
-                    console.log(response)
+                    toast({
+                        position: 'bottom-left',
+                        title: 'Sucesso',
+                        description: "Nota salva com sucesso!",
+                        status: 'success',
+                        duration: 2000,
+                        isClosable: true,
+                    });
                 })
                 .catch((error) => {
-                    console.log(error);
+                    toast({
+                        position: 'bottom-left',
+                        title: 'Erro',
+                        description: "Não foi possível salvar sua nota",
+                        status: 'error',
+                        duration: 2000,
+                        isClosable: true,
+                    });
                 });
         }
         setRating(index);
-        setExisRating(index)
+        setExistRating(index)
 
     };
 

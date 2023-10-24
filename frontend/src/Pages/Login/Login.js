@@ -36,8 +36,9 @@ function Login() {
 
         axios.post(`${baseUrl}/auth/login`, formData)
             .then(function (response) {
+                console.log(response)
                 localStorage.setItem('id', response.data.data[0].id)
-                localStorage.setItem('token', response.data.data[0].token)
+                localStorage.setItem('token', response.data.token)
                 toast({
                     position: 'top-left',
                     title: 'Sucesso',

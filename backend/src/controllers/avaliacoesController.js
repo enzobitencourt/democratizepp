@@ -30,23 +30,23 @@ async function createNota(request, response) {
 }
 
 async function updateNota(request, response) {
-    const nota  = request.body;
-    const { id } = request.params
+    const { nota } = request.body;
+    const { id } = request.params;
 
-    const query = `UPDATE usuarios SET nota = ? WHERE usuario_id = ?`;
+    const query = 'UPDATE avaliacoes SET nota = CAST(? AS SIGNED) WHERE usuario_id = ?';
 
-    connection.query(query, nota, id, (err, results) => {
+    connection.query(query, [nota, id], (err, results) => {
         if (err) {
             response.status(400).json({
                 success: false,
-                message: "Ocorreu um erro. Não foi possível atualizar o usuário!",
+                message: 'Ocorreu um erro. Não foi possível atualizar o usuário!',
                 query: err.sql,
                 sqlMessage: err.sqlMessage
             });
         } else {
             response.status(200).json({
                 success: true,
-                message: "Sucesso! Usuário atualizado.",
+                message: 'Sucesso! Usuário atualizado.',
                 data: results
             });
         }

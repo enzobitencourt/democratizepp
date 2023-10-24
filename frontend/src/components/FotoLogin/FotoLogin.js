@@ -1,24 +1,38 @@
 import React from 'react';
 import { Div, Esfumado } from './styled';
 import Foto from "../../Assets/login.png"
+import imageCompression from "browser-image-compression";
 
 function FotoLogin(props) {
     const handleSave = props.save
     const user = props.user;
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                const imageArrayBuffer = event.target.result;
+            try {
+                const options = {
+                    maxSizeMB: 0.1, 
+                    maxWidthOrHeight: 800, 
+                    useWebWorker: true,
+                };
     
-                props.sfile(imageArrayBuffer);
-                handleSave('imagem', imageArrayBuffer);
-            };
-            reader.readAsArrayBuffer(file);
+                const compressedFile = await imageCompression(file, options);
+                const reader = new FileReader();
+    
+                reader.onload = (event) => {
+                    const imageArrayBuffer = event.target.result;
+        
+                    props.sfile(imageArrayBuffer);
+                    handleSave('imagem', imageArrayBuffer);
+                };
+    
+                reader.readAsArrayBuffer(compressedFile);
+            } catch (error) {
+                console.error("Erro ao comprimir imagem:", error);
+            }
         }
-    };    
+    };
 
     function conversor(byteArray) {
         const uint8Array = new Uint8Array(byteArray);

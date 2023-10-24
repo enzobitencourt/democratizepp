@@ -25,7 +25,7 @@ export const ContainerFav = styled.div`
 
 export const Container = styled.div`
     width: 100%;
-    height: 20vh;
+    height: 25vh;
     display: flex;
     align-items: center;
     justify-content: center;
