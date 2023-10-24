@@ -72,9 +72,10 @@ async function deleteFavorite(request, response) {
 }
 
 async function findFavorites(request, response) {
-    const query = "SELECT idEleito FROM favoritos"; // Seleciona apenas o idEleito
+    const query = "SELECT idEleito FROM favoritos WHERE `idUsuario` = ?"; 
+    const id = request.params.id
 
-    connection.query(query, (err, results) => {
+    connection.query(query, id, (err, results) => {
         try {
             if (err) {
                 response.status(500).json({

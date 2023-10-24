@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import styled from 'styled-components';
+import { baseUrl } from '../../services/api';
 
 const StarContainer = styled.span`
   transition: color 0.2s;
@@ -32,8 +34,25 @@ const Texto = styled.p`
 `
 
 
-const EstrelasAvaliacao = () => {
+const EstrelasAvaliacao = (props) => {
+    const id = props.id
+
+    const firstNota =()=>{
+        axios
+            .get(`${baseUrl}/avaliacoes/avaliacao/${id}`)
+            .then((response) => {
+                console.log(response)
+                return response.data.data
+            })
+            .catch((error) => {
+                console.log(error);
+                return null
+            });
+    }
+
     const [rating, setRating] = useState(null);
+    const [existRating, setExisRating] = useState(null)
+
 
     const handleMouseOver = (index) => {
         setRating(index);
@@ -44,26 +63,53 @@ const EstrelasAvaliacao = () => {
     };
 
     const handleClick = (index) => {
+        if (existRating === null && id) {
+            const nota = {
+                nota: index
+            }
+
+            axios.post(`${baseUrl}/avaliacoes/avaliacao/create/${id}`, nota)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            const nota = {
+                nota: index
+            }
+
+            axios.put(`${baseUrl}/avaliacoes/avaliacao/${id}`, nota)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
         setRating(index);
+        setExisRating(index)
+
     };
 
     return (
         <DivStar>
             <Div>
-            {[...Array(5)].map((star, index) => {
-                index += 1;
-                return (
-                    <StarContainer
-                        key={index}
-                        filled={index <= rating}
-                        onMouseOver={() => handleMouseOver(index)}
-                        onMouseLeave={handleMouseLeave}
-                        onClick={() => handleClick(index)}
-                    >
-                        <FaStar size={40} />
-                    </StarContainer>
-                );
-            })}
+                {[...Array(5)].map((star, index) => {
+                    index += 1;
+                    return (
+                        <StarContainer
+                            key={index}
+                            filled={index <= rating}
+                            onMouseOver={() => handleMouseOver(index)}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={() => handleClick(index)}
+                        >
+                            <FaStar size={40} />
+                        </StarContainer>
+                    );
+                })}
             </Div>
             <Texto>Avaliação: {rating !== null ? rating : 0}/5</Texto>
         </DivStar>

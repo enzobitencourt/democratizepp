@@ -7,6 +7,7 @@ const userRouter = require('./routes/userRouter');
 const loginRouter = require('./routes/loginRouter');
 const findUserRouter = require('./routes/findUserRouter');
 const favoritosRouter = require('./routes/favoritosRouter');
+const avaliacoesRouter = require('./routes/avaliacoesRouter');
 
 // Importar o pacote dotenv, gerenciador de variáveis de ambiente
 const dotenv = require('dotenv').config();
@@ -33,6 +34,7 @@ app.use('/api', userRouter);
 app.use('/api/auth', loginRouter);
 app.use('/api/find', findUserRouter);
 app.use('/api/favorites', favoritosRouter);
+app.use('/api/avaliacoes', avaliacoesRouter);
 
 app.set('port', process.env.PORT || 3333);
 

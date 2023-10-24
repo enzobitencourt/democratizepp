@@ -31,28 +31,29 @@ export const GeneralContent = styled.div`
     height: auto;
     flex-direction: column;
     gap: 3vh;
-    justify-content: left;
-    align-items:left;
+    justify-content: center;
+    align-items:center;
 `
 
 export const Titulos = styled.div`
     display: flex;
+    width: 100%;
     flex-direction: column;
     gap: 1vh;
 `
 
-export const Subtitulo = styled.div`
+export const Subtitulo = styled.p`
     color: #767575;
     width: 85vw;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    display: flex;
     margin: 0;
-    flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
+    font-style: normal;
+    margin: 0;
 `
 
 export const Barra = styled.div`
@@ -64,6 +65,8 @@ export const Barra = styled.div`
 export const Resumo = styled.p`
     color: #000;
     font-family: Poppins;
+    text-align: justify;
+    width: 96%;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;

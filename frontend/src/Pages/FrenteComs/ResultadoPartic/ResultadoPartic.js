@@ -18,7 +18,7 @@ function ResultadoPartic(props) {
     const Favoritos = () => {
         if (id) {
             axios
-                .get(`${baseUrl}/favorites/find`)
+                .get(`${baseUrl}/favorites/find/${id}`)
                 .then((response) => {
                     setFavoritos(response.data.data)
                 })
@@ -142,7 +142,7 @@ function ResultadoPartic(props) {
                 />
             )))
         }
-    }, [resultados, tipo]);
+    }, [resultados, tipo, favoritos]);
 
     return (
         <>

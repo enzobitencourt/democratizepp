@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import like from "../../Assets/like.png";
 import dislike from "../../Assets/dislike.png";
 import { Botao, Img } from './styled';
@@ -12,16 +12,20 @@ function Like(props) {
   const idUser = localStorage.getItem("id");
   const toast = useToast();
 
-  function isFavorite() {
-    if (id && favoritos && favoritos.includes(id)) {
-      return true;
-    } else {
-      return false;
+  const [liked, setLiked] = useState();
+
+  useEffect(() => {
+    function isFavorite() {
+      if (id && favoritos && favoritos.includes(id)) {
+        return true;
+      } else {
+        return false;
+      }
     }
-  }
-
-  const [liked, setLiked] = useState(isFavorite());
-
+  
+    setLiked(isFavorite());
+  }, [id, favoritos, setLiked]);
+  
   function handleClick() {
     if (idUser) {
       setLiked((prevLiked) => !prevLiked);

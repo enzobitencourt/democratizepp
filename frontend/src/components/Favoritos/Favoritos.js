@@ -23,7 +23,7 @@ function Favoritos(props) {
     const getFavoritos = () => {
         if (id) {
             axios
-                .get(`${baseUrl}/favorites/find`)
+                .get(`${baseUrl}/favorites/find/${id}`)
                 .then((response) => {
                     setFavoritos(response.data.data);
                 })

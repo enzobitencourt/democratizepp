@@ -18,7 +18,7 @@ import Favoritos from '../Favoritos/Favoritos'
 import Estrelas from '../EstrelasAvaliacao/EstrelasAvaliacao'
 import { useNavigate } from 'react-router-dom'
 
-function ConfigDrop() {
+function ConfigDrop(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const navigate = useNavigate()
@@ -82,7 +82,7 @@ function ConfigDrop() {
                         </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                        <Estrelas />
+                        <Estrelas id={props.id} />
                     </AccordionPanel>
                 </AccordionItem>
 

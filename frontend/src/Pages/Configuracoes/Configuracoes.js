@@ -49,7 +49,7 @@ function Configuracoes() {
                             <Cidadao>Cidadã(o) Brasileiro(a)</Cidadao>
                         </NomeContainer>
                     </Header>
-                    <ConfigDrop />
+                    <ConfigDrop id={id}/>
                     <Menu barra='4' />
                 </Container>
             ) : (

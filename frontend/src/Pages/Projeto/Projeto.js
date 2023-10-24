@@ -10,16 +10,12 @@ function Projeto() {
                 <GeneralContent>
                     <Titulos>
                         <Titulo>Projeto de Pesquisa</Titulo>
-                        <Subtitulo>Identificação cidadã de candidatos à presidência do Brasil</Subtitulo>
+                        <Subtitulo><b>DEMOCRATIZE</b>: ferramenta digital para fomento a (in)formação política e cidadã</Subtitulo>
+                        <Barra />
                     </Titulos>
-                    <Barra />
+
                     <Resumo>
-                        <b>Resumo:</b> Inicialmente, será trabalhado um viés teórico aprofundado do tema,
-                        buscando entender o conceito de política no mundo contemporâneo, a identificação
-                        cidadã perante este cenário e, por fim, uma melhor compreensão de todo o contexto
-                        midiático caótico em que se encontra as discussões políticas, todas esses quesitos
-                        abordados de forma clara e impessoal, buscando em pesquisas bibliográficas todo o
-                        aprofundamento necessário para o embasamento dos conceitos trazidos pelo pesquisador.
+                        <b>Resumo:</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     </Resumo>
                 </GeneralContent>
                 <Object imagem={imagem} texto="Acesse a pesquisa completa em PDF" />
