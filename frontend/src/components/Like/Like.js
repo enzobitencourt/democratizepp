@@ -1,41 +1,40 @@
-import { useState, useEffect } from 'react';
-import like from "../../Assets/like.png"
-import dislike from "../../Assets/dislike.png"
+import React, { useState } from 'react';
+import like from "../../Assets/like.png";
+import dislike from "../../Assets/dislike.png";
 import { Botao, Img } from './styled';
 import axios from 'axios';
 import { baseUrl } from '../../services/api';
 import { useToast } from '@chakra-ui/react';
 
 function Like(props) {
-  const isFavorite = () => {
-    if (idUser && id && favoritos && favoritos.includes(id)) {
-      return true
-    } else{
-      return false
+  const { nome, imagem, cargo, url, favoritos } = props;
+  const id = parseInt(props.id, 10);
+  const idUser = localStorage.getItem("id");
+  const toast = useToast();
+
+  function isFavorite() {
+    if (id && favoritos && favoritos.includes(id)) {
+      return true;
+    } else {
+      return false;
     }
   }
 
-  const nome = props.nome
-  const imagem = props.imagem
-  const cargo = props.cargo
-  const id = props.id
-  const favoritos = props.favoritos
-  const idUser = localStorage.getItem("id")
-  const toast = useToast()
   const [liked, setLiked] = useState(isFavorite());
 
   function handleClick() {
-    setLiked(!liked);
     if (idUser) {
+      setLiked((prevLiked) => !prevLiked);
       const formFavoritos = {
         nome: nome,
         imagem: imagem,
         cargo: cargo,
         idEleito: id,
-        idUsuario: idUser
+        idUsuario: idUser,
+        url: url
       }
 
-      if (!liked === true) {
+      if (!liked) {
         axios.post(`${baseUrl}/favorites/favorito/create`, formFavoritos)
           .catch(function (error) {
             toast({
@@ -47,7 +46,7 @@ function Like(props) {
               isClosable: true,
             });
           });
-      } else if (!liked === false) {
+      } else {
         axios.delete(`${baseUrl}/favorites/favorito/delete/${id}`)
           .catch(function (error) {
             toast({
@@ -62,8 +61,8 @@ function Like(props) {
       }
     } else {
       toast({
-        position: 'bottom-left',
-        title: 'Erro',
+        position: 'top-right',
+        title: 'Não é possível favoritar',
         description: "Você não fez login",
         status: 'error',
         duration: 3000,
@@ -72,24 +71,15 @@ function Like(props) {
     }
   }
 
-  useEffect(() => {
-    if (liked) {
-      const timer = setTimeout(() => {
-        setLiked(true);
-      }, 1000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [liked, setLiked]);
 
   return (
     <Botao
       className={`botao-like ${liked ? 'liked' : ''}`}
       onClick={handleClick}
     >
-      {liked ? <Img src={like} /> : <Img src={dislike} />}
+      {liked ? <Img src={like} alt="like" /> : <Img src={dislike} alt="dislike" />}
     </Botao>
   );
 }
 
-export default Like
+export default Like;

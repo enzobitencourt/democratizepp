@@ -7,18 +7,24 @@ export const ContainerFavoritos = styled.div`
     height: auto;
     gap: 1vh;
     border-radius: 18.24px;
-    padding: 0 0 1vh 0vh;
     background: #FFF;
+    padding: 0 0 0.6vh 0;
 `
 
-export const ImgFavs = styled.img`
+export const ImgFavs = styled.div`
     width: 37vw;
     height: 18vh;
     border-radius: 18.24px;
+    background: url(${(props) => props.imagem});
+    background-size: cover;
+    background-position: center;
 `
 export const Informacoes = styled.div`
     width: 37vw;
+    display: flex;
+    flex-direction: column;
     height: auto;
+    gap: 0.3vh;
     padding: 1vw 2vw;
 `
 
@@ -38,11 +44,13 @@ export const CargoFav = styled.p`
 export const Favorito = styled.div`
     display: flex;
     flex-direction: row;
+    align-items:top ;
     width: 100%;
-    gap: 1vw;
+    justify-content: space-between;
 `
 export const NomeFav = styled.p`
     color: #000;
+    width: 78%;
     font-size: 13px;
     font-style: normal;
     font-weight: 600;

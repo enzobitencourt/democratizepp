@@ -67,7 +67,7 @@ function ConfigDrop() {
                             <AccordionIcon />
                         </AccordionButton>
                     </h2>
-                    <AccordionPanel w='100vw' padding='0' h='auto' overflow='auto' alignItems='center' display='flex' justifyContent='center' whiteSpace='normal' pb={4}>
+                    <AccordionPanel w='100vw' h='auto' overflow='auto' alignItems='center' display='flex' justifyContent='center' whiteSpace='normal' paddingTop="3vh" pb={4}>
                         <Favoritos />
                     </AccordionPanel>
                 </AccordionItem>

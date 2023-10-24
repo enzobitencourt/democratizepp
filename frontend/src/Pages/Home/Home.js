@@ -20,17 +20,6 @@ function Home(props) {
     id: id
   }
 
-  const eleitosFavoritos = () => {
-    if (id) {
-        axios
-            .get(`${baseUrl}/favorites/find`)
-            .then((response) => {
-            })
-            .catch((error) => {
-
-            });
-    }
-}
 
   useEffect(() => {
     if (id) {
@@ -41,13 +30,13 @@ function Home(props) {
         .catch(function (error) {
           console.log(error)
         });
-    } 
+    }
   })
 
   return (
     <>
       <Container>
-        <Header user={user}/>
+        <Header user={user} />
 
         {loading ? (
           <CustomCarouselCarregando />
@@ -55,10 +44,15 @@ function Home(props) {
           <CarouselFunction noticias={news} />
         )}
 
-        <ContainerFav>
-          <Titulo>Favoritos</Titulo>
-          <Favoritos />
-        </ContainerFav>
+        {id ? (
+          <ContainerFav>
+            <Titulo>Favoritos</Titulo>
+            <Favoritos/>
+          </ContainerFav>
+        ) : (
+          <></>
+        )}
+
         {loading ? (
           <NoticiasCarregando />
         ) : (

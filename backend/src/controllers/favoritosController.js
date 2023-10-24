@@ -9,11 +9,11 @@ const fs = require('fs');
 
 // Função que cria um novo favorito
 async function createFavorite(request, response) {
-    const { nome, cargo, imagem, idEleito, idUsuario } = request.body;
+    const { nome, cargo, imagem, idEleito, idUsuario, url } = request.body;
 
-    const query = "INSERT INTO favoritos (nome, cargo, imagem, idUsuario, idEleito) VALUES (?, ?, ?, ?, ?)";
+    const query = "INSERT INTO favoritos (nome, cargo, imagem, idUsuario, idEleito, url) VALUES (?, ?, ?, ?, ?, ?)";
 
-    connection.query(query, [nome, cargo, imagem, idUsuario, idEleito], (err, results) => {
+    connection.query(query, [nome, cargo, imagem, idUsuario, idEleito, url], (err, results) => {
         if (err) {
             response.status(400).json({
                 success: false,
@@ -108,10 +108,43 @@ async function findFavorites(request, response) {
     });
 }
 
+async function listFavorites(request, response) {
+    const query = 'SELECT * FROM favoritos WHERE `idUsuario` = ?'
+    const id = request.params.id
+
+    connection.query(query, id, (err, results) => { 
+        try {  // Tenta retornar as solicitações requisitadas
+            if (results) {  // Se tiver conteúdo 
+                response.status(200).json({
+                    success: true,
+                    message: 'Retorno de favoritos com sucesso',
+                    data: results
+                });
+            } else {  // Retorno com informações de erros
+                response
+                    .status(400)
+                    .json({
+                        success: false,
+                        message: `Não foi possível retornar os favoritos.`,
+                        query: err.sql,
+                        sqlMessage: err.sqlMessage
+                    });
+            }
+        } catch (e) {  // Caso aconteça qualquer erro no processo na requisição, retorna uma mensagem amigável
+            response.status(400).json({
+                succes: false,
+                message: "Ocorreu um erro. Não foi possível realizar sua requisição!",
+                query: err.sql,
+                sqlMessage: err.sqlMessage
+            })
+        }   
+    });
+}
 
 
 module.exports = {
     createFavorite,
     deleteFavorite,
-    findFavorites
+    findFavorites,
+    listFavorites
 }

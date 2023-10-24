@@ -6,9 +6,11 @@ const router = Router();
 const { createFavorite } = require('../controllers/favoritosController');
 const { deleteFavorite } = require('../controllers/favoritosController');
 const { findFavorites } = require('../controllers/favoritosController');
+const {listFavorites} = require('../controllers/favoritosController');
 
 router.post('/favorito/create', createFavorite);
 router.get('/find', findFavorites);
+router.get('/list/:id', listFavorites)
 router.delete('/favorito/delete/:id', deleteFavorite);
 
 module.exports = router;
