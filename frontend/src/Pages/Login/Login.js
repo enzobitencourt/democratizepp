@@ -36,7 +36,6 @@ function Login() {
 
         axios.post(`${baseUrl}/auth/login`, formData)
             .then(function (response) {
-                console.log(response)
                 localStorage.setItem('id', response.data.data[0].id)
                 localStorage.setItem('token', response.data.token)
                 toast({
@@ -103,7 +102,7 @@ function Login() {
                                     required
 
                                 />
-                                <Botao onClick={handleShowPassword}>
+                                <Botao onClick={handleShowPassword} type="button">
                                     {icon}
                                 </Botao>
                             </DivSenha>

@@ -130,7 +130,7 @@ function Cadastro() {
                                         onChange={handleChange}
                                         required
                                     />
-                                    <Botao onClick={handleShowPassword}>
+                                    <Botao onClick={handleShowPassword} type="button">
                                         {icon}
                                     </Botao>
                                 </DivSenha>
@@ -144,7 +144,7 @@ function Cadastro() {
                                         onChange={handleChange}
                                         required
                                     />
-                                    <Botao onClick={handleShowConfirmPassword}>
+                                    <Botao onClick={handleShowConfirmPassword} type="button">
                                         {iconConfirm}
                                     </Botao>
                                 </DivSenha>
