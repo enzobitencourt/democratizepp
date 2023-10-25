@@ -42,12 +42,6 @@ function AgoraDeps() {
 
         setPesquisado1(false)
         setPesquisa(true)
-
-        setNameInput('')
-        setDescubraSelect('')
-        setSelectedPartido('')
-        setAuthorInput('')
-        setSelectedTema('')
     };
 
 

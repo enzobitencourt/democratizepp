@@ -36,10 +36,6 @@ function AgoraSens() {
         setLoading(true)
         setPesquisado(false)
         setPesquisa(true)
-       
-        setNameInput('')
-        setDescubraSelect('')
-        setSelectedTema('')
     };
 
     useEffect(() => {
