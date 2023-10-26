@@ -87,7 +87,7 @@ function Login() {
                                 type="email"
                                 id="user"
                                 name="email"
-                                placeholder="Email"
+                                placeholder="E-mail"
                                 value={formData.email}
                                 onChange={handleChange}
                                 required />

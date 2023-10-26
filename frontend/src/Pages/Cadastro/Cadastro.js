@@ -113,7 +113,7 @@ function Cadastro() {
                             <Input
                                 type="email"
                                 id="email"
-                                placeholder="Email"
+                                placeholder="E-mail"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
