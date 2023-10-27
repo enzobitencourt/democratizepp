@@ -7,6 +7,7 @@ import { baseUrl } from "../../../services/api"
 
 function Votos(props) {
     const id = props.id
+    const idUser = localStorage.getItem("id")
     const voto = props.voto
     const partido = props.partido
     const nome = props.nome
@@ -17,14 +18,14 @@ function Votos(props) {
     const [favoritos, setFavoritos] = useState()
 
     const Favoritos = () => {
-        if (id) {
+        if (idUser) {
             axios
-                .get(`${baseUrl}/favorites/find/${id}`)
+                .get(`${baseUrl}/favorites/find/${idUser}`)
                 .then((response) => {
                     setFavoritos(response.data.data)
                 })
                 .catch((error) => {
-                    console.log("errinho");
+                    console.log("Erro ao pegar favoritos");
                 });
         }
     }

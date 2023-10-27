@@ -8,22 +8,23 @@ import { baseUrl } from "../../../services/api";
 function ResultadoPartic(props) {
     const tipo = props.tipo;
     const id = props.id;
+    const idUser = localStorage.getItem("id")
     const [nome, setNome] = useState(props.nome);
     const [ufs, setUfs] = useState(props.ufs);
     const [resultados, setResultados] = useState([]);
     const [cards, setCards] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
     const [favoritos, setFavoritos] = useState()
 
     const Favoritos = () => {
-        if (id) {
+        if (idUser) {
             axios
-                .get(`${baseUrl}/favorites/find/${id}`)
+                .get(`${baseUrl}/favorites/find/${idUser}`)
                 .then((response) => {
                     setFavoritos(response.data.data)
                 })
                 .catch((error) => {
-                    console.log("errinho");
+                    console.log("Erro ao puxar favoritos");
                 });
         }
     }
@@ -33,8 +34,7 @@ function ResultadoPartic(props) {
     })
 
     useEffect(() => {
-        setLoading(true);
-
+        setLoading(true)
         if (tipo === 'Comissões') {
             axios
                 .get(`https://legis.senado.leg.br/dadosabertos/composicao/comissao/${id}`)
@@ -52,10 +52,8 @@ function ResultadoPartic(props) {
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
-                })
-                .finally(() => {
                     setLoading(false);
-                });
+                })
         } else if (tipo === "Frentes") {
             axios
                 .get(`https://dadosabertos.camara.leg.br/api/v2/frentes/${id}/membros`)
@@ -69,10 +67,8 @@ function ResultadoPartic(props) {
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
-                })
-                .finally(() => {
                     setLoading(false);
-                });
+                })
         } else if (tipo === "Eventos") {
             axios
                 .get(`https://dadosabertos.camara.leg.br/api/v2/eventos/${id}/deputados`)
@@ -86,10 +82,8 @@ function ResultadoPartic(props) {
                 })
                 .catch((error) => {
                     console.log('Erro na API:', error);
-                })
-                .finally(() => {
                     setLoading(false);
-                });
+                })
         }
     }, [tipo, id, nome, ufs]);
 
@@ -141,24 +135,32 @@ function ResultadoPartic(props) {
                     favoritos={favoritos}
                 />
             )))
+        } else{
+            setLoading(false)
         }
     }, [resultados, tipo, favoritos]);
 
+    useEffect(()=>{
+        if(cards.length > 0){
+            setLoading(false);
+        }
+    }, [cards.length])
+
     return (
         <>
-            {loading === true ? (
+            {loading ? (
                 <Carregando loading={true} />
-            ) : resultados.length > 0 ? (
-                <>
-                    <Titulo>{cards.length} Participante(s)</Titulo>
-                    {cards}
-                </>
-            ) : (
+            ) : cards.length === 0 ? (
                 <Container>
                     <Conteudo>
                         <Texto>Nenhum participante encontrado</Texto>
                     </Conteudo>
                 </Container>
+            ) : (
+                <>
+                    <Titulo>{cards.length} Participante(s)</Titulo>
+                    {cards}
+                </>
             )}
         </>
     )
