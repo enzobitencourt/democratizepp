@@ -3,7 +3,6 @@ import { Imagem, Titulo, Texto } from "./styled";
 
 function Object(props) {
   const handleObjectClick = () => {
-    // Redirect the user to the specified URL in a new tab when clicked
     window.open(props.link, '_blank');
   };
 

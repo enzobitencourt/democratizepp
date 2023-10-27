@@ -4,6 +4,7 @@ export const Imagem = styled.div`
     background: url(${(props) => props.imagem});
     background-size: cover;
     background-position: center;
+    border: 0.1px solid black;
     width: 93vw;
     height: 22vh;
     border-radius: 28.5px;
