@@ -35,7 +35,7 @@ export const ButtonFilter = styled.button`
 `
 
 export const ButtonSearch = styled.button`
-    width: 14vw;
+    width: 15vw;
     border-radius: 0 28.6px 28.6px 0;
     background: #1B676B;
     display: flex;
@@ -48,7 +48,7 @@ export const Img = styled.img`
     height: 2vh;
 `
 export const Img1 = styled.img`
-    width: 8vw;
+    width: 7vw;
     height: 2.5vh;
 `
 export const Titulo = styled.p`

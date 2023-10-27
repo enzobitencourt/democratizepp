@@ -9,13 +9,22 @@ function Projeto() {
             <Container>
                 <GeneralContent>
                     <Titulos>
-                        <Titulo>Projeto de Pesquisa</Titulo>
+                        <Titulo>Trabalho de Pesquisa</Titulo>
                         <Subtitulo><b>Democratize</b>: ferramenta digital para fomento a (in)formação política e cidadã</Subtitulo>
                         <Barra />
                     </Titulos>
 
                     <Resumo>
-                        <b>Resumo:</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <b>Resumo: </b> 
+                        Esta aplicação é resultado de uma longa pesquisa que busca entender a influência
+                        anti-democrática das mídias digitais no voto e no comportamento do cidadão brasileiro.
+                        A pesquisa surgiu como trabalho final do curso técnico de Informática para Internet integrado
+                        ao Ensino Médio promovido pelo Senac São Leopoldo. Através do processo teórico, foi possível concluir
+                        que a atual sistematização das principais mídias digitais prejudica o bom funcionamento do processo democrático, uma
+                        vez que utiliza de algoritmos que reconhecem o interesse inicial de um eleitor/cidadão e apenas apresenta conteúdos do seu
+                        interesse, afetando o princípio democrático da liberdade política do indivíduo. Dessa forma, idealizou-se
+                        uma plataforma sem propensões ou tensões digitais que influenciem negativamente nos valores democráticos
+                        de cada cidadão. Abaixo, apresenta-se o trabalho teórico desta pesquisa para os interessados, com toda a formulação de pesquisa e teoria.
                     </Resumo>
                 </GeneralContent>
                 <Object link="https://drive.google.com/file/d/171qFNydQt4QoJPE93h8PLc8rl6LOdzbp/view?usp=sharing" imagem={imagem} texto="Acesse a pesquisa completa em PDF" />

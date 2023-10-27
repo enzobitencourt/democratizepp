@@ -148,7 +148,7 @@ function ResultadoPartic(props) {
         <>
             {loading === true ? (
                 <Carregando loading={true} />
-            ) : cards && cards.length > 0 ? (
+            ) : resultados.length > 0 ? (
                 <>
                     <Titulo>{cards.length} Participante(s)</Titulo>
                     {cards}

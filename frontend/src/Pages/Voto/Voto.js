@@ -21,7 +21,7 @@ function PageVoto() {
 
     const handleKeywordsSubmit = (tags, checkboxes) => {
         const selectedKeywords = tags.concat(checkboxes);
-        onClose(); // Close the modal
+        onClose(); 
         setKeywords(selectedKeywords)
     };
 

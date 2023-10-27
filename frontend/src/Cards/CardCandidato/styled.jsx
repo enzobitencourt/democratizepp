@@ -12,14 +12,6 @@ export const Botao = styled.button`
     align-items: center;
 `
 
-export const Conteudo = styled.div`
-    display: flex;
-    flex-direction: row;
-    width: auto;
-    height: auto;
-    gap: 4vw;
-`
-
 export const ImgPolitico = styled.div`
     border-radius: 18.4px 0px 0px 18.4px;
     background: url(${(props) => props.imagem});
@@ -34,6 +26,7 @@ export const Infos = styled.div`
     display: flex;
     width: 54vw;
     height: auto;
+    margin-left: 3.5vw;
     flex-direction: column;
     gap: 2vw;
     align-items: flex-start;
@@ -60,7 +53,7 @@ export const Nome = styled.p`
 
 export const Coligacao = styled.p`
     color: #424242;
-    font-size: 12.2px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -70,7 +63,7 @@ export const Coligacao = styled.p`
 
 export const Numero = styled.p`
     color: #424242;
-    font-size: 12.2px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
@@ -79,7 +72,7 @@ export const Numero = styled.p`
 `
 export const Partido = styled.p`
     color: #424242;
-    font-size: 12.2px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 14px;
