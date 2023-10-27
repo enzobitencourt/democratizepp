@@ -52,7 +52,7 @@ const EstrelasAvaliacao = (props) => {
                 setRating(null)
                 setExistRating(null)
             });
-    }, [id])
+    })
 
     const handleMouseOver = (index) => {
         setRating(index);

@@ -108,8 +108,8 @@ function Login() {
                             </DivSenha>
                             <Acessar type="submit">Entrar</Acessar>
                             <Abaixo>
-                                <LinksAlternativos>Esqueci a senha</LinksAlternativos>
-                                <LinksAlternativos onClick={goToCadastro}>Não possui cadastro? <b>Cadastre-se</b></LinksAlternativos>
+                                <LinksAlternativos type="button">Esqueci a senha</LinksAlternativos>
+                                <LinksAlternativos type="button" onClick={goToCadastro}>Não possui cadastro? <b>Cadastre-se</b></LinksAlternativos>
                             </Abaixo>
                         </Container>
                     </Main>
