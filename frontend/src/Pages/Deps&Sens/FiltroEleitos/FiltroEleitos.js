@@ -105,7 +105,7 @@ function FiltroEleitos(props) {
                         </Container>
                     ) : (
                         <>
-                            <Titulo>{representantes.length} {tipo === "Deputado Federal" ? "Deputado(s)" : "Senador(es)"}</Titulo>
+                            <Titulo>{representantes.length} {tipo === "Deputado Federal" ? "Deputado(s) Encontrados" : "Senador(es) Encontrados"}</Titulo>
                             {representantes.map((representante, index) => (
                                 <CardEleito
                                     favoritos={props.favoritos}
