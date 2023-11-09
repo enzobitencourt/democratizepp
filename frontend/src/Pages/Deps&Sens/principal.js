@@ -116,8 +116,6 @@ function PrincipalDeps() {
         setPesquisa(true)
 
         setKeywords([])
-        setTipoSelect("");
-        setPartidoSelect("");
         setNome("");
     };
 

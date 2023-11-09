@@ -83,5 +83,5 @@ export const ContainerResultados = styled.div`
     flex-direction: column;
     gap: 1.5vh;
     margin-top: 2vh;
-    margin-bottom: 10vh;
+    margin-bottom: 12vh;
 `

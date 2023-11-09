@@ -6,6 +6,7 @@ import candidatos from '../LogicaCandidatos/database.json'
 import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
 import Carregando from '../../../components/Carregando/Carregando';
 import { Container, Conteudo, Texto } from './styled';
+import { Titulo } from '../styled';
 
 const FiltroCandidatos = (props) => {
     const Div = styled.div`
@@ -100,27 +101,30 @@ const FiltroCandidatos = (props) => {
             {loading === true ? (
                 <Carregando loading={loading} />
             ) : (
-                <Div>
-                    {pdfResults.length > 0 ? (
-                        pdfResults.map((result, index) => (
-                            <CardCandidato
-                                key={index}
-                                nome={result.candidate.nome}
-                                img={result.candidate.imagem}
-                                coligacao={result.candidate.coligacao}
-                                partido={result.candidate.partido}
-                                numero={result.candidate.numero}
-                                url={`https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BR/${result.candidate.id}`}
-                            />
-                        ))
-                    ) : (
-                        <Container>
-                            <Conteudo>
-                                <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
-                            </Conteudo>
-                        </Container>
-                    )}
-                </Div>
+                <>
+                    <Titulo>{pdfResults.length} Resultados</Titulo>
+                    <Div>
+                        {pdfResults.length > 0 ? (
+                            pdfResults.map((result, index) => (
+                                <CardCandidato
+                                    key={index}
+                                    nome={result.candidate.nome}
+                                    img={result.candidate.imagem}
+                                    coligacao={result.candidate.coligacao}
+                                    partido={result.candidate.partido}
+                                    numero={result.candidate.numero}
+                                    url={`https://divulgacandcontas.tse.jus.br/divulga/#/candidato/2022/2040602022/BR/${result.candidate.id}`}
+                                />
+                            ))
+                        ) : (
+                            <Container>
+                                <Conteudo>
+                                    <Texto>Nenhum candidato encontrado. Pesquise novamente!</Texto>
+                                </Conteudo>
+                            </Container>
+                        )}
+                    </Div>
+                </>
             )}
         </>
 

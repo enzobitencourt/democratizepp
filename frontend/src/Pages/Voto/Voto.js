@@ -1,6 +1,6 @@
 import Headers from "../../components/Headers/Headers";
 import Menu from "../../components/Menu/Menu";
-import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Titulo, Resultados } from "./styled";
+import { ButtonFilter, Container, DivInput, InputNome, Img, ButtonSearch, Img1, ContainerResult, Resultados } from "./styled";
 import Filter from "../../Assets/IconFilter.svg";
 import Search from "../../Assets/IconSearch.svg";
 import { Modal, useDisclosure } from "@chakra-ui/react";
@@ -53,7 +53,6 @@ function PageVoto() {
                     </ButtonSearch>
                 </DivInput>
                 <ContainerResult>
-                    <Titulo>Resultados</Titulo>
                     <Resultados>
                         {pesquisa === false ? (
                             <Carregando loading={loading} />

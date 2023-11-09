@@ -25,5 +25,6 @@ export const ContainerFav = styled.div`
     width: 93vw;
     height: auto;
     margin-top: 2vh;
+    position: relative;
     gap: 1vh;
 `
