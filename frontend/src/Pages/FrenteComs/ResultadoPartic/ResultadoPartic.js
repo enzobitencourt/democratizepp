@@ -16,7 +16,8 @@ function ResultadoPartic(props) {
     const [loading, setLoading] = useState(true)
     const [favoritos, setFavoritos] = useState()
 
-    const Favoritos = () => {
+
+    useEffect(() => {
         if (idUser) {
             axios
                 .get(`${baseUrl}/favorites/find/${idUser}`)
@@ -27,11 +28,7 @@ function ResultadoPartic(props) {
                     console.log("Erro ao puxar favoritos");
                 });
         }
-    }
-
-    useEffect(() => {
-        Favoritos()
-    })
+    }, [idUser])
 
     useEffect(() => {
         setLoading(true)

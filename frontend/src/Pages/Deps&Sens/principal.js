@@ -40,7 +40,7 @@ function PrincipalDeps() {
     const [partidos, setPartidos] = useState([])
 
 
-    const Favoritos = () => {
+    useEffect(()=>{
         if (id) {
             axios
                 .get(`${baseUrl}/favorites/find/${id}`)
@@ -51,11 +51,7 @@ function PrincipalDeps() {
                     console.log("errinho");
                 });
         }
-    }
-
-    useEffect(()=>{
-        Favoritos()
-    })
+    }, [id])
 
     const Database = (url, tipo) => {
         axios

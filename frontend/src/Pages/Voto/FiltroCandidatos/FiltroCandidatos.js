@@ -102,7 +102,7 @@ const FiltroCandidatos = (props) => {
                 <Carregando loading={loading} />
             ) : (
                 <>
-                    <Titulo>{pdfResults.length} Resultados</Titulo>
+                    <Titulo>{pdfResults.length < 10 ? `0${pdfResults.length}` : pdfResults.length} Candidatos Encontrados</Titulo>
                     <Div>
                         {pdfResults.length > 0 ? (
                             pdfResults.map((result, index) => (

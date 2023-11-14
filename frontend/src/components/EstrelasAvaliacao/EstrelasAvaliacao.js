@@ -8,12 +8,13 @@ import { useToast } from '@chakra-ui/react';
 const StarContainer = styled.span`
   transition: color 0.2s;
   cursor: pointer;
-  color: ${({ filled }) => (filled ? "#FFD700" : "#A0A0A0")};
+  color: ${({ filled }) => (filled === "true" ? "#FFD700" : "#A0A0A0")};
 
   &:focus {
     outline: none;
   }
 `;
+
 
 const DivStar = styled.div`
     display: flex;
@@ -128,13 +129,14 @@ const EstrelasAvaliacao = (props) => {
                     return (
                         <StarContainer
                             key={index}
-                            filled={index <= rating}
+                            filled={index <= rating ? "true" : "false"}
                             onMouseOver={() => handleMouseOver(index)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleClick(index)}
                         >
                             <FaStar size={40} />
                         </StarContainer>
+
                     );
                 })}
             </Div>
