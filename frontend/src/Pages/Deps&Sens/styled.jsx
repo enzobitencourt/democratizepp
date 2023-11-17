@@ -99,6 +99,7 @@ export const InputNome = styled.input`
     background: white;
     color: black;
     padding-left: 3vw;
+    outline: none;
 `
 
 export const DivPesquisa = styled.div`

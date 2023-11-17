@@ -21,7 +21,7 @@ function ExcluirConta(){
                 localStorage.removeItem('id')
                 localStorage.removeItem('token')
                 toast({
-                    position: 'top-left',
+                    position: 'bottom-left',
                     title: 'Sucesso',
                     description: "Conta excluída",
                     status: 'success',
@@ -31,7 +31,14 @@ function ExcluirConta(){
                 navigate('/entrada')
             })
             .catch(function (error) {
-                console.log(error)
+                toast({
+                    position: 'bottom-left',
+                    title: 'Erro',
+                    description: "Não foi possível excluir conta",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
             });
     }
 

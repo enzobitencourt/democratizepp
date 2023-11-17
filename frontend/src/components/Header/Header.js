@@ -12,7 +12,7 @@ function Header(props) {
     if (!token) {
       navigate('/login');
     } else {
-      navigate('/config');
+      navigate('/perfil');
     }
   }
 

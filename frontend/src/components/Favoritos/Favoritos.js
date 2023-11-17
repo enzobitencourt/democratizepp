@@ -15,9 +15,7 @@ function Favoritos(props) {
             .then((response) => {
                 setFavorites(response.data.data)
             })
-            .catch((error) => {
-                console.log(error)
-            });
+            .catch((error) => {});
     }
 
     const getFavoritos = () => {
@@ -27,9 +25,7 @@ function Favoritos(props) {
                 .then((response) => {
                     setFavoritos(response.data.data);
                 })
-                .catch((error) => {
-                    console.log("errinho");
-                });
+                .catch((error) => {});
         }
     }
 

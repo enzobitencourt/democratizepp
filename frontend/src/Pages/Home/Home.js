@@ -27,9 +27,7 @@ function Home(props) {
         .then(function (response) {
           setUser(response.data.data)
         })
-        .catch(function (error) {
-          console.log(error)
-        });
+        .catch(function (error) {});
     }
   })
 

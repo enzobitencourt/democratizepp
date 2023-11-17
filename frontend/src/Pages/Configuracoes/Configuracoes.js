@@ -9,12 +9,12 @@ import { baseUrl } from "../../services/api"
 function Configuracoes() {
     const id = localStorage.getItem("id")
     const [user, setUser] = useState()
-    const formData = {
-        id: id
-    }
 
     useEffect(() => {
         if (id) {
+            const formData = {
+                id: id
+            }
             axios.post(`${baseUrl}/find/findUser`, formData)
                 .then(function (response) {
                     setUser(response.data.data)
@@ -23,7 +23,7 @@ function Configuracoes() {
                     alert(error.response.data.msg)
                 });
         }
-    })
+    }, [id])
 
     function conversor(byteArray) {
         const uint8Array = new Uint8Array(byteArray);

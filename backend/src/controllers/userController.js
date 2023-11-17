@@ -130,45 +130,76 @@ async function updateUser(request, response) {
 
 // Função que remove usuário no banco
 async function deleteUser(request, response) {
-    // Preparar o comando de execução no banco
-    const query = "DELETE FROM usuarios WHERE `id` = ?";
+    const userId = request.params.id;
 
-    // Recebimento de parametro da rota
-    const params = Array(
-        request.params.id
-    );
+    // Iniciar a transação
+    connection.beginTransaction(async function (err) {
+        if (err) {
+            response.status(500).json({
+                success: false,
+                message: "Erro ao iniciar transação",
+                error: err
+            });
+            return;
+        }
 
-    // Executa a ação no banco e valida os retornos para o client que realizou a solicitação
-    connection.query(query, params, (err, results) => {
         try {
-            if (results) {
-                response
-                    .status(200)
-                    .json({
-                        success: true,
-                        message: `Sucesso! Usuário deletado.`,
-                        data: results
+            // Consultar e excluir registros associados em outras tabelas
+            await executeQuery("DELETE FROM avaliacoes WHERE `usuario_id` = ?", [userId]);
+            await executeQuery("DELETE FROM favoritos WHERE `idUsuario` = ?", [userId]);
+            // Adicione mais consultas conforme necessário para outras tabelas
+
+            // Excluir o usuário da tabela principal
+            const mainDeleteQuery = "DELETE FROM usuarios WHERE `id` = ?";
+            const mainResult = await executeQuery(mainDeleteQuery, [userId]);
+
+            // Commit a transação se todas as consultas foram bem-sucedidas
+            connection.commit(function (err) {
+                if (err) {
+                    return connection.rollback(function () {
+                        response.status(500).json({
+                            success: false,
+                            message: "Erro ao commitar transação",
+                            error: err
+                        });
                     });
-            } else {
-                response
-                    .status(400)
-                    .json({
-                        success: false,
-                        message: `Não foi possível realizar a remoção. Verifique os dados informados`,
-                        query: err.sql,
-                        sqlMessage: err.sqlMessage
-                    });
-            }
-        } catch (e) { // Caso aconteça algum erro na execução
-            response.status(400).json({
-                    succes: false,
-                    message: "Ocorreu um erro. Não foi possível deletar usuário!",
-                    query: err.sql,
-                    sqlMessage: err.sqlMessage
+                }
+
+                response.status(200).json({
+                    success: true,
+                    message: `Sucesso! Usuário e registros associados deletados.`,
+                    data: {
+                        mainResult
+                        // Adicione mais resultados conforme necessário
+                    }
                 });
+            });
+        } catch (error) {
+            // Rollback da transação em caso de erro
+            connection.rollback(function () {
+                response.status(500).json({
+                    success: false,
+                    message: "Erro ao executar exclusão em cascata",
+                    error
+                });
+            });
         }
     });
 }
+
+// Função utilitária para executar consultas
+function executeQuery(query, params) {
+    return new Promise((resolve, reject) => {
+        connection.query(query, params, (err, result) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(result);
+            }
+        });
+    });
+}
+
 
 module.exports = {
     listUsers,

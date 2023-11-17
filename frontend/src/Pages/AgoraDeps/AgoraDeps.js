@@ -139,12 +139,12 @@ function AgoraDeps() {
                 <HeaderEspaco titulo='Câmara dos Deputados' subtitulo='Agora na Câmara' />
                 <ContainerFilter>
                     <ContainerInput>
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={descubraSelect} onChange={(e) => setDescubraSelect(e.target.value)} placeholder='Descubra'>
+                        <Select outline='none' bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={descubraSelect} onChange={(e) => setDescubraSelect(e.target.value)} placeholder='Descubra'>
                             <option value='Proposições'>Proposições</option>
                             <option value='Eventos'>Eventos</option>
                             <option value='Frentes'>Frentes</option>
                         </Select>
-                        <Select bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Classificação' disabled={disableTemaSelect}>
+                        <Select outline='none' bg="white" w='45vw' h='5vh' borderRadius='28.6px' value={selectedTema} onChange={(e) => setSelectedTema(e.target.value)} placeholder='Classificação' disabled={disableTemaSelect}>
                             {temas.map((tema, index) => (
                                 <option key={index} value={tema.cod}>
                                     {tema.nome}
@@ -160,7 +160,7 @@ function AgoraDeps() {
                             onChange={(e) => setAuthorInput(e.target.value)}
                             disabled={disableAuthorInput} />
 
-                        <Select bg="white" w="45vw" h="5vh" borderRadius="28.6px" value={selectedPartido}
+                        <Select outline='none' bg="white" w="45vw" h="5vh" borderRadius="28.6px" value={selectedPartido}
                             onChange={(e) => setSelectedPartido(e.target.value)}
                             placeholder={descubraSelect === "Eventos" ? "Situação" : "Partidos"}
                             maxH="50px"
@@ -173,13 +173,13 @@ function AgoraDeps() {
                                         {partido.nome}
                                     </option>
                                 ))
-                            ) : (
+                            ) : descubraSelect ? (
                                 partidos.map((partido, index) => (
                                     <option key={index} value={partido.sigla}>
                                         {partido.sigla}
                                     </option>
                                 ))
-                            )}
+                            ):<></>}
                         </Select>
                     </ContainerInput>
 
