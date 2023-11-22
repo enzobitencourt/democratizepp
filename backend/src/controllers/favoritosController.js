@@ -11,9 +11,11 @@ const fs = require('fs');
 async function createFavorite(request, response) {
     const { nome, cargo, imagem, idEleito, idUsuario, url } = request.body;
 
+    const idUsuarioInt = parseInt(idUsuario, 10);
+
     const query = "INSERT INTO favoritos (nome, cargo, imagem, idUsuario, idEleito, url) VALUES (?, ?, ?, ?, ?, ?)";
 
-    connection.query(query, [nome, cargo, imagem, idUsuario, idEleito, url], (err, results) => {
+    connection.query(query, [nome, cargo, imagem, idUsuarioInt, idEleito, url], (err, results) => {
         if (err) {
             response.status(400).json({
                 success: false,

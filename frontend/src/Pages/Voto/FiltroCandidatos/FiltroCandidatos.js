@@ -7,6 +7,8 @@ import CardCandidato from '../../../Cards/CardCandidato/CardCandidato';
 import Carregando from '../../../components/Carregando/Carregando';
 import { Container, Conteudo, Texto } from './styled';
 import { Titulo } from '../styled';
+import axios from 'axios';
+import { baseUrl } from '../../../services/api';
 
 const FiltroCandidatos = (props) => {
     const Div = styled.div`
@@ -94,7 +96,21 @@ const FiltroCandidatos = (props) => {
         }
     }, [props.resetSearch, nome, props, keywords]);
 
+    const idUser = localStorage.getItem("id")
+    const [favoritos, setFavoritos] = useState()
 
+    useEffect(() => {
+        if (idUser) {
+            axios
+                .get(`${baseUrl}/favorites/find/${idUser}`)
+                .then((response) => {
+                    setFavoritos(response.data.data)
+                })
+                .catch((error) => {
+                    console.log("Erro ao pegar favoritos");
+                });
+        }
+    }, [idUser])
 
     return (
         <>
@@ -108,6 +124,8 @@ const FiltroCandidatos = (props) => {
                             pdfResults.map((result, index) => (
                                 <CardCandidato
                                     key={index}
+                                    favoritos={favoritos}
+                                    id={result.candidate.id}
                                     nome={result.candidate.nome}
                                     img={result.candidate.imagem}
                                     coligacao={result.candidate.coligacao}
