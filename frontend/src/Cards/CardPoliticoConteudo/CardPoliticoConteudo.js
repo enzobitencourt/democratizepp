@@ -11,7 +11,7 @@ function CardPoliticoConteudo(props) {
             <Botao>
                 <Conteudo>
                     <ImgPolitico imagem={props.imagem}>
-                        <Like url={props.url} favoritos={props.favoritos} id={props.id} cargo={props.cargo} nome={props.nome} imagem={props.imagem} like={false} />
+                        <Like url={props.url} favoritos={props.favoritos} id={props.id} cargo={props.cargo} nome={props.nome} imagem={props.imagem} />
                     </ImgPolitico>
                     <Infos onClick={handleClick}>
                         <Nome>{props.nome}</Nome>

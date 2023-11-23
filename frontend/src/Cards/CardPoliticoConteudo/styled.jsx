@@ -1,6 +1,6 @@
 import {styled} from "styled-components"
 
-export const Botao = styled.button`
+export const Botao = styled.div`
     width: 93vw;
     height: auto;
     display: flex;
@@ -32,7 +32,7 @@ export const ImgPolitico = styled.div`
     padding: 1vw;
 `
 
-export const Infos = styled.div`
+export const Infos = styled.button`
     display: flex;
     width: 50vw;
     flex-direction: column;

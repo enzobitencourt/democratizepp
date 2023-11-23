@@ -3,24 +3,24 @@ import { styled } from "styled-components";
 export const ContainerFavoritos = styled.div`
     display: flex;
     flex-direction: column;
-    width: 37vw;
+    width: 43vw;
     height: auto;
     gap: 1vh;
     border-radius: 18.24px;
     background: #FFF;
-    padding: 0 0 0.6vh 0;
+    padding: 0 0 2vh 0;
 `
 
 export const ImgFavs = styled.div`
-    width: 37vw;
-    height: 18vh;
+    width: 43vw;
+    height: 20vh;
     border-radius: 18.24px;
     background: url(${(props) => props.imagem});
     background-size: cover;
     background-position: center;
 `
 export const Informacoes = styled.div`
-    width: 37vw;
+    width: 43vw;
     display: flex;
     flex-direction: column;
     height: auto;
@@ -44,9 +44,9 @@ export const CargoFav = styled.p`
 export const Favorito = styled.div`
     display: flex;
     flex-direction: row;
-    align-items:top ;
     width: 100%;
     justify-content: space-between;
+    align-items: start;
 `
 export const NomeFav = styled.p`
     color: #000;

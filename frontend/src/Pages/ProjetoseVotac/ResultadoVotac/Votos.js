@@ -83,7 +83,7 @@ function Votos(props) {
                                             <CardPoliticoConteudo
                                                 url={`https://www.camara.leg.br/deputados/${voto.deputado_.id}`}
                                                 nome={voto.deputado_.nome}
-                                                id={voto.deputado_id}
+                                                id={voto.deputado_.id}
                                                 cargo="Deputado Federal"
                                                 key={index}
                                                 favoritos={favoritos}
