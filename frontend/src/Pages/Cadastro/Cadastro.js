@@ -41,7 +41,14 @@ function Cadastro() {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (formData.senha !== formData.confirmSenha) {
-            alert("Senhas não coincidem")
+            toast({
+                position: 'bottom-left',
+                title: 'Erro',
+                description: `Senhas não coincidem`,
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            });
         } else {
             const formDataToSubmit = {
                 nome: formData.nome,
