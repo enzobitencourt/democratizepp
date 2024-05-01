@@ -10,7 +10,7 @@ function Projeto() {
                 <GeneralContent>
                     <Titulos>
                         <Titulo>Trabalho de Pesquisa</Titulo>
-                        <Subtitulo><b>Democratize</b>: ferramenta digital para fomento a (in)formação política e cidadã</Subtitulo>
+                        <Subtitulo><b>Democratize</b>: ferramenta digital para fomento à (in)formação política e cidadã</Subtitulo>
                         <Barra />
                     </Titulos>
 
